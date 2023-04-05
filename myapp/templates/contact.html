@@ -10,9 +10,37 @@
 	
 </head>
 <body>
-
+<<center>
 <h1>Welcome to Contact page</h1>
+<table method="post" action=''>
+	<tr>
+		<td>Name</td>
+		<td><input type="text" name="name"></td>
+	</tr>
 
+		<tr>
+		<td>Email</td>
+		<td><input type="text" name="email"></td>
+	</tr>
+
+		<tr>
+		<td>Mobile Number</td>
+		<td><input type="text" name="mobile"></td>
+	</tr>
+
+		<tr>
+		<td>Remarks</td>
+		<td><textarea rows="5" cols="22" name="remarks"></textarea></td>
+	</tr>
+
+	<tr>
+		<td colspan="2" align="center">
+			<input type="submit" name="action" value="SUBMIT" class="btn btn-primary">
+		</td>
+	</tr>
+
+</table>
+</center>
 </body>
 </html>
 {% endblock %}
