@@ -10,9 +10,13 @@
 	
 </head>
 <body>
-<<center>
+<center>
+
 <h1>Welcome to Contact page</h1>
-<table method="post" action=''>
+
+<form method="post" action="{% url 'contact' %}">
+	{% csrf_token %}
+	<table>
 	<tr>
 		<td>Name</td>
 		<td><input type="text" name="name"></td>
@@ -40,7 +44,9 @@
 	</tr>
 
 </table>
+</form>
 </center>
+
 </body>
 </html>
 {% endblock %}
