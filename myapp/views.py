@@ -15,10 +15,12 @@ def contact(request):
 			mobile=request.POST['mobile'],
 			remarks=request.POST['remarks']
 			)
+		contacts=Contact.objects.all()
 		msg="Contact Saved Successfully ,,!"
-		return render(request,'contact.html',{'msg':msg})
+		return render(request,'contact.html',{'msg':msg,'contacts':contacts})
 	else:
-		return render(request,'contact.html')
+		contacts=Contact.objects.all()
+		return render(request,'contact.html',{'contacts':contacts})
 
 def signup(request):
 	return render(request,'signup.html')

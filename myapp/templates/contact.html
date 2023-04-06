@@ -49,6 +49,11 @@
 </form>
 </center>
 
+<h1 style="color:blue">Recent Contacts : </h1>
+{% for i in contacts %}
+	Name :- {% i.name%}
+	Remarks :- {% i.remarks %}
+{% endfor %}
 </body>
 </html>
 {% endblock %}
