@@ -14,7 +14,7 @@
 
 <h1>Welcome to Contact page</h1>
 {% if msg %}
-	<b style="color:black">{{msg}}</b>
+	<b style="color:Green">{{msg}}</b>
 {% endif %}
 <form method="post" action="{% url 'contact' %}">
 		{% csrf_token %}
@@ -50,10 +50,12 @@
 </center>
 
 <h1 style="color:blue">Recent Contacts : </h1>
+<hr>
 {% for i in contacts %}
-	Name :- {% i.name%}
-	Remarks :- {% i.remarks %}
+	Name : {{ i.name }}<br>
+	Remarks : {{ i.remarks }}<br><hr>
 {% endfor %}
+<hr>
 </body>
 </html>
 {% endblock %}
