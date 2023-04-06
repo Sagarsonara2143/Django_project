@@ -16,7 +16,7 @@ def contact(request):
 			remarks=request.POST['remarks']
 			)
 		contacts=Contact.objects.all().order_by('-id')[:5]
-		msg="Contact Saved Successfully ,,!"
+		msg="Contact Saved Successfully ..!"
 		return render(request,'contact.html',{'msg':msg,'contacts':contacts})
 	else:
 		contacts=Contact.objects.all().order_by('-id')[:5]
