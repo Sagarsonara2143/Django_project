@@ -23,7 +23,7 @@ def contact(request):
 		return render(request,'contact.html',{'contacts':contacts})
 
 def signup(request):
-	if request.method="POST":
+	if request.method=="POST":
 		User.objects.create(
 			fname=request.POST['fname'],
 			lname=request.POST['lname'],
@@ -33,7 +33,6 @@ def signup(request):
 			address=request.POST['address'],
 			password=request.POST['password']
 			)
-		
 	else:
 		return render(request,'signup.html')
 
