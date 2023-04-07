@@ -33,6 +33,8 @@ def signup(request):
 			address=request.POST['address'],
 			password=request.POST['password']
 			)
+		msg="User Signup Successfully.."
+		return render(request,'signup.html',{'msg':msg})
 	else:
 		return render(request,'signup.html')
 
