@@ -17,7 +17,7 @@ class User(models.Model):
 	mobile=models.PositiveSmallIntegerField()
 	gender=models.CharField(max_length=100)
 	address=models.TextField()	
-	password=models.CharField()
+	password=models.CharField(max_length=100)
 
 	def __str__(self):
 		return self.fname+""+self.lname
