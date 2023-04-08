@@ -48,9 +48,9 @@ def signup(request):
 		return render(request,'signup.html')
 
 def login(request):
-	try:
-		user = User.objects.get(email=request.POST['email'])
-		if user.password==request.POST['email']:
+	if request.method=="POST":
+		try:
+			user = User.objects.get(email=request.POST['email'])
 			if user.password==request.POST['password']:
 				request.session['email']=user.email
 				request.session['fname']=user.fname
@@ -58,8 +58,10 @@ def login(request):
 			else:
 				msg="Invalid Password"
 				return render(request,'login.html',{'msg':msg})
-		else:
+				msg= "Email ID not registered"
+				return render(request,'login.html',{'msg':msg})
+		except:
 			msg= "Email ID not registered"
 			return render(request,'login.html',{'msg':msg})
-	except:
+	else:
 		return render(request,'login.html')
