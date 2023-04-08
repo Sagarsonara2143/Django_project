@@ -11,8 +11,31 @@
 </head>
 <body>
 
+<center>
 <h1>Welcome to Login page</h1>
 
+{% if msg %}
+	<b style="color:Green">{{msg}}</b>
+{% endif %}
+<form method="post" action="{% url 'signup' %}">
+		{% csrf_token %}
+			<table>
+			<tr>
+				<td style=font-size:20px>Email</td>
+				<td><input type="text" name="email" class="form-control" placeholder="Enter Email" required></td>
+			</tr>
+
+			<tr>
+				<td style=font-size:20px>Password</td>
+				<td><input type="password" name="password" class="form-control" placeholder="Enter Password"></td>
+			</tr>
+			<br>
+			<tr>
+				<td></td>
+				<td style=font-size:15px align="right" href="{ url 'signup' }">Reset Password</td>
+			</tr>
+			
+</center>
 </body>
 </html>
 {% endblock %}

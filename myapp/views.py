@@ -29,7 +29,7 @@ def signup(request):
 			msg = "Email ID is already registered"
 			return render(request,'signup.html',{'msg':msg})
 		except:
-			if request.POST['password']==request.POST['cpassword']
+			if request.POST['password']==request.POST['cpassword']:
 				User.objects.create(
 					fname=request.POST['fname'],
 					lname=request.POST['lname'],
@@ -42,7 +42,7 @@ def signup(request):
 				msg="User Signup Successfully.."
 				return render(request,'signup.html',{'msg':msg})
 			else:
-				msg="Passord and confirm password does not match"
+				msg="Passord and confirm password does not matched"
 				return render(request,'signup.html',{'msg':msg})
 	else:
 		return render(request,'signup.html')
