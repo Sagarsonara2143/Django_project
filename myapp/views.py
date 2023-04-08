@@ -61,7 +61,7 @@ def login(request):
 				msg= "Email ID not registered"
 				return render(request,'login.html',{'msg':msg})
 		except:
-			msg= "Email ID not registered"
+			msg= "Email not registered"
 			return render(request,'login.html',{'msg':msg})
 	else:
 		return render(request,'login.html')
