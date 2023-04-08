@@ -65,3 +65,11 @@ def login(request):
 			return render(request,'login.html',{'msg':msg})
 	else:
 		return render(request,'login.html')
+
+def logout(request):
+	try:
+		del request.session['email']
+		del request.session['fname']
+		return render(request,'login.html')
+	except:
+		return render(request,'login.html')
