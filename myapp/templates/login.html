@@ -17,7 +17,7 @@
 {% if msg %}
 	<b style="color:Green">{{msg}}</b>
 {% endif %}
-<form method="post" action="{% url 'signup' %}">
+<form method="post" action="{% url 'login' %}">
 		{% csrf_token %}
 			<table>
 			<tr>
@@ -29,12 +29,12 @@
 				<td style=font-size:20px>Password</td>
 				<td><input type="password" name="password" class="form-control" placeholder="Enter Password"></td>
 			</tr>
-			<br>
-			<tr>
-				<td></td>
-				<td style=font-size:15px align="right" href="{ url 'signup' }">Reset Password</td>
-			</tr>
 			
+						<tr>
+				<td colspan="2" align="center">
+					<input type="submit" name="action" value="SUBMIT" class="btn btn-primary">
+				</td>
+			</tr>
 </center>
 </body>
 </html>
