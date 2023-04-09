@@ -74,6 +74,19 @@ def logout(request):
 	except:
 		return render(request,'login.html')
 
-
 def change_password(request):
-	return render(request,'change-password.html')
+	if request.method=="POST":
+		user=User.objects.get(email=request.session['email'])
+		if user.password==request.POST['old_password']:
+			if request.POST['new_password']==request.POST['cnew_password']:
+				user.password=request.POST['new_password']
+				user.save()
+				return redirect('logout')
+			else:
+				msg="New password and confirm password does	not matched"
+				return render(request,'change-password.html',{'msg':msg})
+		else:
+			msg = "Old password does not matched"
+			return render(request,'change-password.html',{'msg':msg})
+	else:
+		return render(request,'change-password.html')
