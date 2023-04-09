@@ -32,7 +32,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       {% if request.session.email %}
-        <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-edit"></span>Change Password</a></li>
+        <li><a href="{% url 'change_password' %}"><span class="glyphicon glyphicon-edit"></span>Change Password</a></li>
         <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span>Logout-{{request.session.fname}}</a></li>
       {% else %}
         <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

@@ -73,3 +73,7 @@ def logout(request):
 		return render(request,'login.html')
 	except:
 		return render(request,'login.html')
+
+
+def change_password(request):
+	return render(request,'change-password.html')
