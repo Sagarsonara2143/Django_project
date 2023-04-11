@@ -16,7 +16,7 @@
 {% if msg %}
 	<b style="color:Green">{{msg}}</b>
 {% endif %}
-<form method="post" action="{% url 'signup' %}">
+<form method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
 		{% csrf_token %}
 			<table>
 			<tr>
