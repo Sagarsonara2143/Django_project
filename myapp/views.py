@@ -119,30 +119,23 @@ def verify_otp(request):
 	otp=request.POST['otp']
 	uotp=request.POST['uotp']
 
-	if request.method=="POST":
-		
-		if otp==uotp:
-			return render(request,'new-password.html',{'email':email})
-		else:
-			msg="Invalid OTP"
-			return render(request,'verify-otp.html',{'msg':msg})
+	if otp==uotp:
+		return render(request,'new-password.html',{'email':email})
 	else:
-		return render(request,'verify-otp.html')
-
+		msg="Invalid OTP"
+		return render(request,'verify-otp.html',{'email':email,'otp':otp,'msg':msg})
+	
 def new_password(request):
 	email=request.POST['email']
 	npwd=request.POST['new_password']
 	cnpwd=request.POST['cnew_password']
-	if request.method=="POST":
+		
+	if npwd==cnpwd:
 		user=User.objects.get(email=email)
-		if npwd==cnpwd:
-			user.password=np
-			user.save()
-			msg ="Password updated Successfully..!"
-			return render(request,'login.html',{'msg':msg})
-		else:
-			msg = "New password and confirm new password does not matched"
-			return render(request,'new-password.html',{'msg':msg})
-
+		user.password=npwd
+		user.save()
+		msg ="Password updated Successfully..!"
+		return render(request,'login.html',{'msg':msg})
 	else:
-		return render(request,'login.html')
+		msg = "New password and confirm new password does not matched"
+		return render(request,'new-password.html',{'msg':msg})
