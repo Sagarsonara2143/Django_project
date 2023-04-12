@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect
 from . models import Contact,User
+from django.conf import settings
+from django.core.mail import send_mail
+import random
+
 
 # Create your views here.
 
@@ -93,4 +97,22 @@ def change_password(request):
 
 
 def forgot_password(request):
-	return render(request,'forgot-password.html')
+	if request.method=="POST":
+		try:
+			user=User.objects.get(email=request.POST['email'])
+			otp=random.randint(1000,9999)
+			subject = 'OTP for forgot password'
+			message = 'Hello '+ user.fname +' ! OTP for forgot password is ' + str(otp)
+			email_from = settings.EMAIL_HOST_USER
+			recipient_list = [user.email,]
+			send_mail( subject, message, email_from, recipient_list )
+			msg = "OTP Sent Successfully !!"
+			return render(request,'verify-otp.html',{'email':user.email, 'otp':otp, 'msg':msg})
+		except:
+			msg = "Opps! Email is not registered"
+			return render(request,'forgot-password.html',{'msg':msg})
+	else:
+		return render(request,'forgot-password.html')
+
+def verify_otp(request):
+	return render(request,'forgot-password.html')	

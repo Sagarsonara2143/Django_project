@@ -13,18 +13,24 @@
 <body>
 
 <center>
-<h1>Forgot Password</h1>
+<h1>Verify Password</h1>
 
 {% if msg %}
 	<b style="color:green" >{{msg}}</b>
 {% endif %}
-<form method="post" action="{% url 'forgot-password' %}">
+<form method="post" action="{%%}">
 		{% csrf_token %}
 			<table>
 
 			<tr>
-				<td style=font-size:20px>Email</td>
-				<td><input type="text" name="email" class="form-control" placeholder="Enter Email" required></td>
+				<td><input type="hidden" name="email" value="{{email}}"></td>
+				<td><input type="hidden" name="otp" value="{{otp}}"></td>
+
+			</tr>
+			
+			<tr>
+				<td style=font-size:20px>Enter OTP</td>
+				<td><input type="text" name="uotp" class="form-control" placeholder="Enter OTP " required></td>
 			</tr>
 			
 			<tr>
