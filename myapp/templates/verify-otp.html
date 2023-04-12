@@ -13,12 +13,12 @@
 <body>
 
 <center>
-<h1>Verify Password</h1>
+<h1>Verify OTP</h1>
 
 {% if msg %}
 	<b style="color:green" >{{msg}}</b>
 {% endif %}
-<form method="post" action="{%%}">
+<form method="post" action="{% url 'verify-otp' %}">
 		{% csrf_token %}
 			<table>
 
@@ -35,7 +35,7 @@
 			
 			<tr>
 				<td colspan="2" align="center">
-					<input type="submit" name="action" value="Send OTP" class="btn btn-primary">
+					<input type="submit" name="action" value="Verify OTP" class="btn btn-primary">
 				</td>
 			</tr>
 </center>

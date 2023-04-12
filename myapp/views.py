@@ -107,7 +107,7 @@ def forgot_password(request):
 			recipient_list = [user.email,]
 			send_mail( subject, message, email_from, recipient_list )
 			msg = "OTP Sent Successfully !!"
-			return render(request,'verify-otp.html',{'email':user.email, 'otp':otp, 'msg':msg})
+			return render(request,'verify-otp.html',{'email':user.email,'otp':otp,'msg':msg})
 		except:
 			msg = "Opps! Email is not registered"
 			return render(request,'forgot-password.html',{'msg':msg})
