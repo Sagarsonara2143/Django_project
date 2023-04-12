@@ -115,4 +115,15 @@ def forgot_password(request):
 		return render(request,'forgot-password.html')
 
 def verify_otp(request):
-	return render(request,'forgot-password.html')	
+	if request.method="POST":
+		email=request.POST['email']
+		otp=request.POST['otp']
+		uotp=request.POST['uotp']
+
+		if otp==uotp:
+			return render(request,'new-password.html')
+		else:
+			msg="Invalid OTP"
+			return render(request,'verify-otp.html',{'msg':msg})
+	else:
+		return render(request,'verify-otp.html')
