@@ -90,3 +90,7 @@ def change_password(request):
 			return render(request,'change-password.html',{'msg':msg})
 	else:
 		return render(request,'change-password.html')
+
+
+def forgot_password(request):
+	return render(request,'forgot-password.html')
