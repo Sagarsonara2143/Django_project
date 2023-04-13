@@ -37,7 +37,7 @@
       {% if request.session.email %}
         <li><a href="{% url 'change_password' %}"><span class="glyphicon glyphicon-edit"></span>Change Password</a></li>
         <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span>Logout[{{request.session.fname}}]</a></li>
-        <a href=""><img src="{{request.session.profile_pic}}" height="50px" align="center"></a>
+        <a href="{% url 'profile' %}"><img src="{{request.session.profile_pic}}" height="50px" align="center"></a>
       {% else %}
         <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>

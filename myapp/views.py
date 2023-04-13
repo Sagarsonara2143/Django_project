@@ -141,3 +141,8 @@ def new_password(request):
 	else:
 		msg = "New password and confirm new password does not matched"
 		return render(request,'new-password.html',{'msg':msg})
+
+def profile(request):
+	user = User.objects.get(email=request.session['email'])
+	return render(request,'profile.html',{'user':user})
+
