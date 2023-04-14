@@ -21,9 +21,9 @@ class Staff(models.Model):
 
 class Task(models.Model):
 	staff=models.ForeignKey(Staff,on_delete=models.CASCADE)
-	remark=models.CharField(max_length=150)
+	remarks=models.TextField()
 	date = models.CharField(max_length=100)
 	status=models.CharField(max_length=100)
 
 	def __str__(self):
-		return self.staff.fname+" "+self.staff.remark
+		return self.staff.fname

@@ -14,7 +14,11 @@
 
 <h1> CRUD Operation</h1>
 
-<form name="index" method="post" action="{url 'add-task'}">
+{% if msg %}
+	<b style="color:Green">{{msg}}</b>
+{% endif %}
+<form name="index" method="post" action="{% url 'add-task' %}">
+	{% csrf_token %}
 	<table>
 		<tr>
 			<td>Select Staff</td>
@@ -29,7 +33,7 @@
 		</tr>
 		<tr>
 			<td>GIT URL / Remark</td>
-			<td><input type="text" value="remark"></td>
+			<td><input type="text" name="remarks"></td>
 		</tr>
 
 		<tr>
@@ -40,13 +44,15 @@
 		<tr>
 			<td>Status</td>
 			<td>
-				<select>---Select Status---</select>
+				<select name="status">
+				<option>---Select Status---</option>
 				<option value="pending">Pending</option>
 				<option value="completed">Completed</option>
+				</select>
 			</td>
 		</tr>
 		
-		<tr>
+		<tr>	
 			<td colspan="2" align="center">
 				<input type="submit" name="SUBMIT" class="btn btn-primary">
 			</td>
