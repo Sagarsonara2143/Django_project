@@ -17,8 +17,38 @@
 <form name="index" method="post" action="">
 	<table>
 		<tr>
-			<td>1</td>
+			<td>Select Staff</td>
+			<td>
+				<select name="staff">
+				<option>--- Select Option ---</option>
+				<option value="trainer">Trainer</option>
+				<option value="counsellor">Counsellor</option>
+				<option value="admin">Admin</option>
+				<option value="backoffice">Back Office</option>
+			</select>
+			</td>
 		</tr>
+		<tr>
+			<td>GIT URL / Remark</td>
+			<td><input type="text" value="remark"></td>
+		</tr>
+
+		<tr>
+			<td>Date</td>
+			<td><input type="date" name="date"></td>
+		</tr>
+
+		<tr>
+			<td>Status</td>
+			<td><input type="hidden" name="status" value="Pending"></td>
+		</tr>
+		
+		<tr>
+			<td colspan="2" align="center">
+				<input type="submit" name="SUBMIT" class="btn btn-primary">
+			</td>
+		</tr>
+
 	</table>
 </form>
 </body>
