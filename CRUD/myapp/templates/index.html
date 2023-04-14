@@ -14,17 +14,16 @@
 
 <h1> CRUD Operation</h1>
 
-<form name="index" method="post" action="">
+<form name="index" method="post" action="{url 'add-task'}">
 	<table>
 		<tr>
 			<td>Select Staff</td>
 			<td>
 				<select name="staff">
 				<option>--- Select Option ---</option>
-				<option value="trainer">Trainer</option>
-				<option value="counsellor">Counsellor</option>
-				<option value="admin">Admin</option>
-				<option value="backoffice">Back Office</option>
+				{% for i in staff %}
+					<option value="{{i.pk}}">{{i.staff_cat}} - {{i.fname}}</option>
+				{% endfor%}
 			</select>
 			</td>
 		</tr>
@@ -40,7 +39,11 @@
 
 		<tr>
 			<td>Status</td>
-			<td><input type="hidden" name="status" value="Pending"></td>
+			<td>
+				<select>---Select Status---</select>
+				<option value="pending">Pending</option>
+				<option value="completed">Completed</option>
+			</td>
 		</tr>
 		
 		<tr>

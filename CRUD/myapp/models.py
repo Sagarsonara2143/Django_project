@@ -18,3 +18,12 @@ class Staff(models.Model):
 
 	def __str__(self):
 		return self.fname+" - "+self.staff_cat
+
+class Task(models.Model):
+	staff=models.ForeignKey(Staff,on_delete=models.CASCADE)
+	remark=models.CharField(max_length=150)
+	date = models.CharField(max_length=100)
+	status=models.CharField(max_length=100)
+
+	def __str__(self):
+		return self.staff.fname+" "+self.staff.remark
