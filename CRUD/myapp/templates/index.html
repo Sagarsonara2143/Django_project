@@ -9,9 +9,15 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
+	<style type="text/css">
+		tr,td{
+			padding: 7px;
+			color: blue;
+		}
+	</style>
 </head>
 <body>
-
+<center>
 <h1> CRUD Operation</h1>
 
 {% if msg %}
@@ -21,9 +27,9 @@
 	{% csrf_token %}
 	<table>
 		<tr>
-			<td>Select Staff</td>
+			<td style=font-size:20px;>Select Staff</td>
 			<td>
-				<select name="staff">
+				<select name="staff" class="form-control">
 				<option>--- Select Option ---</option>
 				{% for i in staff %}
 					<option value="{{i.pk}}">{{i.staff_cat}} - {{i.fname}}</option>
@@ -32,19 +38,19 @@
 			</td>
 		</tr>
 		<tr>
-			<td>GIT URL / Remark</td>
-			<td><input type="text" name="remarks"></td>
+			<td style=font-size:20px;>GIT URL / Remark</td>
+			<td><input type="text" name="remarks" class="form-control"></td>
 		</tr>
 
 		<tr>
-			<td>Date</td>
-			<td><input type="date" name="date"></td>
+			<td style=font-size:20px;>Date</td>
+			<td><input type="date" name="date" class="form-control"></td>
 		</tr>
 
 		<tr>
-			<td>Status</td>
+			<td style=font-size:20px;>Status</td>
 			<td>
-				<select name="status">
+				<select name="status" class="form-control">
 				<option>---Select Status---</option>
 				<option value="pending">Pending</option>
 				<option value="completed">Completed</option>
@@ -53,12 +59,13 @@
 		</tr>
 		
 		<tr>	
-			<td colspan="2" align="center">
-				<input type="submit" name="SUBMIT" class="btn btn-primary">
+			<td colspan="2" align="center" style=font-size:20px;>
+				<input type="submit" name="SUBMIT" class="btn btn-outline-primary">
 			</td>
 		</tr>
 
 	</table>
 </form>
+</center>
 </body>
 </html>
