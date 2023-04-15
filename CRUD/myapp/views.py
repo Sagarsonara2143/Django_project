@@ -5,7 +5,7 @@ from .models import Staff,Task
 
 def index(request):
 	staff=Staff.objects.all()
-	task=Task.objects.all()
+	task=Task.objects.all().order_by('-id')
 	return render(request,'index.html',{'staff':staff,'task':task})
 
 def add_task(request):
@@ -20,7 +20,7 @@ def add_task(request):
 		)
 	msg="Task Completed Successfully..!"
 	staff=Staff.objects.all()
-	task=Task.objects.all()
+	task=Task.objects.all().order_by('-id')
 	return render(request,'index.html',{'staff':staff,'msg':msg,'task':task})
 
 def complete_task(request):
