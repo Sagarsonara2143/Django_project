@@ -26,4 +26,4 @@ class Task(models.Model):
 	status=models.CharField(max_length=100)
 
 	def __str__(self):
-		return self.staff.fname
+		return self.staff.fname+" - "+self.remarks
