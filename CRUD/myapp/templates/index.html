@@ -12,7 +12,6 @@
 	<style type="text/css">
 		tr,td{
 			padding: 7px;
-			color: blue;
 		}
 	</style>
 </head>
@@ -25,7 +24,7 @@
 {% endif %}
 <form name="index" method="post" action="{% url 'add-task' %}">
 	{% csrf_token %}
-	<table>
+	<table style="color:blue">
 		<tr>
 			<td style=font-size:20px;>Select Staff</td>
 			<td>
@@ -69,6 +68,48 @@
 </center>
 
 <h2>Task List </h2>
+View Task By - <a href="">All</a> || <a href="">Completed</a> || <a href="">Pending</a> 
+<table border="5" width="100%" cellpadding="10px" cellspacing="10px">
+	<tr>
+		<th>Task ID</th>
+		<th>Staff Name</th>
+		<th>Remarks</th>
+		<th>Date</th>
+		<th>Status</th>
+		<th>Action</th>
+	</tr>
+	{% for i in task %}
+	<tr>
+		<td>{{i.id}}</td>
+		<td>{{i.staff.fname}}</td>
+		<td>{{i.remarks}}</td>
+		<td>{{i.date}}</td>
+		
+		{% if i.status == "pending" %}
+			<td style="color:red"><b>{{i.status}}</b></td>	
+		{% else %}
+			<td style="color:green"><b>{{i.status}}</b></td>
+		{% endif %}
 
+		{% if i.status == "pending" %}
+		<td>
+			<form name="task" method="post" action="{% url 'complete-task' %}">
+				{% csrf_token %}
+				<input type="hidPending" name" value={{i.id}}>
+				<input type="submit" name="action" value="Complete Task" class="btn btn-danger">
+			</form>
+		</td>
+		{% else %}
+		<td>
+			<input type="submit" name="action" value="Task Completed" readonly class="btn btn-success">
+		</td>
+		{% endif %}
+
+	</tr>
+	{% endfor%}
+	
+	
+
+</table>
 </body>
 </html>
