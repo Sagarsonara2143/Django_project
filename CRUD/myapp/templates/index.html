@@ -68,7 +68,7 @@
 </center>
 
 <h2>Task List </h2>
-View Task By - <a href="">All</a> || <a href="">Completed</a> || <a href="">Pending</a> 
+View Task By - <a href="{% url 'all' %}">All</a> || <a href="{% url 'completed' %}">Completed</a> || <a href="{% url 'pending' %}">Pending</a> 
 <table border="5" width="100%" cellpadding="10px" cellspacing="10px">
 	<tr>
 		<th>Task ID</th>
@@ -95,7 +95,7 @@ View Task By - <a href="">All</a> || <a href="">Completed</a> || <a href="">Pend
 		<td>
 			<form name="task" method="post" action="{% url 'complete-task' %}">
 				{% csrf_token %}
-				<input type="hidPending" name" value={{i.id}}>
+				<input type="hidden" name="id" value={{i.id}}>
 				<input type="submit" name="action" value="Complete Task" class="btn btn-danger">
 			</form>
 		</td>
