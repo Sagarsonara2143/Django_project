@@ -88,7 +88,7 @@ View Task By - <a href="{% url 'all' %}">All</a> || <a href="{% url 'completed' 
 		{% if i.status == "pending" %}
 			<td style="color:red"><b>{{i.status}}</b></td>	
 		{% else %}
-			<td style="color:blue"><b>{{i.status}}</b></td>
+			<td style="color:green"><b>{{i.status}}</b></td>
 		{% endif %}
 
 		{% if i.status == "pending" %}
