@@ -43,8 +43,13 @@
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-right">
-						<li><a href="{% url 'signup' %}"><i class="fa fa-dollar"></i> Sign Up</a></li>
-						<li><a href="{% url 'login' %}"><i class="fa fa-user-o"></i> Login </a></li>
+						{% if request.session.email %}
+							<li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>Logout ({{request.session.fname}})</a></li>
+							
+						{% else %}
+							<li><a href="{% url 'signup' %}"><i class="fa fa-sign-in"></i> Sign Up</a></li>
+							<li><a href="{% url 'login' %}"><i class="fa fa-user-o"></i> Login </a></li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>
