@@ -42,7 +42,7 @@ def login(request):
 			if user.password==request.POST['password']:
 				request.session['email']=user.email
 				request.session['fname']=user.fname
-				request.session['profile_pic']=user.profile_pic.urls
+				request.session['profile_pic']=user.profile_pic.url
 				return render(request,'index.html')
 			else:
 				msg="Incorrect Password"
