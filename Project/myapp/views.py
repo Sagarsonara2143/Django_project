@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import User
+
 
 # Create your views here.
 
@@ -59,4 +60,20 @@ def logout(request):
 		return render(request,'login.html')	
 
 def change_password(request):
-	return render(request,'change-password.html')
+	if request.method=="POST":
+		user=User.objects.gets(email=request.session['email'])
+		if user.password==request.POST['old_password']:
+			np=request.POST['new_password']
+			cnp=request.POST['cnew_password']
+			if np==cnp:
+				user.password=np
+				user.save()
+				redirect ('logout') 
+			else:
+				msg="New Password & confirm New Password does not matched"
+				return render(request,'change-password.html',{'msg':msg})	
+		else:
+			msg="Incorrect Old Password"
+			return render(request,'change-password.html',{'msg':msg})
+	else:
+		return render(request,'change-password.html')
