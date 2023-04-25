@@ -51,13 +51,12 @@ def login(request):
 		return render(request,'login.html')
 
 def logout(request):
-	try:
-		
+	try:	
 		del request.session['email']
 		del request.session['fname']
 		return render(request,'login.html')
 	except:
 		return render(request,'login.html')	
 
-
-
+def change_password(request):
+	return render(request,'change-password.html')

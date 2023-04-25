@@ -44,8 +44,8 @@
 				<div class="container">
 					<ul class="header-links pull-right">
 						{% if request.session.email %}
+							<li><a href="{% url 'change-password' %}"><i class="fa fa-edit"></i>Change Password</a></li>
 							<li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>Logout ({{request.session.fname}})</a></li>
-							
 						{% else %}
 							<li><a href="{% url 'signup' %}"><i class="fa fa-sign-in"></i> Sign Up</a></li>
 							<li><a href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Login </a></li>
