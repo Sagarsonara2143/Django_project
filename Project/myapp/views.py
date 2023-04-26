@@ -90,7 +90,7 @@ def forgot_password(request):
 			headers = {'cache-control': "no-cache"}
 			response = requests.request("GET", url, headers=headers, params=querystring)
 			msg="OTP Sent Successfully"
-			return render(request,"login.html",{'msg':msg,'otp':otp,'mobile':mobile})
+			return render(request,"otp.html",{'msg':msg,'otp':otp,'mobile':mobile})
 		except:
 			msg="Mobile Number not registered"
 			return render(request,"forgot-password.html",{'msg':msg})

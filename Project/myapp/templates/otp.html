@@ -15,10 +15,10 @@
 				<!-- row -->
 				<div class="row">
 					<div class="col-md-12">
-						<h3 class="breadcrumb-header">Forgot Password</h3>
+						<h3 class="breadcrumb-header">OTP</h3>
 						<ul class="breadcrumb-tree">
 							<li><a href="#">Home</a></li>
-							<li class="active">Forgot Password</li>
+							<li class="active">OTP</li>
 						</ul>
 					</div>
 				</div>
@@ -39,18 +39,20 @@
 						<!-- Billing Details -->
 						<div class="billing-details">
 							<div class="section-title">
-								<h3 class="title">Forgot Password</h3>
+								<h3 class="title">OTP</h3>
 							</div>
 							{% if msg %}
 								<b style="color:blue;">{{msg}}</b>
 							{% endif %}
-							<form name="login" method="POST" action="{% url 'forgot-password' %}">
+							<form name="login" method="POST" action="">
 								{% csrf_token %}
 							<div class="form-group">
-								<input class="input" type="text" name="mobile" placeholder="Mobile Number" required>
+								<input type="hidden" name="mobile" value="{{ mobile }}">
+								<input type="hidden" name="otp" value="{{otp}}">
+								<input class="input" type="text" name="uotp" placeholder="Enter OTP" required>
 							</div>
 							<div class="form-group" align="center">
-								<input class="btn btn-primary" type="submit" value="SEND OTP">
+								<input class="btn btn-primary" type="submit" value="Verify OTP">
 							</div>
 
 							</form>
