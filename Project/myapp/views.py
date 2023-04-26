@@ -89,8 +89,9 @@ def forgot_password(request):
 			querystring = {"authorization":"EWmfIayCLFdvOxl1MJZkQDiVYjbB740z8oSAwc6NGepUugq9hKQkrUqs5fK2o3Fza0WheDdSG91JcTYM","variables_values":str(otp),"route":"otp","numbers":str(mobile)}
 			headers = {'cache-control': "no-cache"}
 			response = requests.request("GET", url, headers=headers, params=querystring)
+			print(response.text)
 			msg="OTP Sent Successfully"
-			return render(request,"otp.html",{'msg':msg,'otp':otp,'mobile':mobile})
+			return render(request,"verify-otp.html",{'msg':msg,'otp':otp,'mobile':mobile})
 		except:
 			msg="Mobile Number not registered"
 			return render(request,"forgot-password.html",{'msg':msg})
