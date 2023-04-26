@@ -15,10 +15,10 @@
 				<!-- row -->
 				<div class="row">
 					<div class="col-md-12">
-						<h3 class="breadcrumb-header">OTP</h3>
+						<h3 class="breadcrumb-header">Verify OTP</h3>
 						<ul class="breadcrumb-tree">
 							<li><a href="#">Home</a></li>
-							<li class="active">OTP</li>
+							<li class="active">Verify OTP</li>
 						</ul>
 					</div>
 				</div>
@@ -44,7 +44,7 @@
 							{% if msg %}
 								<b style="color:blue;">{{msg}}</b>
 							{% endif %}
-							<form name="login" method="POST" action="">
+							<form name="verify-otp" method="POST" action="{% url 'verify-otp' %}">
 								{% csrf_token %}
 							<div class="form-group">
 								<input type="hidden" name="mobile" value="{{ mobile }}">

@@ -97,3 +97,6 @@ def forgot_password(request):
 			return render(request,"forgot-password.html",{'msg':msg})
 	else:
 		return render(request,"forgot-password.html")
+
+def verify_otp(request):
+	return render(request,"new-password.html")
