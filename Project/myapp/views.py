@@ -110,11 +110,11 @@ def verify_otp(request):
 		return render(request,"verify-otp.html",{'msg':msg,'mobile':mobile,'otp':otp})
 
 def new_password(request):
-	mobile=request.POST['mobile']
+	
 	n_pwd=request.POST['new_password']
 	cn_pwd=request.POST['cnew_password']
 	if n_pwd==cn_pwd:
-		user=User.objects.get(mobile=mobile)
+		user=User.objects.get(mobile=request.POST['mobile'])
 		user.password=n_pwd
 		user.save()
 		return redirect('login')
