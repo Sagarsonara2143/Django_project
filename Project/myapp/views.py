@@ -99,4 +99,25 @@ def forgot_password(request):
 		return render(request,"forgot-password.html")
 
 def verify_otp(request):
-	return render(request,"new-password.html")
+	otp=request.POST['otp']
+	mobile=request.POST['mobile']
+	uotp=request.POST['uotp']
+
+	if otp==uotp:
+		return render(request,"new-password.html",{'mobile':mobile})	
+	else:
+		msg="Invalid OTP Entered"
+		return render(request,"verify-otp.html",{'msg':msg,'mobile':mobile,'otp':otp})
+
+def new_password(request):
+	mobile=request.POST['mobile']
+	n_pwd=request.POST['new_password']
+	cn_pwd=request.POST['cnew_password']
+	if n_pwd==cn_pwd:
+		user=User.objects.get(mobile=mobile)
+		user.password=n_pwd
+		user.save()
+		return redirect('login')
+	else:
+		msg="New Password & Confirm New Password does not Matched"
+		return render(request,"new-password.html",{'msg':msg})
