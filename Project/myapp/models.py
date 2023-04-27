@@ -11,6 +11,7 @@ class User(models.Model):
 	zipcode=models.PositiveSmallIntegerField()
 	password=models.CharField(max_length=100)
 	profile_pic=models.ImageField(upload_to='profile_pic',default="")
+	usertype=models.CharField(max_length=100,default="buyer")
 	
 	def __str__(self):
-		return self.fname+" "+self.lname
+		return self.fname+" "+self.lname+" - "+self.usertype
