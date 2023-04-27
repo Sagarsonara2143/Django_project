@@ -48,13 +48,15 @@
 							<form name="profile" method="POST" action="{% url 'profile' %}" enctype="multipart/form-data">
 								{% csrf_token %}
 
+							
 							<div class="form-group" align="center">
 								<select class="input" name="usertype">
 									<option>---Select User type---</option>
 									<option value="buyer">Buyer</option>
 									<option value="seller">Seller</option>
-								</select>
+								</select>		
 							</div>
+
 
 							<div class="form-group" >
 								<input class="input" type="text" name="fname" value="{{ user.fname }}">
