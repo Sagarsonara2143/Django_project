@@ -48,7 +48,7 @@
 							<form name="signup" method="POST" action="{% url 'signup' %}" enctype="multipart/form-data">
 								{% csrf_token %}
 							<div class="form-group" align="center">
-								<select class="input">
+								<select class="input" name="usertype">
 									<option>---Select User type---</option>
 									<option value="buyer">Buyer</option>
 									<option value="seller">Seller</option>
