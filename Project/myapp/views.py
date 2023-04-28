@@ -6,7 +6,11 @@ import random
 # Create your views here.
 
 def index(request):
-	return render(request,'index.html')
+	user=User.objects.get(email=request.session['email'])
+	if user.usertype=="seller":
+		return render(request,'seller-index.html')
+	else:
+		return render(request,'seller-index.html')
 
 def signup(request):
 	if request.method=="POST":
@@ -45,6 +49,7 @@ def login(request):
 				request.session['email']=user.email
 				request.session['fname']=user.fname
 				request.session['profile_pic']=user.profile_pic.url
+				request.session['usertype']=user.usertype
 				return render(request,'index.html')
 			else:
 				msg="Incorrect Password"
