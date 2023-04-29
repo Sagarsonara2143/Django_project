@@ -72,21 +72,32 @@ def logout(request):
 		return render(request,'login.html')	
 
 def change_password(request):
+	user=User.objects.get(email=request.session['email'])
 	if request.method=="POST":
-		user=User.objects.get(email=request.session['email'])
 		if user.password==request.POST['old_password']:
 			if request.POST['new_password']==request.POST['cnew_password']:
 				user.password=request.POST['new_password']
 				user.save()
 				return redirect ('logout') 
 			else:
-				msg="New Password & confirm New Password does not matched"
-				return render(request,'change-password.html',{'msg':msg})	
+				if user.usertype=="seller":
+					msg="New Password & confirm New Password does not matched"
+					return render(request,'seller-change-password.html',{'msg':msg})
+				else:
+					msg="New Password & confirm New Password does not matched"
+					return render(request,'change-password.html',{'msg':msg})	
 		else:
-			msg="Incorrect Old Password"
-			return render(request,'change-password.html',{'msg':msg})
+			if user.usertype=="seller":
+				msg="Incorrect Old Password"
+				return render(request,'seller-change-password.html',{'msg':msg})
+			else:
+				msg="Incorrect Old Password"
+				return render(request,'change-password.html',{'msg':msg})
 	else:
-		return render(request,'change-password.html')
+		if user.usertype=="seller":
+			return render(request,'seller-change-password.html')
+		else:
+			return render(request,'change-password.html')
 
 def forgot_password(request):
 	if request.method=="POST":
