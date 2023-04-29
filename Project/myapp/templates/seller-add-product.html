@@ -45,7 +45,7 @@
 								<b style="color:blue;">{{msg}}</b>
 							{% endif %}
 							
-							<form name="add-product" method="POST" action="#" enctype="multipart/form-data">
+							<form name="add-product" method="POST" action="{% url 'seller-add-product' %}" enctype="multipart/form-data">
 								{% csrf_token %}
 							<div class="form-group" align="center">
 								<select class="input" name="usertype">

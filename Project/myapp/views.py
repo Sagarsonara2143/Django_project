@@ -175,4 +175,7 @@ def profile(request):
 
 
 def seller_add_product(request):
-	return render(request,"seller-add-product.html")
+	if request.method== "POST":
+		return render(request,"seller-add-product.html")
+	else:
+		return render(request,"seller-add-product.html")
