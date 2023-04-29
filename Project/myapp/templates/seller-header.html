@@ -45,8 +45,8 @@
 					<ul class="header-links pull-right">
 
 						{% if request.session.email %}
-							<li><a href="#"><i class="fa fa-edit"></i>Add Product</a></li>
-							<li><a href="#"><i class="fa fa-edit"></i>View Product</a></li>
+							<li><a href="{% url 'seller-add-product' %}"><i class="fa fa-plus"></i>Add Product</a></li>
+							<li><a href="#"><i class="fa fa-eye"></i>View Product</a></li>
 							<li><a href="{% url 'change-password' %}"><i class="fa fa-edit"></i>Change Password</a></li>
 							<li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>Logout ({{request.session.fname}})</a></li>
 							<li><a href="{% url 'profile' %}"><img src="{{ request.session.profile_pic }}" width="50px" height="50px"></a></li>

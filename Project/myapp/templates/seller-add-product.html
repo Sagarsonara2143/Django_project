@@ -1,0 +1,94 @@
+{% extends 'seller-header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+    </head>
+	<body>
+
+		<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">Add Product</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="{% url 'index' %}">Home</a></li>
+							<li class="active">Add Product</li>
+						</ul>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /BREADCRUMB -->
+		
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<div class="col-md-12">
+						<!-- Billing Details -->
+						<div class="billing-details">
+							<div class="section-title">
+								<h3 class="title">Add Product Page</h3>
+							</div>
+							{% if msg %}
+								<b style="color:blue;">{{msg}}</b>
+							{% endif %}
+							
+							<form name="add-product" method="POST" action="#" enctype="multipart/form-data">
+								{% csrf_token %}
+							<div class="form-group" align="center">
+								<select class="input" name="usertype">
+									<option>---Select ---</option>
+										<option value="Laptop">Laptop</option>
+										<option value="Camera">Camera</option>
+										<option value="Accessories">Accessories</option>	
+								</select>
+							</div>
+							<div class="form-group" align="center">
+								<input class="input" type="text" name="product_name" placeholder="Product Name">
+							</div>
+							<div class="form-group">
+								<input class="input" type="textarea" name="product_desc" placeholder="Product Description">
+							</div>
+							<div class="form-group">
+								<input class="input" type="text" name="product_price" placeholder="Product Price">
+							</div>
+
+							<div class="form-group">
+								<input class="input" type="text" name="product_stock" placeholder="Product Stock">
+							</div>
+							<div class="form-group">
+								<input class="input" type="file" name="product_image">
+							</div>
+							<div class="form-group" align="center">
+								<input class="btn btn-primary" type="submit" value="ADD PRODUCT">
+							</div>
+
+							</form>
+
+						</div>
+						<!-- /Billing Details -->
+					</div>
+
+					
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+	</body>
+</html>
+{% endblock %}

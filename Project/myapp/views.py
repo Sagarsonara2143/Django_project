@@ -6,7 +6,11 @@ import random
 # Create your views here.
 
 def index(request):
-	return render(request,'index.html')
+	user=User.objects.get(email=request.POST['email'])
+	if user.usertype=="seller":
+		return render(request,'seller-index.html')
+	else:
+		return render(request,'index.html')
 
 def seller_index(request):
 	return render(request,'seller-index.html')
@@ -168,3 +172,7 @@ def profile(request):
 			return render(request,'seller-profile.html',{'user':user})
 		else:
 			return render(request,'profile.html',{'user':user})
+
+
+def seller_add_product(request):
+	return render(request,"seller-add-product.html")
