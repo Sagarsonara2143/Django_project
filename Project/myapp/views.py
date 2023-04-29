@@ -6,11 +6,10 @@ import random
 # Create your views here.
 
 def index(request):
-	user=User.objects.get(email=request.session['email'])
-	if user.usertype=="seller":
-		return render(request,'seller-index.html')
-	else:
-		return render(request,'seller-index.html')
+	return render(request,'index.html')
+
+def seller_index(request):
+	return render(request,'seller-index.html')
 
 def signup(request):
 	if request.method=="POST":
@@ -50,7 +49,11 @@ def login(request):
 				request.session['fname']=user.fname
 				request.session['profile_pic']=user.profile_pic.url
 				request.session['usertype']=user.usertype
-				return render(request,'index.html')
+
+				if user.usertype=="seller":
+					return render(request,"seller-index.html")	
+				else:
+					return render(request,'index.html')
 			else:
 				msg="Incorrect Password"
 				return render(request,'login.html',{'msg':msg})
@@ -143,7 +146,14 @@ def profile(request):
 		except:
 			pass
 		user.save()
-		msg="Profile Updated Successfully"
-		return render(request,'profile.html',{'user':user,'msg':msg})
+		if user.usertype=="seller":
+			msg="Profile Updated Successfully"
+			return render(request,'seller-profile.html',{'user':user,'msg':msg})
+		else:
+			msg="Profile Updated Successfully"
+			return render(request,'profile.html',{'user':user,'msg':msg})
 	else:
-		return render(request,'profile.html',{'user':user})
+		if user.usertype=="seller":
+			return render(request,'seller-profile.html',{'user':user})
+		else:
+			return render(request,'profile.html',{'user':user})
