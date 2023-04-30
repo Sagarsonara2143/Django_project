@@ -204,3 +204,23 @@ def seller_view_product(request):
 def seller_product_details(request,pk):
 	product=Product.objects.get(pk=pk)
 	return render(request,"seller-product-details.html",{'product':product})
+
+def seller_edit_product(request,pk):
+	product=Product.objects.get(pk=pk)
+	if request.method=="POST":
+		product.product_cat=request.POST['product_cat']
+		product.product_name=request.POST['product_name']
+		product.product_desc=request.POST['product_desc']
+		product.product_price=request.POST['product_price']
+		product.product_stock=request.POST['product_stock']
+		try:
+			product.image=request.FILES['product_image.url']
+		except:
+			pass
+
+		product.save()
+		msg="Product Updated Successfully"
+		return render(request,"seller-edit-product.html",{'product':product,'msg':msg})
+
+	else:
+		return render(request,"seller-edit-product.html",{'product':product})
