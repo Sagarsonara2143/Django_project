@@ -1,16 +1,20 @@
 from django.shortcuts import render,redirect
-from .models import User
+from .models import User,Product
 import requests
 import random
 
 # Create your views here.
 
 def index(request):
-	user=User.objects.get(email=request.POST['email'])
-	if user.usertype=="seller":
-		return render(request,'seller-index.html')
-	else:
+	try:
+		user=User.objects.get(email=request.session['email'])
+		if user.usertype=="seller":
+			return render(request,'seller-index.html')
+		else:
+			return render(request,'index.html')
+	except:
 		return render(request,'index.html')
+
 
 def seller_index(request):
 	return render(request,'seller-index.html')
@@ -161,6 +165,7 @@ def profile(request):
 		except:
 			pass
 		user.save()
+		request.session['profile_pic']=user.profile_pic.url
 		if user.usertype=="seller":
 			msg="Profile Updated Successfully"
 			return render(request,'seller-profile.html',{'user':user,'msg':msg})

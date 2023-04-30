@@ -17,5 +17,22 @@ class User(models.Model):
 		return self.fname+" "+self.lname+" - "+self.usertype
 
 
-class Product(request):
-	pass
+class Product(models.Model):
+	category=(
+		('Laptop','Laptop'),
+		('Acessories','Acessories'),
+		('Camera','Camera'),
+		)
+	seller=models.ForeignKey(User,on_delete=models.CASCADE)
+	product_cat=models.CharField(max_length=100, choices=category)
+	product_name=models.CharField(max_length=100)
+	product_desc=models.TextField()
+	product_price=models.PositiveSmallIntegerField()
+	product_image=models.ImageField(upload_to='product_image/')
+	product_stock=models.PositiveSmallIntegerField()
+
+
+	def __str__(self):
+		return self.seller.fname+" - "+self.product_name
+
+
