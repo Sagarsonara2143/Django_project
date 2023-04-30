@@ -47,8 +47,8 @@
 							
 							<form name="add-product" method="POST" action="{% url 'seller-add-product' %}" enctype="multipart/form-data">
 								{% csrf_token %}
-							<div class="form-group" align="center">
-								<select class="input" name="usertype">
+							<div class="form-group">
+								<select class="input" name="product_cat">
 									<option>---Select ---</option>
 										<option value="Laptop">Laptop</option>
 										<option value="Camera">Camera</option>
