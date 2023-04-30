@@ -220,7 +220,7 @@ def seller_edit_product(request,pk):
 
 		product.save()
 		msg="Product Updated Successfully"
-		return render(request,"seller-edit-product.html",{'product':product,'msg':msg})
+		return render(request,"seller-product-details.html",{'product':product,'msg':msg})
 
 	else:
 		return render(request,"seller-edit-product.html",{'product':product})
