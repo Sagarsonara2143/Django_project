@@ -20,7 +20,7 @@ class User(models.Model):
 class Product(models.Model):
 	category=(
 		('Laptop','Laptop'),
-		('Acessories','Acessories'),
+		('Accessories','Accessories'),
 		('Camera','Camera'),
 		)
 	seller=models.ForeignKey(User,on_delete=models.CASCADE)
@@ -30,7 +30,6 @@ class Product(models.Model):
 	product_price=models.PositiveSmallIntegerField()
 	product_image=models.ImageField(upload_to='product_image/')
 	product_stock=models.PositiveSmallIntegerField()
-
 
 	def __str__(self):
 		return self.seller.fname+" - "+self.product_name
