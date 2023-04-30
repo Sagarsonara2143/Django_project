@@ -54,7 +54,7 @@
 												<h3 class="product-name"><a href="#">{{ product.product_desc }}</a></h3>
 												
 												<a href="{% url 'seller-edit-product' pk=product.pk %}"><input type="button" class="btn btn-primary" value="EDIT"></a>
-												<a href="#"><input type="button" class="btn btn-danger" value="DELETE"></a>
+												<a href="{% url 'seller-product-delete' pk=product.pk %}"><input type="button" class="btn btn-danger" value="DELETE"></a>
 
 											</div>
 											
