@@ -244,3 +244,21 @@ def cameras(request):
 	products=Product.objects.filter(product_cat="Camera")
 	return render(request,"index.html",{'products':products})
 
+def accessories(request):
+	products=Product.objects.filter(product_cat="Accessories")
+	return render(request,"index.html",{'products':products})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
