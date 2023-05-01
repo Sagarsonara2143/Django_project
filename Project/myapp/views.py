@@ -19,7 +19,9 @@ def index(request):
 
 
 def seller_index(request):
-	return render(request,'seller-index.html')
+	seller=User.objects.get(email=request.session['email'])
+	products=Product.objects.filter(seller=seller)
+	return render(request,'seller-index.html',{'products':products})
 
 def signup(request):
 	if request.method=="POST":
