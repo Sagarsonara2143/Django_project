@@ -238,6 +238,9 @@ def seller_product_delete(request,pk):
 
 def laptops(request):
 	products=Product.objects.filter(product_cat="Laptop")
-	return render (request,"seller-index.html",{'products':products})
+	return render (request,"index.html",{'products':products})
 
+def cameras(request):
+	products=Product.objects.filter(product_cat="Camera")
+	return render(request,"index.html",{'products':products})
 
