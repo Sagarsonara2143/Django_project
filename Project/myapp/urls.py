@@ -18,6 +18,9 @@ urlpatterns = [
     path('seller-edit-product/<int:pk>/',views.seller_edit_product,name='seller-edit-product'),
     path('seller-product-delete/<int:pk>/',views.seller_product_delete, name='seller-product-delete'),
     path('laptops/',views.laptops,name="laptops"),
+    path('seller-laptops/',views.seller_laptops,name='seller-laptops'),
     path('cameras/',views.cameras,name='cameras'),
-    path('accessories/',views.accessories,name='accessories'),    
+    path('seller-cameras/',views.seller_cameras,name='seller-cameras'),
+    path('accessories/',views.accessories,name='accessories'),
+    path('seller-accessories/',views.seller_accessories,name='seller-accessories'),    
 ]

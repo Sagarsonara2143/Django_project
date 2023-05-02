@@ -9,7 +9,7 @@ def index(request):
 	try:
 		user=User.objects.get(email=request.session['email'])
 		if user.usertype=="seller":
-			return render(request,'seller-index.html')
+			return redirect('seller-index')
 		else:
 			products=Product.objects.all()
 			return render(request,'index.html',{'products':products})
@@ -63,7 +63,7 @@ def login(request):
 				request.session['usertype']=user.usertype
 
 				if user.usertype=="seller":
-					return render(request,"seller-index.html")	
+					return redirect("seller-index")	
 				else:
 					return redirect('index')
 			else:
@@ -248,9 +248,20 @@ def accessories(request):
 	products=Product.objects.filter(product_cat="Accessories")
 	return render(request,"index.html",{'products':products})
 
+def seller_laptops(request):
+	seller=User.objects.get(email=request.session['email'])
+	products=Product.objects.filter(seller=seller,product_cat="Laptop")
+	return render(request,"seller-index.html",{'products':products,'seller':seller})	
 
+def seller_accessories(request):
+	seller=User.objects.get(email=request.session['email'])
+	products=Product.objects.filter(seller=seller,product_cat="Accessories")
+	return render(request,"seller-index.html",{'products':products,'seller':seller})
 
-
+def seller_cameras(request):
+	seller=User.objects.get(email=request.session['email'])
+	products=Product.objects.filter(seller=seller,product_cat="Camera")
+	return render(request,"seller-index.html",{'products':products,'seller':seller})
 
 
 
