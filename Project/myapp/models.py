@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class User(models.Model):
@@ -35,3 +36,10 @@ class Product(models.Model):
 		return self.seller.fname+" - "+self.product_name
 
 
+class Wishlist(models.Model):
+	product=models.ForeignKey(Product,on_delete=models.CASCADE)
+	user=models.ForeignKey(User,on_delete=models.CASCADE)
+	date=models.DateTimeField(default=timezone.now)
+
+	def __str__(self):
+		return self.user.fname + " - "+self.product.product_name
