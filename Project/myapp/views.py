@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import User,Product
+from .models import User,Product,Wishlist
 import requests
 import random
 

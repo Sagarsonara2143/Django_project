@@ -42,4 +42,4 @@ class Wishlist(models.Model):
 	date=models.DateTimeField(default=timezone.now)
 
 	def __str__(self):
-		return self.user.fname + " - "+self.product.product_name
+		return self.user.fname + " - "+self.product.product_name	
