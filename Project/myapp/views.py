@@ -271,6 +271,13 @@ def product_details(request,pk):
 
 
 
+def add_to_wishlist(request):
+	pass
+
+def add_to_cart(request):
+	pass
+
+
 
 
 
