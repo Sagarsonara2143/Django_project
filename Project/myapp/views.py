@@ -281,7 +281,10 @@ def add_to_wishlist(request,pk):
 	return render(request,'index.html',{'product':product,'user':user})
 
 
-
+def wishlist(request):
+	user=User.objects.get(email=request.session['email'])
+	wishlists=Wishlist.objects.filter(user=user)
+	return render(request,'wishlist.html',{'wishlists':wishlists})
 
 def add_to_cart(request):
 	pass
