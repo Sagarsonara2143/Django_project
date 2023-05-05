@@ -90,7 +90,8 @@ def change_password(request):
 			if request.POST['new_password']==request.POST['cnew_password']:
 				user.password=request.POST['new_password']
 				user.save()
-				return redirect ('logout') 
+				msg="Password changed successfully"
+				return render(request,'login.html',{'msg':msg}) 
 			else:
 				if user.usertype=="seller":
 					msg="New Password & confirm New Password does not matched"
