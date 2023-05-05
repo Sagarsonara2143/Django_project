@@ -265,8 +265,9 @@ def seller_cameras(request):
 	return render(request,"seller-index.html",{'products':products,'seller':seller})
 
 
-def product_details(request):
-	pass
+def product_details(request,pk):
+	product=Product.objects.get(pk=pk)
+	return render(request,'product-details.html',{'product':product})
 
 
 
