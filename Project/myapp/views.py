@@ -276,9 +276,11 @@ def add_to_wishlist(request,pk):
 	user=User.objects.get(email=request.session['email'])
 	Wishlist.objects.create(
 		product=product,
-		user=user,
+		user=user
 		)
-	return render(request,'wishlist.html',{'product':product,'user':user})
+	return render(request,'index.html',{'product':product,'user':user})
+
+
 
 
 def add_to_cart(request):
