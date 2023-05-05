@@ -22,5 +22,6 @@ urlpatterns = [
     path('cameras/',views.cameras,name='cameras'),
     path('seller-cameras/',views.seller_cameras,name='seller-cameras'),
     path('accessories/',views.accessories,name='accessories'),
-    path('seller-accessories/',views.seller_accessories,name='seller-accessories'),    
+    path('seller-accessories/',views.seller_accessories,name='seller-accessories'),
+    path('product-details/<int:pk>/',views.product_details,name='product-details'),   
 ]

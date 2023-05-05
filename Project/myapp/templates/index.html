@@ -113,7 +113,7 @@
 												<div class="product-btns">
 													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
 													
-													<a href="#" class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp"></span></a>
+													<button><a href="{% url 'product-details' pk=i.pk %}" class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp"><b>quick view</b></span></a></button>
 												</div>
 												{% else %}
 													<a href="{% url 'login' %}"><input type="button" value="LOGIN for More details" class="btn btn-primary"></a>

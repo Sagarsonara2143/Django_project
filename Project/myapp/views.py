@@ -91,7 +91,7 @@ def change_password(request):
 				user.password=request.POST['new_password']
 				user.save()
 				msg="Password changed successfully"
-				return render(request,'login.html',{'msg':msg}) 
+				return redirect('logout') 
 			else:
 				if user.usertype=="seller":
 					msg="New Password & confirm New Password does not matched"
@@ -265,6 +265,8 @@ def seller_cameras(request):
 	return render(request,"seller-index.html",{'products':products,'seller':seller})
 
 
+def product_details(request):
+	pass
 
 
 
