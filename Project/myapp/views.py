@@ -266,9 +266,24 @@ def seller_cameras(request):
 
 
 def product_details(request,pk):
+	wishlist_flag=False
+	user=User.objects.get(email=request.session['email'])
 	product=Product.objects.get(pk=pk)
-	return render(request,'product-details.html',{'product':product})
+	try:
+		Wishlist.objects.get({'user':user,'product':product})
+		wishlist_flag=True
+	except:
+		pass
+	return render(request,'product-details.html',{'product':product,'wishlist_flag':wishlist_flag})
 
+
+
+
+
+def wishlist(request):
+	user=User.objects.get(email=request.session['email'])
+	wishlists=Wishlist.objects.filter(user=user)
+	return render(request,'wishlist.html',{'wishlists':wishlists})
 
 
 def add_to_wishlist(request,pk):
@@ -278,13 +293,11 @@ def add_to_wishlist(request,pk):
 		product=product,
 		user=user
 		)
-	return render(request,'index.html',{'product':product,'user':user})
+	return render(request,'wishlist.html',{'product':product,'user':user})
 
-
-def wishlist(request):
-	user=User.objects.get(email=request.session['email'])
-	wishlists=Wishlist.objects.filter(user=user)
-	return render(request,'wishlist.html',{'wishlists':wishlists})
+def remove_from_wishlist(request,pk):
+	pass
+	
 
 def add_to_cart(request):
 	pass

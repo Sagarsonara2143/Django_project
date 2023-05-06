@@ -43,3 +43,7 @@ class Wishlist(models.Model):
 
 	def __str__(self):
 		return self.user.fname + " - "+self.product.product_name	
+
+
+
+

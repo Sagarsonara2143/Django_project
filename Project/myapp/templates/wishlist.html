@@ -17,7 +17,7 @@
 					<!-- section title -->
 					<div class="col-md-12">
 						<div class="section-title">
-							<h3 class="title">New Products</h3>
+							<h3 class="title">My Wishlist</h3>
 					</div>
 					<!-- /section title -->
 
@@ -32,32 +32,34 @@
 										{% for i in wishlists %}
 										<div class="product">
 											<div class="product-img">
-												<img src="{{ i.product_image.url }}" alt="" width="200px" height="200px">
+												<img src="{{ i.product.product_image.url }}" alt="" width="200px" height="200px">
 												<div class="product-label">
 												</div>
 											</div>
 											<div class="product-body">
-												<p class="product-category">{{ i.product_cat }}</p>
-												<h3 class="product-name"><a href="#">{{ i.product_name }}</a></h3>
-												<h4 class="product-price">₹ {{ i.product_price }}</h4>
+												<p class="product-category">{{ i.product.product_cat }}</p>
+												
+												<h3 class="product-name"><a href="#">{{ i.product.product_name }}</a></h3>
+												
+												<h4 class="product-price">₹ {{ i.product.product_price }}</h4>
+
+												<h3 class="product-name"><a href="#">{{ i.product.product_desc }}</a></h3>
+												
 												
 												{% if request.session.email %}
 												<div class="product-btns">
 													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
 													
-													<button><a href="{% url 'product-details' pk=i.pk %}" class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp"><b>quick view</b></span></a></button>
+													<button><a href="{% url 'product-details' pk=i.product.pk %}" class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp"><b>quick view</b></span></a></button>
+
+													<a href="{% url 'remove-from-wishlist' pk=i.product.pk %}"><input type="button" class="btn btn-danger" value="REMOVE FROM WISHLIST"></a><br><br>
+												
+													<a href="#"><input type="button" class="btn btn-primary" value="ADD TO CART"></a>
 												</div>
-												{% else %}
-													<a href="{% url 'login' %}"><input type="button" value="LOGIN for More details" class="btn btn-primary"></a>
+												
 												{% endif %}
 												
 											</div>
-											{% if request.session.email %}
-											<div class="add-to-cart">
-												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-											</div>
-											
-											{% endif%}
 										</div>
 										{% endfor %}
 										<!-- /product -->
