@@ -3,7 +3,6 @@
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
-<title>Seller Index</title>
 	<body>
 
 		
@@ -18,9 +17,7 @@
 					<!-- section title -->
 					<div class="col-md-12">
 						<div class="section-title">
-							<h3 class="title">My Wishlist</h3>
-							
-						</div>
+							<h3 class="title">New Products</h3>
 					</div>
 					<!-- /section title -->
 
@@ -35,25 +32,35 @@
 										{% for i in wishlists %}
 										<div class="product">
 											<div class="product-img">
-												<img src="{{ i.product_image.url }}" alt="" height=200px;>
-												
+												<img src="{{ i.product_image.url }}" alt="" width="200px" height="200px">
+												<div class="product-label">
+												</div>
 											</div>
 											<div class="product-body">
 												<p class="product-category">{{ i.product_cat }}</p>
 												<h3 class="product-name"><a href="#">{{ i.product_name }}</a></h3>
 												<h4 class="product-price">₹ {{ i.product_price }}</h4>
 												
+												{% if request.session.email %}
+												<div class="product-btns">
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													
+													<button><a href="{% url 'product-details' pk=i.pk %}" class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp"><b>quick view</b></span></a></button>
+												</div>
+												{% else %}
+													<a href="{% url 'login' %}"><input type="button" value="LOGIN for More details" class="btn btn-primary"></a>
+												{% endif %}
 												
 											</div>
+											{% if request.session.email %}
 											<div class="add-to-cart">
-												<a href="{% url 'seller-product-details' pk=i.pk %}"><button class="add-to-cart-btn"><i class="fa fa-info-circle"></i> Details </button></a>	
+												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 											</div>
+											
+											{% endif%}
 										</div>
 										{% endfor %}
 										<!-- /product -->
-
-										
-										
 									</div>
 									<div id="slick-nav-1" class="products-slick-nav"></div>
 								</div>
@@ -69,9 +76,6 @@
 		</div>
 		<!-- /SECTION -->
 
-		
-
-		
 	</body>
 </html>
 {% endblock %}
