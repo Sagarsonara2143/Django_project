@@ -96,7 +96,7 @@
 									<a href="{% url 'wishlist' %}">
 										<i class="fa fa-heart-o"></i>
 										<span>My Wishlist</span>
-										<div class="qty">2</div>
+										<div class="qty">{{ request.session.wishlist_count}}</div>
 									</a>
 								</div>
 								<!-- /Wishlist -->
