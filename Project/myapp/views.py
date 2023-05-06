@@ -293,10 +293,14 @@ def add_to_wishlist(request,pk):
 		product=product,
 		user=user
 		)
-	return render(request,'wishlist.html',{'product':product,'user':user})
+	return redirect('wishlist')
 
 def remove_from_wishlist(request,pk):
-	pass
+	user=User.objects.get(email=request.session['email'])
+	product=Product.objects.get(pk=pk)
+	wishlist=Wishlist.objects.get(user=user,product=product)
+	wishlist.delete()
+	return redirect('wishlist')
 	
 
 def add_to_cart(request):
