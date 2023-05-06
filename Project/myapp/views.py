@@ -273,7 +273,7 @@ def product_details(request,pk):
 	user=User.objects.get(email=request.session['email'])
 	product=Product.objects.get(pk=pk)
 	try:
-		Wishlist.objects.get({'user':user,'product':product})
+		Wishlist.objects.get(user=user,product=product)
 		wishlist_flag=True
 	except:
 		pass
