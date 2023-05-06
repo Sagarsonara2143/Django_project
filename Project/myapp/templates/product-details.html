@@ -53,9 +53,11 @@
 												<h4 class="product-price">₹ {{ product.product_price }}</h4>
 												<h3 class="product-name"><a href="#">{{ product.product_desc }}</a></h3>
 												
-												
-												<a href="{% url 'add-to-wishlist' pk=product.pk %}"><input type="button" class="btn btn-primary" value="ADD TO WISHLIST"></a><br><br>
-												
+												{% if wishlist_flag == True %}
+													<a href="{% url 'remove-from-wishlist' pk=product.pk %}"><input type="button" class="btn btn-danger" value="REMOVE FROM WISHLIST"></a><br><br>
+												{% else %}
+													<a href="{% url 'add-to-wishlist' pk=product.pk %}"><input type="button" class="btn btn-primary" value="ADD TO WISHLIST"></a><br><br>
+												{% endif %}
 												
 												<a href="{% url 'add-to-cart' pk=product.pk %}"><input type="button" class="btn btn-primary" value="ADD TO CART"></a>
 

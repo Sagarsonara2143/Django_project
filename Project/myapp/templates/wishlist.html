@@ -50,15 +50,13 @@
 												<h3 class="product-name"><a href="#">{{ i.product.product_desc }}</a></h3>
 												
 												
-												{% if request.session.email %}
+												
 												<div class="product-btns">
 													
 													<a href="{% url 'remove-from-wishlist' pk=i.product.pk %}"><input type="button" class="btn btn-danger" value="REMOVE FROM WISHLIST"></a><br><br>
 												
 													<a href="#"><input type="button" class="btn btn-primary" value="ADD TO CART"></a>
 												</div>
-												
-												{% endif %}
 												
 											</div>
 										</div>

@@ -279,10 +279,6 @@ def product_details(request,pk):
 		pass
 	return render(request,'product-details.html',{'product':product,'wishlist_flag':wishlist_flag})
 
-
-
-
-
 def wishlist(request):
 	user=User.objects.get(email=request.session['email'])
 	wishlists=Wishlist.objects.filter(user=user)
