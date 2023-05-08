@@ -64,6 +64,9 @@ def login(request):
 				wishlists=Wishlist.objects.filter(user=user)
 				request.session['wishlist_count']=len(wishlists)
 
+				carts=Cart.objects.filter(user=user)
+				request.session['cart_count']=len(carts)
+
 				if user.usertype=="seller":
 					return redirect("seller-index")	
 				else:
@@ -82,6 +85,7 @@ def logout(request):
 		del request.session['email']
 		del request.session['fname']
 		del request.session['wishlist_count']
+		del request.session['cart_count']
 		return render(request,'login.html')
 	except:
 		return render(request,'login.html')	
@@ -270,14 +274,16 @@ def seller_cameras(request):
 
 def product_details(request,pk):
 	wishlist_flag=False
+	product_flag=False
 	user=User.objects.get(email=request.session['email'])
 	product=Product.objects.get(pk=pk)
 	try:
 		Wishlist.objects.get(user=user,product=product)
 		wishlist_flag=True
+		product_flag=True
 	except:
 		pass
-	return render(request,'product-details.html',{'product':product,'wishlist_flag':wishlist_flag})
+	return render(request,'product-details.html',{'product':product,'wishlist_flag':wishlist_flag,'product_flag':product_flag})
 
 def wishlist(request):
 	user=User.objects.get(email=request.session['email'])
