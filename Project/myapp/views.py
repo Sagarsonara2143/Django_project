@@ -302,9 +302,28 @@ def remove_from_wishlist(request,pk):
 	wishlist.delete()
 	return redirect('wishlist')
 	
+def cart(request):
+	user=User.objects.get(email=request.session['email'])
+	carts=Cart.objects.filter(user=user)
+	request.session['cart_count']=len(carts)
+	return render(request,'cart.html',{'carts':carts})
 
-def add_to_cart(request):
-	pass
+
+def add_to_cart(request,pk):
+	product=Product.objects.get(pk=pk)
+	user=User.objects.get(email=request.session['email'])
+	Cart.objects.create(
+		product=product,
+		user=user
+		)
+	return redirect('cart')
+
+def remove_from_cart(request,pk):
+	user=User.objects.get(email=request.session['email'])
+	product=Product.objects.get(pk=pk)
+	cart=Cart.objects.get(user=user,product=product)
+	cart.delete()
+	return redirect('cart')
 
 
 
