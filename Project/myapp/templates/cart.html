@@ -53,9 +53,7 @@
 												
 												<div class="product-btns">
 													
-													<a href="{% url 'remove-from-wishlist' pk=i.product.pk %}"><input type="button" class="btn btn-danger" value="REMOVE FROM CART"></a><br><br>
-												
-													<a href="#"><input type="button" class="btn btn-primary" value="ADD TO CART"></a>
+													<a href="{% url 'remove-from-cart' pk=i.product.pk %}"><input type="button" class="btn btn-danger" value="REMOVE FROM CART"></a><br><br>
 												</div>
 												
 											</div>
