@@ -63,7 +63,7 @@
 													<a href="{% url 'remove-from-cart' pk=product.pk %}"><input type="button" class="btn btn-danger" value="REMOVE FROM CART"></a>
 												{% else %}
 													<a href="{% url 'add-to-cart' pk=product.pk %}"><input type="button" class="btn btn-primary" value="ADD TO CART"></a>
-												{%  %}
+												{% endif %}
 
 											</div>
 											
