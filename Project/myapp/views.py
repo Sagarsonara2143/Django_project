@@ -320,7 +320,10 @@ def add_to_cart(request,pk):
 	user=User.objects.get(email=request.session['email'])
 	Cart.objects.create(
 		product=product,
-		user=user
+		user=user,
+		product_price=1000,
+		product_qty=2,
+		total_price=1000
 		)
 	return redirect('cart')
 
