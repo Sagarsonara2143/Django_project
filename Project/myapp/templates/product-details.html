@@ -60,10 +60,11 @@
 												{% endif %}
 												
 												{% if cart_flag == True %}
-													<a href="{% url 'remove-from-cart' pk=product.pk %}"><input type="button" class="btn btn-danger" value="REMOVE FROM CART"></a>
+													<a href="{% url 'remove-from-cart' pk=product.pk %}"><input type="button" class="btn btn-danger" value="REMOVE FROM cart"></a><br><br>
 												{% else %}
-													<a href="{% url 'add-to-cart' pk=product.pk %}"><input type="button" class="btn btn-primary" value="ADD TO CART"></a>
+													<a href="{% url 'add-to-cart' pk=product.pk %}"><input type="button" class="btn btn-primary" value="ADD TO cart"></a><br><br>
 												{% endif %}
+												
 
 											</div>
 											
