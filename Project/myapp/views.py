@@ -276,16 +276,22 @@ def seller_cameras(request):
 
 def product_details(request,pk):
 	wishlist_flag=False
-	product_flag=False
+	cart_flag=False
 	user=User.objects.get(email=request.session['email'])
 	product=Product.objects.get(pk=pk)
 	try:
 		Wishlist.objects.get(user=user,product=product)
 		wishlist_flag=True
-		product_flag=True
 	except:
 		pass
-	return render(request,'product-details.html',{'product':product,'wishlist_flag':wishlist_flag,'product_flag':product_flag})
+
+	try:
+		Cart.objects.get(user=user,product=product)
+		cart_flag=True
+	except:
+		pass
+
+	return render(request,'product-details.html',{'product':product,'wishlist_flag':wishlist_flag,'cart_flag':cart_flag})
 
 def wishlist(request):
 	user=User.objects.get(email=request.session['email'])
