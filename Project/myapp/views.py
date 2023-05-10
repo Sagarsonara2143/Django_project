@@ -57,19 +57,21 @@ def login(request):
 		try:
 			user=User.objects.get(email=request.POST['email'])
 			if user.password==request.POST['password']:
-				request.session['email']=user.email
-				request.session['fname']=user.fname
-				request.session['profile_pic']=user.profile_pic.url
-				request.session['usertype']=user.usertype
-				wishlists=Wishlist.objects.filter(user=user)
-				request.session['wishlist_count']=len(wishlists)
-
-				carts=Cart.objects.filter(user=user)
-				request.session['cart_count']=len(carts)
-
 				if user.usertype=="seller":
+					request.session['email']=user.email
+					request.session['fname']=user.fname
+					request.session['profile_pic']=user.profile_pic.url
+					request.session['usertype']=user.usertype
 					return redirect("seller-index")	
 				else:
+					request.session['email']=user.email
+					request.session['fname']=user.fname
+					request.session['profile_pic']=user.profile_pic.url
+					request.session['usertype']=user.usertype
+					wishlists=Wishlist.objects.filter(user=user)
+					request.session['wishlist_count']=len(wishlists)
+					carts=Cart.objects.filter(user=user)
+					request.session['cart_count']=len(carts)
 					return redirect('index')
 			else:
 				msg="Incorrect Password"
@@ -321,9 +323,10 @@ def add_to_cart(request,pk):
 	Cart.objects.create(
 		product=product,
 		user=user,
-		product_price=1000,
-		product_qty=2,
-		total_price=1000
+		product_price=product.product_price,
+		product_qty=1,
+		total_price=product.product_price,
+		paymemt_status=False
 		)
 	return redirect('cart')
 
