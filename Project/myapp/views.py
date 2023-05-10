@@ -334,6 +334,8 @@ def add_to_cart(request,pk):
 		total_price=product.product_price,
 		paymemt_status=False
 		)
+	product.cart_status=True
+	product.save()
 	return redirect('cart')
 
 def remove_from_cart(request,pk):
@@ -341,6 +343,8 @@ def remove_from_cart(request,pk):
 	product=Product.objects.get(pk=pk)
 	cart=Cart.objects.get(user=user,product=product)
 	cart.delete()
+	product.cart_status=False
+	product.save()
 	return redirect('cart')
 
 

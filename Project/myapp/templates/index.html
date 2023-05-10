@@ -121,13 +121,13 @@
 												
 											</div>
 											{% if request.session.email %}
-												{% if cart_flag == True %}
+												{% if i.cart_status == False %}
 													<div class="add-to-cart">
 													<a href="{% url 'add-to-cart' pk=i.pk %}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button></a>
 													</div>
 												{% else %}
 													<div class="add-to-cart">
-													<a href="{% url 'add-to-cart' pk=i.pk %}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Remove from cart</button></a>
+													<a href="{% url 'remove-from-cart' pk=i.pk %}"><button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Remove from cart</button></a>
 													</div>
 												{% endif%}
 											{% endif %}
