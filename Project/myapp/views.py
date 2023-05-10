@@ -317,10 +317,13 @@ def remove_from_wishlist(request,pk):
 	return redirect('wishlist')
 	
 def cart(request):
+	net_price=0
 	user=User.objects.get(email=request.session['email'])
 	carts=Cart.objects.filter(user=user)
 	request.session['cart_count']=len(carts)
-	return render(request,'cart.html',{'carts':carts})
+	for i in carts:
+		net_price=net_price+i.total_price
+	return render(request,'cart.html',{'carts':carts,'net_price':net_price})
 
 
 def add_to_cart(request,pk):
@@ -347,6 +350,14 @@ def remove_from_cart(request,pk):
 	product.save()
 	return redirect('cart')
 
+def change_cart_qty(request):
+	cart_id=int(request.POST['cart_id'])
+	product_qty=int(request.POST['product_qty'])
+	cart=Cart.objects.get(pk=cart_id)
+	cart.product_qty=product_qty
+	cart.total_price=product_qty*cart.product_price
+	cart.save()
+	return redirect('cart')	
 
 
 

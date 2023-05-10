@@ -45,19 +45,30 @@
 												
 												<h3 class="product-name"><a href="#">{{ i.product.product_name }}</a></h3>
 												
-												<h4 class="product-price">₹ {{ i.product.product_price }}</h4>
+												<h4 class="product-price">Price : ₹ {{ i.product.product_price }}</h4>
 
 												<h3 class="product-name"><a href="#">{{ i.product.product_desc }}</a></h3>
 												
+												<form name="change_qty" method="post" action="{% url 'change-cart-qty' %}">
+													{% csrf_token %}
+													<h4 class="product-price">Quantity : <input type="number" name="product_qty" value="{{i.product_qty}}" min="1" max="50" onchange="this.form.submit();"></h4>
+													<input type="hidden" name="cart_id" value="{{i.pk}}">	
+													
+												</form>
+
+												<h4 class="product-price">Total Price : ₹ {{ i.total_price }}</h4><br>
+
 												<div class="product-btns">
-													<a href="{% url 'remove-from-cart' pk=i.product.pk %}"><input type="button" class="btn btn-danger" value="REMOVE FROM CART"></a><br><br>
+													<a href="{% url 'remove-from-cart' pk=i.product.pk %}"><input type="button" class="btn btn-danger" value="REMOVE FROM CART"></a>
 												</div>
 												
 											</div>
 										</div>
 										{% endfor %}
 										<!-- /product -->
+
 									</div>
+
 									<div id="slick-nav-1" class="products-slick-nav"></div>
 								</div>
 								<!-- /tab -->
@@ -66,12 +77,18 @@
 					</div>
 					<!-- Products tab & slick -->
 				</div>
+						
 				<!-- /row -->
 			</div>
 			<!-- /container -->
+			
+				<br>
+				<h1>Total Price To Pay : ₹ {{net_price}}
+				<a href=""><input type="button" class="btn btn-primary" value="Check Out"></a>
+				</h1>
 		</div>
-		<!-- /SECTION -->
-
+		<!-- /SECTION -->			
+		<br>
 	</body>
 </html>
 {% endblock %}
