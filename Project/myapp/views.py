@@ -329,12 +329,14 @@ def remove_from_wishlist(request,pk):
 	
 def cart(request):
 	net_price=0
+	total_qty=0
 	user=User.objects.get(email=request.session['email'])
 	carts=Cart.objects.filter(user=user)
 	request.session['cart_count']=len(carts)
 	for i in carts:
 		net_price=net_price+i.total_price
-	return render(request,'cart.html',{'carts':carts,'net_price':net_price})
+		total_qty=total_qty+i.product_qty
+	return render(request,'cart.html',{'carts':carts,'net_price':net_price,'total_qty':total_qty})
 
 
 def add_to_cart(request,pk):

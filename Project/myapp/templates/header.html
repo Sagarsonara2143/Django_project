@@ -120,7 +120,7 @@
 													
 													<div class="product-body">
 														<h3 class="product-name"><a href="#">{{i.product.product_name}}</a></h3>
-														<h4 class="product-price"><span class="qty">{{ i.product_qty }} X</span>{{i.product.product_price}}</h4>
+														<h4 class="product-price"><span class="qty">{{ i.product_qty }} X</span>₹ {{i.product.product_price}}</h4>
 													</div>
 													
 												
@@ -129,10 +129,12 @@
 											{% endfor %}
 
 										</div>
+									
 										<div class="cart-summary">
-											<small>3 Item(s) selected</small>
-											<h5>SUBTOTAL: $2940.00</h5>
+											<small>{{ total_qty }} Item(s) selected</small>
+											<h5>SUBTOTAL: ₹ {{ net_price }}</h5>
 										</div>
+										
 										<div class="cart-btns">
 											<a href="{% url 'cart' %}">View Cart</a>
 											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
