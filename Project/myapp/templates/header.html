@@ -108,11 +108,12 @@
 										<span>Your Cart</span>
 										<div class="qty">{{ request.session.cart_count }}</div>
 									</a>
+									
 									<div class="cart-dropdown">
 										<div class="cart-list">
 											<div class="product-widget">
 												<div class="product-img">
-													<img src="{% static './img/product01.png' %}" alt="">
+													<img src="" alt="">
 												</div>
 												<div class="product-body">
 													<h3 class="product-name"><a href="#">product name goes here</a></h3>
@@ -140,7 +141,9 @@
 											<a href="{% url 'cart' %}">View Cart</a>
 											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
+									
 									</div>
+									
 								</div>
 								<!-- /Cart -->
 

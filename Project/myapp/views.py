@@ -12,7 +12,8 @@ def index(request):
 			return redirect('seller-index')
 		else:
 			products=Product.objects.all()
-			return render(request,'index.html',{'products':products})
+			carts=Cart.objects.filter(user=user)
+			return render(request,'index.html',{'products':products,'carts':carts})
 	except:
 		products=Product.objects.all()
 		return render(request,'index.html',{'products':products})
@@ -44,10 +45,11 @@ def signup(request):
 					usertype=request.POST['usertype']
 					)
 				msg="User Sign Up Successfully"
-				return render(request,'login.html',{'msg':msg})
+				carts=Cart.objects.filter(user=user)
+				return render(request,'login.html',{'msg':msg,'carts':carts})
 			else:
 				msg="Password and Confirm password does not matched"
-				return render(request,'signup.html',{'msg':msg})
+				return render(request,'signup.html',{'msg':msg,'carts':carts})
 	else:
 		return render(request,'signup.html')
 
@@ -106,20 +108,23 @@ def change_password(request):
 					msg="New Password & confirm New Password does not matched"
 					return render(request,'seller-change-password.html',{'msg':msg})
 				else:
+					carts=Cart.objects.filter(user=user)
 					msg="New Password & confirm New Password does not matched"
-					return render(request,'change-password.html',{'msg':msg})	
+					return render(request,'change-password.html',{'carts':carts,'msg':msg})	
 		else:
 			if user.usertype=="seller":
 				msg="Incorrect Old Password"
 				return render(request,'seller-change-password.html',{'msg':msg})
 			else:
+				carts=Cart.objects.filter(user=user)
 				msg="Incorrect Old Password"
-				return render(request,'change-password.html',{'msg':msg})
+				return render(request,'change-password.html',{'msg':msg,'carts':carts})
 	else:
 		if user.usertype=="seller":
 			return render(request,'seller-change-password.html')
 		else:
-			return render(request,'change-password.html')
+			carts=Cart.objects.filter(user=user)
+			return render(request,'change-password.html',{'carts':carts})
 
 def forgot_password(request):
 	if request.method=="POST":
@@ -184,13 +189,15 @@ def profile(request):
 			msg="Profile Updated Successfully"
 			return render(request,'seller-profile.html',{'user':user,'msg':msg})
 		else:
+			carts=Cart.objects.filter(user=user)
 			msg="Profile Updated Successfully"
-			return render(request,'profile.html',{'user':user,'msg':msg})
+			return render(request,'profile.html',{'user':user,'msg':msg,'carts':carts})
 	else:
 		if user.usertype=="seller":
 			return render(request,'seller-profile.html',{'user':user})
 		else:
-			return render(request,'profile.html',{'user':user})
+			carts=Cart.objects.filter(user=user)
+			return render(request,'profile.html',{'user':user,'carts':carts})
 
 
 def seller_add_product(request):
@@ -247,16 +254,19 @@ def seller_product_delete(request,pk):
 
 
 def laptops(request):
+	carts=Cart.objects.filter(user=user)
 	products=Product.objects.filter(product_cat="Laptop")
-	return render (request,"index.html",{'products':products})
+	return render (request,"index.html",{'carts':carts,'products':products})
 
 def cameras(request):
+	carts=Cart.objects.filter(user=user)
 	products=Product.objects.filter(product_cat="Camera")
-	return render(request,"index.html",{'products':products})
+	return render(request,"index.html",{'carts':carts,'products':products})
 
 def accessories(request):
+	carts=Cart.objects.filter(user=user)
 	products=Product.objects.filter(product_cat="Accessories")
-	return render(request,"index.html",{'products':products})
+	return render(request,"index.html",{'carts':carts,'products':products})
 
 def seller_laptops(request):
 	seller=User.objects.get(email=request.session['email'])
@@ -290,14 +300,15 @@ def product_details(request,pk):
 		cart_flag=True
 	except:
 		pass
-
-	return render(request,'product-details.html',{'product':product,'wishlist_flag':wishlist_flag,'cart_flag':cart_flag})
+	carts=Cart.objects.filter(user=user)
+	return render(request,'product-details.html',{'product':product,'wishlist_flag':wishlist_flag,'cart_flag':cart_flag,'carts':carts})
 
 def wishlist(request):
 	user=User.objects.get(email=request.session['email'])
 	wishlists=Wishlist.objects.filter(user=user)
 	request.session['wishlist_count']=len(wishlists)
-	return render(request,'wishlist.html',{'wishlists':wishlists})
+	carts=Cart.objects.filter(user=user)
+	return render(request,'wishlist.html',{'wishlists':wishlists,'carts':carts})
 
 
 def add_to_wishlist(request,pk):
