@@ -111,8 +111,9 @@
 									
 									<div class="cart-dropdown">
 										<div class="cart-list">
+											{% for i in carts %}
 											<div class="product-widget">
-												{% for i in carts %}
+											
 													<div class="product-img">
 														<img src="{{ i.product.product_image.url }}" alt="">
 													</div>
@@ -121,11 +122,11 @@
 														<h3 class="product-name"><a href="#">{{i.product.product_name}}</a></h3>
 														<h4 class="product-price"><span class="qty">{{ i.product_qty }} X</span>{{i.product.product_price}}</h4>
 													</div>
-												{% endfor %}	
+													
 												
-												<button class="delete"><i class="fa fa-close"></i></button>
+												<a href="{% url 'remove-from-cart' pk=i.product.pk %}"><button class="delete"><i class="fa fa-close"></i></button></a>
 											</div>
-											
+											{% endfor %}
 
 										</div>
 										<div class="cart-summary">
