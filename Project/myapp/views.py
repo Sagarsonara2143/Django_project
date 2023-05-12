@@ -381,6 +381,40 @@ def checkout(request):
 	return render(request,'checkout.html',{'user':user,'carts':carts,'net_price':net_price})
 
 
+@csrf_exempt
+def create_checkout_session(request):
+ #Updated- creating Order object
+ 	
+ 	amount=int(json.load(request)['post_data'])
+ 	final_amount=amount * 100
+
+	session = stripe.checkout.Session.create(
+	client_reference_id=request.user.id if request.user.is_authenticated else None,
+	payment_method_types=['card'],
+	line_items=[{
+	'price_data': {
+	'currency': 'inr',
+	'product_data': {
+	'name': 'Intro to Django Course',
+	},
+	'unit_amount': 10000,
+	},
+	'quantity': 1,
+	}],
+	#Update - passing order ID in checkout to update the order object in webhook
+	metadata={
+	"order_id":order.id
+	},
+	mode='payment',
+	success_url=YOUR_DOMAIN + '/success.html',
+	cancel_url=YOUR_DOMAIN + '/cancel.html',
+	)
+	return JsonResponse({'id': session.id})
+
+
+
+
+
 
 
 
