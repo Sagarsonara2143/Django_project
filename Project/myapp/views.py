@@ -395,26 +395,26 @@ def checkout(request):
 def create_checkout_session(request):
  #Updated- creating Order object
  	
- amount=int(json.load(request)['post_data'])
- final_amount=amount * 100
+	amount=int(json.load(request)['post_data'])
+	final_amount=amount * 100
 
-	session = stripe.checkout.Session.create(
-	 payment_method_types=['card'],
-	 line_items=[{
-	 'price_data': {
-	 'currency': 'inr',
-	 'product_data': {
-	 'name': 'Intro to Django Course',
-	 },
-	 'unit_amount': final_amount,
-	 },
-	 'quantity': 1,
-	 }],
-	 mode='payment',
-	 success_url=YOUR_DOMAIN + '/success.html',
-	 cancel_url=YOUR_DOMAIN + '/cancel.html',
-	 )
- return JsonResponse({'id': session.id})
+	session=stripe.checkout.Session.create(
+		payment_method_types=['card'],
+		line_items=[{
+		'price_data': {
+		'currency': 'inr',
+		'product_data': {
+		'name': 'Intro to Django Course',
+		},
+		'unit_amount': final_amount,
+		},
+		'quantity': 1,
+		}],
+		mode='payment',
+		success_url=YOUR_DOMAIN + '/success.html',
+		cancel_url=YOUR_DOMAIN + '/cancel.html',
+		)
+	return JsonResponse({'id':session.id})
 
 def success(request):
 	user=User.objects.get(email=request.session['email'])

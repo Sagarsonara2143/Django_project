@@ -110,11 +110,13 @@
 		<!-- /SECTION -->
 
 <script type="text/javascript">
+
  // Create an instance of the Stripe object with your publishable API key
  var stripe = Stripe('pk_test_51N69xBSI6NwQjoqE3GrxVvvd4SyYwSbcVhtDlHKJinBghbsuJGOB5BW4bYyjAXTPLOfdw7BgcRG7f5rMVUTqJUmW008AYrvF9s');
  var checkoutButton = document.getElementById('checkout-button');
 
  checkoutButton.addEventListener('click', function() {
+ 	
  // Create a new Checkout Session using the server-side endpoint you
  // created in step 3.
  fetch('/create-checkout-session/', {
@@ -122,7 +124,7 @@
 
  	headers:{
  		'Accept':'application/json',
- 		'X-Requested_With':'XMLHttpRequest',
+ 		'X-Requested-With':'XMLHttpRequest',
  	},
  	body: JSON.stringify({'post_data':'{{ net_price }}'})
  })
