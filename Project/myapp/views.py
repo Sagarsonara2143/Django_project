@@ -2,6 +2,16 @@ from django.shortcuts import render,redirect
 from .models import User,Product,Wishlist,Cart
 import requests
 import random
+import stripe
+from django.conf import settings
+from django.http import JsonResponse,HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+from django.utils import timezone
+
+
+stripe.api_key = settings.STRIPE_PRIVATE_KEY
+YOUR_DOMAIN = 'http://localhost:8000'
 
 # Create your views here.
 
@@ -389,22 +399,18 @@ def create_checkout_session(request):
  	final_amount=amount * 100
 
 	session = stripe.checkout.Session.create(
-	client_reference_id=request.user.id if request.user.is_authenticated else None,
 	payment_method_types=['card'],
 	line_items=[{
 	'price_data': {
 	'currency': 'inr',
 	'product_data': {
-	'name': 'Intro to Django Course',
+	'name': 'Checkout Session Data',
 	},
-	'unit_amount': 10000,
+	'unit_amount': final_amount,
 	},
 	'quantity': 1,
 	}],
-	#Update - passing order ID in checkout to update the order object in webhook
-	metadata={
-	"order_id":order.id
-	},
+	
 	mode='payment',
 	success_url=YOUR_DOMAIN + '/success.html',
 	cancel_url=YOUR_DOMAIN + '/cancel.html',
@@ -412,6 +418,23 @@ def create_checkout_session(request):
 	return JsonResponse({'id': session.id})
 
 
+def success(request):
+	user=User.objects.get(email=request.session['email'])
+	carts=Cart.objects.filter(user=user,paymemt_status=False)
+
+	for i in carts:
+		i.paymemt_status=True
+		i.save()
+		product=Product.objects.get(id=i.product.id)
+		product.cart_status=False
+		product.save()
+
+	carts=Cart.objects.filter(user=user,paymemt_status=False)
+	request.session['cart_count']=len(carts)
+	return render(request,'success.html')
+
+def cancel(request):
+	return render(request,'cancel.html')
 
 
 
