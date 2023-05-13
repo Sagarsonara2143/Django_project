@@ -269,6 +269,7 @@ def laptops(request):
 	return render (request,"index.html",{'carts':carts,'products':products})
 
 def cameras(request):
+	#user=User.objects.get(email=request.session['email'])
 	carts=Cart.objects.filter(user=user)
 	products=Product.objects.filter(product_cat="Camera")
 	return render(request,"index.html",{'carts':carts,'products':products})
@@ -429,7 +430,7 @@ def success(request):
 
 	carts=Cart.objects.filter(user=user,paymemt_status=False)
 	request.session['cart_count']=len(carts)
-	return render(request,'success.html')
+	return render(request,'success.html',{'carts':carts})
 
 def cancel(request):
 	return render(request,'cancel.html')
