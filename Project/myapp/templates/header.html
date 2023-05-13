@@ -89,6 +89,7 @@
 						<!-- /SEARCH BAR -->
 
 						<!-- ACCOUNT -->
+						{% if request.session.email %}
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
 								<!-- Wishlist -->
@@ -155,6 +156,7 @@
 								<!-- /Menu Toogle -->
 							</div>
 						</div>
+						{% endif %}
 						<!-- /ACCOUNT -->
 					</div>
 					<!-- row -->
