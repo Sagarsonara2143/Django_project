@@ -264,9 +264,18 @@ def seller_product_delete(request,pk):
 
 
 def laptops(request):
-	carts=Cart.objects.filter(user=user)
-	products=Product.objects.filter(product_cat="Laptop")
-	return render (request,"index.html",{'carts':carts,'products':products})
+	try:
+		if request.session.email():
+			carts=Cart.objects.filter(user=user)
+			products=Product.objects.filter(product_cat="Laptop")
+			return render (request,"index.html",{'carts':carts,'products':products})
+		else:
+			products=Product.objects.filter(product_cat="Laptop")
+			return render (request,"index.html",{'products':products})
+	except:
+		products=Product.objects.filter(product_cat="Laptop")
+		return render (request,"index.html",{'products':products})
+
 
 def cameras(request):
 	#user=User.objects.get(email=request.session['email'])
