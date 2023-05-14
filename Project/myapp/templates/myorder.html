@@ -17,7 +17,7 @@
 					<!-- section title -->
 					<div class="col-md-12">
 						<div class="section-title">
-							{% if carts %}
+							{% if purchased_carts %}
 								<h3 class="title">My Order</h3>
 							{% else %}
 								<h3 class="title">No Items Purchesed Yet</h3>
@@ -33,7 +33,7 @@
 								<div id="tab1" class="tab-pane active">
 									<div class="products-slick" data-nav="#slick-nav-1">
 										<!-- product -->
-										{% for i in carts %}
+										{% for i in purchased_carts %}
 										<div class="product">
 											<div class="product-img">
 												<img src="{{ i.product.product_image.url }}" alt="" width="200px" height="200px">
