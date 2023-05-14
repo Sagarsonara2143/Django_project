@@ -478,9 +478,8 @@ def seller_order(request):
 	for i in carts:
 		if i.product.seller==seller:
 			orders.append(i)
-
 	print(orders)
-	return render(request,'seller-order.html')
+	return render(request,'seller-order.html',{'orders':orders})
 
 
 

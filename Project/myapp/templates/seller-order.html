@@ -1,11 +1,88 @@
+{% extends 'seller-header.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
-</head>
-<body>
-	<h2>My Orders</h2>
-</body>
+<html lang="en">
+	<body>
+
+		
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<!-- section title -->
+					<div class="col-md-12">
+						<div class="section-title">
+							{% if orders %}
+								<h3 class="title">My Orders</h3>
+							{% else %}
+								<h3 class="title">No Orders Recived Yet	</h3>
+							{% endif %}
+					</div>
+					<!-- /section title -->
+
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+								<!-- tab -->
+								<div id="tab1" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+										<!-- product -->
+										{% for i in orders %}
+										<div class="product">
+											<div class="product-img">
+												<img src="{{ i.product.product_image.url }}" alt="" width="200px" height="200px">
+												<div class="product-label">
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">{{ i.product.product_cat }}</p>
+												
+												<h3 class="product-name"><a href="#">{{ i.product.product_name }}</a></h3>
+												
+												<h4 class="product-price">Price : ₹ {{ i.product.product_price }}</h4>
+
+												<h3 class="product-name"><a href="#">{{ i.product.product_desc }}</a></h3>
+												
+												<h4 class="product-price">Quantity : {{ i.product_qty }}</h4>						
+
+												<h4 class="product-price">Total Price : ₹ {{ i.total_price }}</h4><br>
+												
+												<h3 class="product-price">Purchased By : {{ i.user.fname }}</h3>
+
+												{% if i.paymemt_status == True %}
+													<h3 class="product-name">Payment Status : Paid</h3>
+												{% else %}
+													<h3 class="product-name">Payment Status : Pending</h3>
+												{% endif %}												
+											</div>
+										</div>
+										{% endfor %}
+										<!-- /product -->
+
+									</div>
+
+									<div id="slick-nav-1" class="products-slick-nav"></div>
+								</div>
+								<!-- /tab -->
+							</div>
+						</div>
+					</div>
+					<!-- Products tab & slick -->
+				</div>
+						
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+			
+		</div>
+		<!-- /SECTION -->			
+		<br>
+	</body>
 </html>
+{% endblock %}
