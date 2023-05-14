@@ -63,7 +63,7 @@
 					<!-- row -->
 					<div class="row">
 						<!-- LOGO -->
-						<div class="col-md-3">
+						<div class="col-md-2">
 							<div class="header-logo">
 								<a href="/" class="logo">
 									<img src="{% static './img/logo.png' %}" alt="">
@@ -90,8 +90,17 @@
 
 						<!-- ACCOUNT -->
 						{% if request.session.email %}
-						<div class="col-md-3 clearfix">
+						<div class="col-md-4 clearfix">
 							<div class="header-ctn">
+								<!-- Order -->
+								<div>
+									<a href="{% url 'myorder' %}">
+										<i class="fa fa-shopping-bag"></i>
+										<span>MY order</span>
+									</a>
+								</div>
+								<!-- /Order -->
+
 								<!-- Wishlist -->
 								<div>
 									<a href="{% url 'wishlist' %}">

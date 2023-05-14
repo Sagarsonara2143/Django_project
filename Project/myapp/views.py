@@ -316,7 +316,7 @@ def product_details(request,pk):
 		pass
 
 	try:
-		Cart.objects.get(user=user,product=product)
+		Cart.objects.get(user=user,product=product,paymemt_status=False)
 		cart_flag=True
 	except:
 		pass
@@ -351,7 +351,7 @@ def cart(request):
 	net_price=0
 	total_qty=0
 	user=User.objects.get(email=request.session['email'])
-	carts=Cart.objects.filter(user=user)
+	carts=Cart.objects.filter(user=user,paymemt_status=False)
 	request.session['cart_count']=len(carts)
 	for i in carts:
 		net_price=net_price+i.total_price
@@ -404,7 +404,7 @@ def checkout(request):
 @csrf_exempt
 def create_checkout_session(request):
  #Updated- creating Order object
- 	
+
 	amount=int(json.load(request)['post_data'])
 	final_amount=amount * 100
 
@@ -416,7 +416,7 @@ def create_checkout_session(request):
 		'product_data': {
 		'name': 'Intro to Django Course',
 		},
-		'unit_amount': final_amount,
+		'unit_amount':final_amount,
 		},
 		'quantity': 1,
 		}],
@@ -432,6 +432,7 @@ def success(request):
 
 	for i in carts:
 		i.paymemt_status=True
+		i.ordered_date=timezone.now()
 		i.save()
 		product=Product.objects.get(id=i.product.id)
 		product.cart_status=False
@@ -445,7 +446,10 @@ def cancel(request):
 	return render(request,'cancel.html')
 
 
-
+def myorder(request):
+	user=User.objects.get(email=request.session['email'])
+	carts=Cart.objects.filter(user=user,paymemt_status=True)
+	return render(request,'myorder.html',{'carts':carts})
 
 
 
