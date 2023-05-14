@@ -45,8 +45,6 @@
 					<ul class="header-links pull-right">
 
 						{% if request.session.email %}
-							<li><a href="{% url 'seller-add-product' %}"><i class="fa fa-plus"></i>Add Product</a></li>
-							<li><a href="{% url 'seller-view-product' %}"><i class="fa fa-eye"></i>View Product</a></li>
 							<li><a href="{% url 'change-password' %}"><i class="fa fa-edit"></i>Change Password</a></li>
 							<li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>Logout ({{request.session.fname}})</a></li>
 							<li><a href="{% url 'profile' %}"><img src="{{ request.session.profile_pic }}" width="50px" height="50px"></a></li>
@@ -66,14 +64,59 @@
 					<!-- row -->
 					<div class="row">
 						<!-- LOGO -->
-						<div class="col-md-3">
+						<div class="col-md-7">
 							<div class="header-logo">
-								<a href="{% url 'seller-index' %}" class="logo">
+								<a href="/" class="logo">
 									<img src="{% static './img/logo.png' %}" alt="">
 								</a>
 							</div>
 						</div>
 						<!-- /LOGO -->
+
+						<!-- ACCOUNT -->
+						{% if request.session.email %}
+						<div class="col-md-4 clearfix">
+							<div class="header-ctn">
+								<!-- Order -->
+								<div>
+									<a href="{% url 'seller-order' %}">
+										<i class="fa fa-shopping-bag"></i>
+										<span>MY ORDER</span>
+									</a>
+								</div>
+								<!-- /Order -->
+
+								<!-- Wishlist -->
+								<div>
+									<a href="{% url 'seller-add-product' %}">
+										<i class="fa fa-plus"></i>
+										<span>ADD PRODUCT</span>
+									</a>
+								</div>
+								<!-- /Wishlist -->
+
+								<!-- View Product -->
+								<div>
+									<a href="{% url 'seller-view-product' %}">
+										<i class="fa fa-eye"></i>
+										<span>VIEW PRODUCT</span>
+									</a>
+								</div>
+								<!-- /view Product -->
+								
+
+								<!-- Menu Toogle -->
+								<div class="menu-toggle">
+									<a href="#">
+										<i class="fa fa-bars"></i>
+										<span>Menu</span>
+									</a>
+								</div>
+								<!-- /Menu Toogle -->
+							</div>
+						</div>
+						{% endif %}
+						<!-- /ACCOUNT -->
 					</div>
 					<!-- row -->
 				</div>
