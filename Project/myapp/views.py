@@ -265,6 +265,7 @@ def seller_product_delete(request,pk):
 
 def laptops(request):
 	try:
+		user=User.objects.get(user=user)
 		if request.session.email():
 			carts=Cart.objects.filter(user=user,paymemt_status=False)
 			products=Product.objects.filter(product_cat="Laptop")
@@ -278,15 +279,32 @@ def laptops(request):
 
 
 def cameras(request):
-	#user=User.objects.get(email=request.session['email'])
-	carts=Cart.objects.filter(user=user,paymemt_status=False)
-	products=Product.objects.filter(product_cat="Camera")
-	return render(request,"index.html",{'carts':carts,'products':products})
+	try:
+		user=User.objects.get(user=user)
+		if request.session.email():
+			carts=Cart.objects.filter(user=user,paymemt_status=False)
+			products=Product.objects.filter(product_cat="Camera")
+			return render (request,"index.html",{'carts':carts,'products':products})
+		else:
+			products=Product.objects.filter(product_cat="Camera")
+			return render (request,"index.html",{'products':products})
+	except:
+		products=Product.objects.filter(product_cat="Camera")
+		return render (request,"index.html",{'products':products})
 
 def accessories(request):
-	carts=Cart.objects.filter(user=user,paymemt_status=False)
-	products=Product.objects.filter(product_cat="Accessories")
-	return render(request,"index.html",{'carts':carts,'products':products})
+	try:
+		user=User.objects.get(user=user)
+		if request.session.email():
+			carts=Cart.objects.filter(user=user,paymemt_status=False)
+			products=Product.objects.filter(product_cat="Accessories")
+			return render (request,"index.html",{'carts':carts,'products':products})
+		else:
+			products=Product.objects.filter(product_cat="Accessories")
+			return render (request,"index.html",{'products':products})
+	except:
+		products=Product.objects.filter(product_cat="Accessories")
+		return render (request,"index.html",{'products':products})
 
 def seller_laptops(request):
 	seller=User.objects.get(email=request.session['email'])
