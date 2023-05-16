@@ -17,7 +17,7 @@
 					<div class="col-md-12">
 						<h3 class="breadcrumb-header">Sign Up</h3>
 						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
+							<li><a href="/">Home</a></li>
 							<li class="active">Sign Up</li>
 						</ul>
 					</div>
@@ -61,10 +61,12 @@
 								<input class="input" type="text" name="lname" placeholder="Last Name">
 							</div>
 							<div class="form-group">
-								<input class="input" type="email" name="email" placeholder="Email">
+								<input class="input" type="email" name="email" id="email" placeholder="Email">
+								<span id="email_error"></span>
 							</div>
 							<div class="form-group">
-								<input class="input" type="text" name="mobile" placeholder="Mobile Number">
+								<input class="input" type="text" id="mobile" name="mobile" placeholder="Mobile Number">
+								<span id="mobile_error"></span>
 							</div>
 							<div class="form-group">
 								<input class="input" type="textarea" name="address" placeholder="Address">
@@ -76,10 +78,11 @@
 								<input class="input" type="text" name="zipcode" placeholder="ZIP Code">
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="password" placeholder="Password">
+								<input class="input" type="password" name="password" id="pwd"placeholder="Password">
 							</div>
 							<div class="form-group">
-								<input class="input" type="password" name="cpassword" placeholder="Confirm Password">
+								<input class="input" type="password" name="cpassword" id="cpwd" placeholder="Confirm Password">
+								<span id="confirm_pwd_error"></span>
 							</div>
 							<div class="form-group">
 								<input class="input" type="file" name="profile_pic">
@@ -101,7 +104,74 @@
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
+		<script>
+			$("#mobile").change(function(){
+				var mobile=$(this).val();
 
+				$.ajax({
+					url: '/ajax/validate_mobile/',
+					data:{
+						'mobile':mobile
+					},
+					dataType:'json',
+					success:function(data){
+						if (data.is_taken){
+							document.getElementById("mobile_error").innerHTML="This Mobile Number is Already Registered";
+						}
+						else{
+							document.getElementById("mobile_error").innerHTML="";
+						}
+					}
+				});
+			});
+		</script>
+		<script>
+			$("#cpwd").change(function(){
+				
+				var pwd=$("#pwd").val();
+				var cpwd=$("#cpwd").val();
+
+				$.ajax({
+					url: '/ajax/validate_pwd/',
+					data:{
+						'pwd':pwd,
+						'cpwd':cpwd
+					},
+					dataType:'json',
+					success:function(data){
+						if (data.is_taken){
+							document.getElementById("confirm_pwd_error").innerHTML="Password & Confirm Password does not matched";
+						}
+						else{
+							document.getElementById("confirm_pwd_error").innerHTML="";
+						}
+					}
+				});
+			});
+		</script>
+
+		<script> 
+			$("#email").change(function(){
+				var email=$(this).val();
+
+				$.ajax({
+					url: '/ajax/validate_email/',
+					data:{
+						'email':email
+					},
+					dataType:'json',
+					success:function(data){
+						if (data.is_taken){
+							document.getElementById("email_error").innerHTML="This Email is Already Registered";
+						}
+						else{
+							document.getElementById("email_error").innerHTML="";
+						}
+					}
+				});
+			});
+
+		</script>   
 	</body>
 </html>
 {% endblock %}

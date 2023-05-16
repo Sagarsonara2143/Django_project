@@ -85,9 +85,9 @@
 				
 				{% if carts %}
 				<br>
-				<h1>Total Price To Pay : ₹ {{net_price}}
-				<a href=""><input type="button" class="btn btn-primary" value="Check Out"></a>
-				</h1>
+				<h1>Total Price To Pay : ₹ {{net_price}}</h1>
+				<a href="{% url 'checkout' %}"><input type="button" class="btn btn-primary" value="Check Out"></a>
+				
 				{% endif %}
 		</div>
 		<!-- /SECTION -->			
