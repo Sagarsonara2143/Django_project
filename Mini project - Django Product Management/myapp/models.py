@@ -2,7 +2,8 @@ from django.db import models
 
 # Create your models here.
 
-class Product_mst(models.Model):
+class Product_master(models.Model):
+	product_id = models.BigAutoField(primary_key=True)
 	product_name=models.CharField(max_length=50)
 
 	def __str__(self):
@@ -10,7 +11,7 @@ class Product_mst(models.Model):
 
 
 class Product_sub_cat(models.Model):
-	product=models.ForeignKey(Product_mst,on_delete=models.CASCADE)
+	product=models.ForeignKey(Product_master,on_delete=models.CASCADE)
 	price=models.CharField(max_length=100)
 	image=models.ImageField(upload_to="product_image")
 	model=models.CharField(max_length=100)
