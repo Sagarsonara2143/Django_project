@@ -4,4 +4,5 @@ from .models import Product_master,Product_sub_cat
 
 urlpatterns = [
     path('',views.index, name='index'),
+    path('product-master',views.product_master,name="product-master"),
 ]
