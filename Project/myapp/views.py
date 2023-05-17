@@ -12,7 +12,7 @@ from django.utils import timezone
 
 
 stripe.api_key = settings.STRIPE_PRIVATE_KEY
-YOUR_DOMAIN = 'http://localhost:8000'
+YOUR_DOMAIN = 'http://sagarsonara2143.pythonanywhere.com/'
 
 # Create your views here.
 
