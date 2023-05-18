@@ -20,18 +20,26 @@
 </head>
 <body>
 	<br>
-<h2> Product Master <h2>
-	<form method="post" name="Product" action="#">
-		
-		<table >
-			<tr>
-				<td>Product Name  </td>
-				<td><input type="text" name="product_name" class="form-control"placeholder="Enter Product Name"></td>
-			</tr>
-			<tr>
-				<td><button type="button" name="submit" class="btn btn-primary">Submit</button></td>
-			</tr>
-		</table>
-	</form>
+<h2> Product Master </h2>
+	{% if msg %}
+		<b style="color:Green">{{msg}}</b>
+	{% endif %}	
+<form method="post" action="{% url 'product-add' %}">
+{% csrf_token %}
+
+	<table >
+		<tr>
+			<td>Product Name  </td>
+			<td><input type="text" name="product_name" class="form-control"placeholder="Enter Product Name"></td>
+		</tr>
+		<tr>
+			<td><button type="submit" name="submit" class="btn btn-primary">Submit</button></td>
+		</tr>
+	</table>
+</form>
+	{% for i in product %}
+		Id : {{ i.product_id }}
+		Name : {{ i.product_name }}
+	{% endfor %}
 </body>
 </html>
