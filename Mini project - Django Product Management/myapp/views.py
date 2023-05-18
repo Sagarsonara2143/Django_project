@@ -16,7 +16,8 @@ def product_add(request):
 			)	
 		msg="Product Added Successfully"
 		product=Product_master.objects.all()
-		print(product)
+		#print(product)
 		return render(request,'product-master.html',{'msg':msg,'product':product})
 	else:
-		return render(request,"product-master.html")
+		product=Product_master.objects.all()
+		return render(request,"product-master.html",{'product':product})

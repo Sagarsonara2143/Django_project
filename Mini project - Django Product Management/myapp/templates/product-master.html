@@ -29,21 +29,31 @@
 
 	<table >
 		<tr>
-			<td>Product Name  </td>
+			<td>Product Name </td>
 			<td><input type="text" name="product_name" class="form-control"placeholder="Enter Product Name"></td>
+		</tr>
+		<tr>
+			<td>Product Price </td>
+			<td><input type="text" name="product_price" class="form-control" placeholder="Enter Product Price"></td>
+		</tr>
+		<tr>
+			<td>Product Image </td>
+			<td><input type="file" name="product_image" class="form-control"></td>
+		</tr>
+		<tr>
+			<td>Product Model </td>
+			<td><input type="text" name="product_model" class="form-control"placeholder="Enter Product Model"></td>
+		</tr>
+		<tr>
+			<td>Product RAM </td>
+			<td><input type="text" name="product_ram" class="form-control"placeholder="Enter Product RAM"></td>
 		</tr>
 		<tr>
 			<td><button type="submit" name="submit" class="btn btn-primary">Submit</button></td>
 		</tr>
 	</table>
 </form>
-<h1 style="color:blue">Recent Contacts : </h1>
-<hr>
-{% for i in product %}
-	ID : {{ i.product_id }}<br>
-	Product Name : {{ i.product_name }}<br><hr>
-{% endfor %}
-<hr>
+
 	
 </body>
 </html>
