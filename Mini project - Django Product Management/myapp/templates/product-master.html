@@ -37,9 +37,13 @@
 		</tr>
 	</table>
 </form>
-	{% for i in product %}
-		Id : {{ i.product_id }}
-		Name : {{ i.product_name }}
-	{% endfor %}
+<h1 style="color:blue">Recent Contacts : </h1>
+<hr>
+{% for i in product %}
+	ID : {{ i.product_id }}<br>
+	Product Name : {{ i.product_name }}<br><hr>
+{% endfor %}
+<hr>
+	
 </body>
 </html>
