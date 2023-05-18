@@ -13,7 +13,7 @@ class Product_master(models.Model):
 class Product_sub_cat(models.Model):
 	product=models.ForeignKey(Product_master,on_delete=models.CASCADE)
 	price=models.CharField(max_length=100)
-	image=models.ImageField(upload_to="product_image")
+	image=models.ImageField(upload_to="product_image",default="")
 	model=models.CharField(max_length=100)
 	RAM=models.PositiveSmallIntegerField()
 
