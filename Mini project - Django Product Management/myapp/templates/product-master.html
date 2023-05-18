@@ -30,7 +30,7 @@
 	<table >
 		<tr>
 			<td>Name </td>
-			<td><input type="text" name="product_name" class="form-control"placeholder="Enter Product Name"></td>
+			<td><input type="text" name="product_name" class="form-control"placeholder="Enter Product Name" required></td>
 		</tr>
 		<tr>
 			<td><button type="submit" name="submit" class="btn btn-primary">Submit</button></td>
@@ -39,52 +39,9 @@
 	</table>
 </form>
 
-<a href="{% url %}"><button type="submit" name="submit" class="btn btn-primary">Add Sub Product</button></a>
-
-<table border="5" width="100%" cellpadding="10px" cellspacing="10px">
-	<tr>
-		<th>Task ID</th>
-		<th>Staff Name</th>
-		<th>Remarks</th>
-		<th>Date</th>
-		<th>Status</th>
-		<th>Action</th>
-	</tr>
-	{% for i in task %}
-	<tr>
-		<td>{{i.id}}</td>
-		<td>{{i.staff.fname}}</td>
-		<td>{{i.remarks}}</td>
-		<td>{{i.date}}</td>
-		
-		{% if i.status == "pending" %}
-			<td style="color:red"><b>{{i.status}}</b></td>	
-		{% else %}
-			<td style="color:green"><b>{{i.status}}</b></td>
-		{% endif %}
-
-		{% if i.status == "pending" %}
-		<td>
-			<form name="task" method="post" action="{% url 'complete-task' %}">
-				{% csrf_token %}
-				<input type="hidden" name="id" value={{i.id}}>
-				<input type="submit" name="action" value="Complete Task" class="btn btn-danger">
-			</form>
-		</td>
-		{% else %}
-		<td>
-			<input type="submit" name="action" value="Task Completed" readonly class="btn btn-success">
-		</td>
-		{% endif %}
-
-	</tr>
-	{% endfor%}
-	
-	
+<a href="{% url 'sub-product-add' %}"><button type="submit" name="submit" class="btn btn-primary">Add Sub Product</button></a>
 
 </table>
-
-
 	
 </body>
 </html>

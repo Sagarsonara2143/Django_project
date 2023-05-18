@@ -9,7 +9,7 @@ def index(request):
 def product_master(request):
 	return render(request,'product-master.html')
 
-def product_add(request):
+def product_master_add(request):
 	if request.method=="POST":
 		Product_master.objects.create(
 			product_name=request.POST['product_name']
@@ -18,5 +18,24 @@ def product_add(request):
 		msg="Product Added Successfully"
 		return render(request,'product-master.html',{'msg':msg})
 	else:
-		product=Product_sub_cat.objects.all()
+		
 		return render(request,"product-master.html")
+
+def sub_product_add(request):
+	if request.method=="POST":
+		Product_sub_cat.objects.create(
+			price=request.POST['price'],
+			
+			model=request.POST['model'],
+			RAM=request.POST['ram']
+			)
+		msg="Product Added Successfully"
+		product=Product_master.objects.all()
+		sub_product=Product_sub_cat.objects.all()
+		return render(request,"product.html",{'product':product,'sub_product':sub_product})
+	else:
+		product=Product_master.objects.all()
+		sub_product=Product_sub_cat.objects.all()
+		print(sub_product)
+		return render(request,"product.html",{'product':product,'sub_product':sub_product})
+
