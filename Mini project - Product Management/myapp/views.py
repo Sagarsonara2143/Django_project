@@ -23,9 +23,10 @@ def product_master_add(request):
 
 def sub_product_add(request):
 	if request.method=="POST":
+		name=Product_master.objects.get(product_name=request.POST['name'])
 		Product_sub_cat.objects.create(
+			product=name,
 			price=request.POST['price'],
-			
 			model=request.POST['model'],
 			RAM=request.POST['ram']
 			)
