@@ -71,11 +71,13 @@
 	</tr>
 	{% for i in sub_product %}
 	<tr>
-		<td>{{i.Product_master.name}}</td>
+		<td>{{i.product}}</td>
 		<td>{{i.price}}</td>
 		<td>{{i.model}}</td>
-		<td>{{i.ram}}</td>
-		
+		<td>{{i.RAM}}</td>
+		<td>
+			<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+		</td>
 	</tr>
 	{% endfor%}
 </table>

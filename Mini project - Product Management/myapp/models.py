@@ -18,4 +18,4 @@ class Product_sub_cat(models.Model):
 	RAM=models.PositiveSmallIntegerField()
 
 	def __str__(self):
-		return self.Product_mst.product_name+" "+self.model
+		return self.model
