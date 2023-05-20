@@ -40,3 +40,35 @@ def sub_product_add(request):
 		print(sub_product)
 		return render(request,"product.html",{'product':product,'sub_product':sub_product})
 
+
+def edit(request,pk):
+	sub_product=Product_sub_cat.objects.get(pk=pk)
+	#print(sub_product)
+	return render(request,"edit.html",{'sub_product':sub_product})
+	
+def update(request,pk):
+	sub_product=Product_sub_cat.objects.get(pk=pk)
+	sub_product.price=request.POST['price']
+	sub_product.model=request.POST['model']
+	sub_product.RAM=request.POST['ram']
+
+	sub_product.save()
+	msg="Product Updated Successfully"
+	product=Product_master.objects.all()
+	sub_product=Product_sub_cat.objects.all()
+	return render(request,"product.html",{'msg':msg,'product':product,'sub_product':sub_product})
+	
+
+def delete(request,pk):	
+	sub_product=Product_sub_cat.objects.get(pk=pk)
+	sub_product.delete()
+	msg="Product Deleted Successfully"
+	product=Product_master.objects.all()
+	sub_product=Product_sub_cat.objects.all()
+	return render(request,"product.html",{'msg':msg,'product':product,'sub_product':sub_product})
+	
+
+
+
+
+

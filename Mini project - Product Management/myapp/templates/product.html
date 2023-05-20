@@ -76,13 +76,12 @@
 		<td>{{i.model}}</td>
 		<td>{{i.RAM}}</td>
 		<td>
-		<button style="font-size:16px" class="btn btn-success"><i class="fa fa-edit" style="font-size:20px"> Edit</i></button>
-		<button style="font-size:16px" class="btn btn-danger"><i class="fa fa-trash" style="font-size:20px"> Delete</i></button>
+		<a href="{% url 'edit' pk=i.pk %}"><button style="font-size:16px" class="btn btn-success"><i class="fa fa-edit" style="font-size:20px"> Edit</i></button></a>
+		<a href="{% url 'delete' pk=i.pk %}"><button style="font-size:16px" class="btn btn-danger"><i class="fa fa-trash" style="font-size:20px"> Delete</i></button></a>
 		</td>
 	</tr>
 	{% endfor%}
 </table>
-
 
 
 </body>
