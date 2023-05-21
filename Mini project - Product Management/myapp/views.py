@@ -74,7 +74,7 @@ def product_manager(request):
 
 
 def search(request):
- 	return Product_sub_cat.objects.filter(Q(RAM__icontains="128"))
+ 	return Product_sub_cat.objects.filter(Q(RAM__icontains="64"))
 
 
 
