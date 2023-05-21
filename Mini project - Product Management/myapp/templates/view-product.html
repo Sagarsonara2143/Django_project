@@ -79,7 +79,9 @@
 
 <div class="topnav">
   <a class="active" href="/">Home</a>
-  <input type="text" placeholder="Search..">
+  <form name="search" method="get" action="{% url 'search' %}">
+  	<input name="search" type="text" placeholder="Search..">
+  </form>
 </div>
 <br>
 

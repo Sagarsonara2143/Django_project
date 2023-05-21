@@ -73,6 +73,11 @@ def product_manager(request):
 	return render(request,'view-product.html',{'sub_product':sub_product})
 
 
+def search(request):
+ 	return Product_sub_cat.objects.filter(Q(RAM__icontains="128"))
+
+
+
 
 
 
