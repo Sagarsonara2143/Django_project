@@ -68,6 +68,15 @@ def delete(request,pk):
 	return render(request,"product.html",{'msg':msg,'product':product,'sub_product':sub_product})
 	
 
+def product_manager(request):
+	sub_product=Product_sub_cat.objects.all()
+	return render(request,'view-product.html',{'sub_product':sub_product})
+
+
+
+
+
+
 
 
 
