@@ -92,14 +92,18 @@
 		<th>Model</th>
 		<th>RAM</th>
 	</tr>
-	{% for i in sub_product %}
-	<tr>
-		<td>{{i.product}}</td>
-		<td>{{i.price}}</td>
-		<td>{{i.model}}</td>
-		<td>{{i.RAM}}</td>
-	</tr>
-	{% endfor%}
+	{% if sub_product %}
+		{% for i in sub_product %}
+		<tr>
+			<td>{{i.product}}</td>
+			<td>{{i.price}}</td>
+			<td>{{i.model}}</td>
+			<td>{{i.RAM}}</td>
+		</tr>
+		{% endfor%}
+	{% else %}
+		<center><h3>Search Not found</h3></center>
+	{% endif %}
 </table>
 
 
