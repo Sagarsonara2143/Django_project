@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Product_master,Product_sub_cat
+from django.db.models import Q
 
 # Create your views here.
 
@@ -74,7 +75,14 @@ def product_manager(request):
 
 
 def search(request):
- 	return Product_sub_cat.objects.filter(Q(RAM__icontains="64"))
+	if 'q' in request.GET:
+		q=request.GET['q']
+		multiple_q=Q(Q(price__icontains=q) | Q(model__icontains=q) | Q(RAM__icontains=q) )
+		sub_product=Product_sub_cat.objects.filter(multiple_q)
+		return render (request,'view-product.html',{'sub_product':sub_product})
+	else:
+		msg="Not Found ..!!"
+		return render (request,'view-product.html',{'msg':msg})
 
 
 
