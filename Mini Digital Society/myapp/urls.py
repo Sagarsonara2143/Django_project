@@ -5,4 +5,5 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('',views.login, name='login'),
+    path('registration/',views.registration,name='registration'),
 ]
