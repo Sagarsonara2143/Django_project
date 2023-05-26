@@ -5,299 +5,215 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Digital Society</title>
-    <!-- Fontawesome CDN Link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  	<style>
-  		/* Import Google font - Poppins */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+   <title>Sidebar Menu | Side Navigation Bar</title>
+    <!-- CSS -->
+    
+    <!-- Boxicons CSS -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+
+<style type="text\css">
+    /* Google Fonts - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-.sidebar {
+body {
+  min-height: 100%;
+  background: #e3f2fd;
+}
+nav {
   position: fixed;
+  top: 0;
+  left: 0;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+nav .logo {
+  display: flex;
+  align-items: center;
+  margin: 0 24px;
+}
+.logo .menu-icon {
+  color: #333;
+  font-size: 24px;
+  margin-right: 14px;
+  cursor: pointer;
+}
+.logo .logo-name {
+  color: #333;
+  font-size: 22px;
+  font-weight: 500;
+}
+nav .sidebar {
+  position: fixed;
+  top: 0;
+  left: -100%;
   height: 100%;
   width: 260px;
-  background: #11101d;
-  padding: 15px;
-  z-index: 99;
-}
-.logo {
-  font-size: 25px;
-  padding: 0 15px;
-}
-.sidebar a {
-  color: #fff;
-  text-decoration: none;
-}
-.menu-content {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  margin-top: 40px;
-  overflow-y: scroll;
-}
-.menu-content::-webkit-scrollbar {
-  display: none;
-}
-.menu-items {
-  height: 100%;
-  width: 100%;
-  list-style: none;
+  padding: 20px 0;
+  background-color: #fff;
+  box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
   transition: all 0.4s ease;
 }
-.submenu-active .menu-items {
-  transform: translateX(-56%);
-}
-.menu-title {
-  color: #fff;
-  font-size: 14px;
-  padding: 15px 20px;
-}
-.item a,
-.submenu-item {
-  padding: 16px;
-  display: inline-block;
-  width: 100%;
-  border-radius: 12px;
-}
-.item i {
-  font-size: 12px;
-}
-.item a:hover,
-.submenu-item:hover,
-.submenu .menu-title:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-.submenu-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #fff;
-  cursor: pointer;
-}
-.submenu {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  right: calc(-100% - 26px);
-  height: calc(100% + 100vh);
-  background: #11101d;
-  display: none;
-}
-.show-submenu ~ .submenu {
-  display: block;
-}
-.submenu .menu-title {
-  border-radius: 12px;
-  cursor: pointer;
-}
-.submenu .menu-title i {
-  margin-right: 10px;
-}
-.navbar,
-.main {
-  left: 260px;
-  width: calc(100% - 260px);
-  transition: all 0.5s ease;
-  z-index: 1000;
-}
-.sidebar.close ~ .navbar,
-.sidebar.close ~ .main {
+nav.open .sidebar {
   left: 0;
-  width: 100%;
 }
-.navbar {
-  position: fixed;
-  color: #fff;
-  padding: 15px 20px;
-  font-size: 25px;
-  background: #4070f4;
-  cursor: pointer;
+.sidebar .sidebar-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 16px;
 }
-.navbar #sidebar-close {
-  cursor: pointer;
+.sidebar-content .list {
+  list-style: none;
 }
-.main {
-  position: relative;
+.list .nav-link {
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  z-index: 100;
-  background: #e7f2fd;
+  margin: 8px 0;
+  padding: 14px 12px;
+  border-radius: 8px;
+  text-decoration: none;
 }
-.main h1 {
-  color: #11101d;
-  font-size: 40px;
-  text-align: center;
+.lists .nav-link:hover {
+  background-color: #4070f4;
 }
-  	</style>
+.nav-link .icon {
+  margin-right: 14px;
+  font-size: 20px;
+  color: #707070;
+}
+.nav-link .link {
+  font-size: 16px;
+  color: #707070;
+  font-weight: 400;
+}
+.lists .nav-link:hover .icon,
+.lists .nav-link:hover .link {
+  color: #fff;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 1000vh;
+  width: 200%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  background: rgba(0, 0, 0, 0.3);
+}
+nav.open ~ .overlay {
+  opacity: 1;
+  left: 260px;
+  pointer-events: auto;
+}
+</style>
   </head>
   <body>
-    <nav class="sidebar">
-      <a href="#" class="logo">Digital Society</a>
+    <nav>
+      <div class="logo">
+        <i class="bx bx-menu menu-icon"></i>
+        <span class="logo-name">CodingLab</span>
+      </div>
+      <div class="sidebar">
+        <div class="logo">
+          <i class="bx bx-menu menu-icon"></i>
+          <span class="logo-name">CodingLab</span>
+        </div>
 
-      <div class="menu-content">
-        <ul class="menu-items">
-          <div class="menu-title">Dashboard</div>
+        <div class="sidebar-content">
+          <ul class="lists">
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-home-alt icon"></i>
+                <span class="link">Dashboard</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-bar-chart-alt-2 icon"></i>
+                <span class="link">Revenue</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-bell icon"></i>
+                <span class="link">Notifications</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-message-rounded icon"></i>
+                <span class="link">Messages</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-pie-chart-alt-2 icon"></i>
+                <span class="link">Analytics</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-heart icon"></i>
+                <span class="link">Likes</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-folder-open icon"></i>
+                <span class="link">Files</span>
+              </a>
+            </li>
+          </ul>
 
-          <li class="item">
-            <a href="#">My Profile</a>
-          </li>
-
-          <li class="item">
-            <div class="submenu-item">
-              <span>Society Members</span>
-              <i class="fa-solid fa-chevron-right"></i>
-            </div>
-
-            <ul class="menu-items submenu">
-              <div class="menu-title">
-                <i class="fa-solid fa-chevron-left"></i>
-                Your submenu title
-              </div>
-              <li class="item">
-                <a href="#">First sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">First sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">First sublink</a>
-              </li>
-            </ul>
-          </li>
-          <li class="item">
-            <div class="submenu-item">
-              <span>Society Watchman</span>
-              <i class="fa-solid fa-chevron-right"></i>
-            </div>
-
-            <ul class="menu-items submenu">
-              <div class="menu-title">
-                <i class="fa-solid fa-chevron-left"></i>
-                Your submenu title
-              </div>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-              <li class="item">
-                <a href="#">Second sublink</a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="item">
-            <a href="#">Notice</a>
-          </li>
-
-          <li class="item">
-            <a href="#">Events</a>
-          </li>
-        </ul>
+          <div class="bottom-cotent">
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-cog icon"></i>
+                <span class="link">Settings</span>
+              </a>
+            </li>
+            <li class="list">
+              <a href="#" class="nav-link">
+                <i class="bx bx-log-out icon"></i>
+                <span class="link">Logout</span>
+              </a>
+            </li>
+          </div>
+        </div>
       </div>
     </nav>
 
-    <nav class="navbar">
-      <i class="fa-solid fa-bars" id="sidebar-close"></i>
-    
-    </nav>
+    <section class="overlay"></section>
 
-{% block content %}
-{% endblock %}
-    
+    <script>
+      const navBar = document.querySelector("nav"),
+       menuBtns = document.querySelectorAll(".menu-icon"),
+       overlay = document.querySelector(".overlay");
 
-  </body>
-</html>
+     menuBtns.forEach((menuBtn) => {
+       menuBtn.addEventListener("click", () => {
+         navBar.classList.toggle("open");
+       });
+     });
 
-    <script >
-    	const sidebar = document.querySelector(".sidebar");
-const sidebarClose = document.querySelector("#sidebar-close");
-const menu = document.querySelector(".menu-content");
-const menuItems = document.querySelectorAll(".submenu-item");
-const subMenuTitles = document.querySelectorAll(".submenu .menu-title");
-
-sidebarClose.addEventListener("click", () => sidebar.classList.toggle("close"));
-
-menuItems.forEach((item, index) => {
-  item.addEventListener("click", () => {
-    menu.classList.add("submenu-active");
-    item.classList.add("show-submenu");
-    menuItems.forEach((item2, index2) => {
-      if (index !== index2) {
-        item2.classList.remove("show-submenu");
-      }
-    });
-  });
-});
-
-subMenuTitles.forEach((title) => {
-  title.addEventListener("click", () => {
-    menu.classList.remove("submenu-active");
-  });
-});
+     overlay.addEventListener("click", () => {
+       navBar.classList.remove("open");
+     });
     </script>
+  </body>
+</html> 
