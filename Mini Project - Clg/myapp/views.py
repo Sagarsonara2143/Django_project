@@ -45,7 +45,7 @@ def signup(request):
 					profile_pic=request.FILES['profile_pic']
 					)
 				msg="User Signup Successfully.."
-				return render(request,'signup.html',{'msg':msg})
+				return render(request,'login.html',{'msg':msg})
 			else:
 				msg="Passord and confirm password does not matched"
 				return render(request,'signup.html',{'msg':msg})
