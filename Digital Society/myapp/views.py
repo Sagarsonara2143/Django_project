@@ -40,3 +40,7 @@ def signup(request):
 						return render(request,'signup.html',{'msg':msg})
 	else:
 		return render(request,'signup.html')
+
+
+def index(request):
+	return render(request,'index.html')

@@ -24,7 +24,7 @@
 {% if msg %}
 	<b style="color:Green">{{msg}}</b>
 {% endif %}
-<form method="post" action="{% url 'login' %}">
+<form method="POST" action="{% url 'index' %}">
 		{% csrf_token %}
 			<table>
 			<tr>
@@ -46,7 +46,7 @@
 
 			<tr>
 				<td colspan="2" align="center" >
-					<input type="submit" name="action" value="LOGIN" class="btn btn-primary btn-block" style="width:100%">
+					<a href="#"><input type="submit" name="action" value="LOGIN" class="btn btn-primary btn-block" style="width:100%"></a>
 				</td>
 			</tr>
 
