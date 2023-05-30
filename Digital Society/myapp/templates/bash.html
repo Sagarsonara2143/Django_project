@@ -64,8 +64,9 @@
     <a href="#">Society Watchmen</a>
     <a href="#">Notice</a>
     <a href="#">Events</a>
-    <a href="#">Logout</a>
-    
+    {% if request.session.email %}
+      <a href="#">Logout</a>
+    {% endif %}
     
   </div>
 
