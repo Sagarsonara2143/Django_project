@@ -1,34 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import User
 
 # Create your views here.
 
-def login(request):
-	if request.method=="POST":
-		try:
-			user=User.objects.get(email=request.POST['email'])
-			if user.password==request.POST['password']:
-				if user.usertype=="member":
-					request.session['email']=user.email
-					request.session['fname']=user.fname
-					request.session['usertype']=user.usertype
-					return render(request,'index.html')	
-				else:
-					request.session['email']=user.email
-					request.session['fname']=user.fname
-					request.session['usertype']=user.usertype
-					return render(request,'index.html')
-			else:
-				msg="Incorrect Password"
-				return render(request,'login.html',{'msg':msg})
-		except:
-			msg="Email not registered"
-			return render(request,'login.html',{'msg':msg})
-	else:
-		return render(request,'login.html')
-
-	
 
 def signup(request):
 	if request.method=="POST":
@@ -68,3 +43,32 @@ def signup(request):
 
 def index(request):
 	return render(request,'index.html')
+
+
+
+
+def login(request):
+	if request.method=="POST":
+		try:
+			user=User.objects.get(email=request.POST['email'])
+			if user.password==request.POST['password']:
+				if user.usertype=="member":
+					request.session['email']=user.email
+					request.session['fname']=user.fname
+					request.session['usertype']=user.usertype
+					return redirect('index')	
+				else:
+					request.session['email']=user.email
+					request.session['fname']=user.fname
+					request.session['usertype']=user.usertype
+					return redirect('index')
+			else:
+				msg="Incorrect Password"
+				return render(request,'login.html',{'msg':msg})
+		except:
+			msg="Email not registered"
+			return render(request,'login.html',{'msg':msg})
+	else:
+		return render(request,'login.html')
+
+	

@@ -11,8 +11,6 @@
 
 {% if request.session.usertype == member %}
 <h1>Member Index</h1>
-{% elif request.session.usertype == chairman %}
-<h1>Chairman Index</h1>
 {% else %}
 <h1>Watchman Index</h1>
 {% endif %}
