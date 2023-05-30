@@ -64,11 +64,17 @@
     <a href="#">Society Watchmen</a>
     <a href="#">Notice</a>
     <a href="#">Events</a>
+    {% if request.session.email %}
+    <a href="#">Logout</a>
+    {% endif %}
   </div>
 
   <h2><center>Digital Society Software</center></h2>
  
   <span style="font-size:30px;cursor:pointer;background-color:#fbeaa4;" onclick="openNav()">&#9776; Digital Society</span>
+
+
+  
 
   <script>
   function openNav() {
