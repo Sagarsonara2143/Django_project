@@ -1,3 +1,5 @@
+{% extends 'bash.html' %}
+{% block content %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +9,9 @@
 </head>
 <body>
 
-{% for i in member %}
+{% for i in members %}
 <h1>{{ i }}</h1>
 {% endfor %}
 </body>
 </html>
+{% endblock %}
