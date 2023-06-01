@@ -9,6 +9,7 @@ class User(models.Model):
 	email=models.EmailField()
 	mobile=models.PositiveSmallIntegerField()
 	password=models.CharField(max_length=100)
+	profile_pic=models.ImageField(upload_to="profile_pic", default="")
 
 	def __str__(self):
 		return self.fname+" "+self.lname
