@@ -72,6 +72,6 @@ def login(request):
 	
 def member(request):
 	#User.objects.get(email=request.session['email'])
-	members=User.objects.all()
+	members=User.objects.get(usertype="member")
 	print(members)
 	return render(request, 'member.html',{'members':members})
