@@ -54,6 +54,7 @@ def login(request):
 					request.session['email']=user.email
 					request.session['fname']=user.fname
 					request.session['usertype']=user.usertype
+					request.session['profile_pic']=user.profile_pic.url
 					return redirect('index')	
 				else:
 					request.session['email']=user.email
@@ -71,7 +72,6 @@ def login(request):
 
 	
 def member(request):
-	#User.objects.get(email=request.session['email'])
-	members=User.objects.get(mobile=7801950401)
-	print(members)
-	return render(request, 'member.html',{'members':members})
+	user=User.objects.get(email=request.session['email'])
+	if user.usertype=="member":
+		return render(request, 'member.html')

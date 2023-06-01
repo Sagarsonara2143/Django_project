@@ -9,8 +9,8 @@
 </head>
 <body>
 
-{% if members %}
-<h1>{{ members.mobile }}</h1>
+{% if request.session.email %}
+<li><a href=""><img src="{{ request.session.profile_pic}}"></a></li>
 {% endif %}
 </body>
 </html>
