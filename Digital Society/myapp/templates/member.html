@@ -9,9 +9,9 @@
 </head>
 <body>
 
-{% for i in members %}
-<h1>{{ i.mobile }}</h1>
-{% endfor %}
+{% if members %}
+<h1>{{ members.mobile }}</h1>
+{% endif %}
 </body>
 </html>
 {% endblock %}
