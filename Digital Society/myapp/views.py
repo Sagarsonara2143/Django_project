@@ -60,6 +60,7 @@ def login(request):
 					request.session['email']=user.email
 					request.session['fname']=user.fname
 					request.session['usertype']=user.usertype
+					request.session['profile_pic']=user.profile_pic.url
 					return redirect('index')
 			else:
 				msg="Incorrect Password"
@@ -70,8 +71,23 @@ def login(request):
 	else:
 		return render(request,'login.html')
 
-	
+
+def logout(request):
+	try:	
+		del request.session['email']
+		del request.session['fname']
+		del request.session['usertype']
+		del request.session['profile_pic']
+		return render(request,'login.html')
+	except:
+		return render(request,'login.html')
+
+
 def member(request):
 	user=User.objects.get(email=request.session['email'])
 	if user.usertype=="member":
 		return render(request, 'member.html')
+	else:
+		return render(request, 'member.html')
+
+
