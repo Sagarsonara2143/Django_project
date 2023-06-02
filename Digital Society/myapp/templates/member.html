@@ -9,8 +9,8 @@
 </head>
 <body>
 
-{% if request.session.email %}
-<li><a href=""><img src="{{ request.session.profile_pic}}"></a></li>
+{% if user %}
+<li><a href="#"><img src="{{ user.profile_pic.url }}"></a></li>
 {% endif %}
 </body>
 </html>
