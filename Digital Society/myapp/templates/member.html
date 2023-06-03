@@ -8,9 +8,10 @@
 	<title></title>
 </head>
 <body>
-
+<br>
 {% if user %}
-<li><a href="#"><img src="{{ user.profile_pic.url }}"></a></li>
+	<img src="{{ user.profile_pic.url }}" alt="" width="200px" height="200px">
+{{ user.profile_pic.url }}
 {% endif %}
 </body>
 </html>

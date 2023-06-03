@@ -30,7 +30,8 @@ def signup(request):
 							lname=request.POST['lname'],
 							email=request.POST['email'],
 							mobile=request.POST['mobile'],	
-							password=request.POST['password']
+							password=request.POST['password'],
+							profile_pic=request.POST['profile_pic.url'],
 							)
 						msg="User Registration successfully"
 						return render(request,'login.html',{'msg':msg})
