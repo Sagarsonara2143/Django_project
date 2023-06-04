@@ -9,7 +9,7 @@
 
 	<tr>
 		
-		<th>Member Name</th>
+		<th border="">Member Name</th>
 		<th>House Number</th>
 		<th>Profile Pic</th>
 		<th>Mobile</th>
@@ -17,6 +17,7 @@
 
 	</tr>
 
+	
 	{% for i in user %}
 	
 	<tr>
@@ -27,7 +28,9 @@
 		<td>{{ i.mobile }}</td>					
 		<td>{{ i.email}}</td>
 	</tr>
+	
 	{% endfor %}
+	
 </table>
 
 </body>

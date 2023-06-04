@@ -55,7 +55,7 @@
   </style>
   </head>
   <body>
-
+{% if request.session.email %}
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#">Dashboard</a>
@@ -64,17 +64,16 @@
     <a href="#">Society Watchmen</a>
     <a href="#">Notice</a>
     <a href="#">Events</a>
-    {% if request.session.email %}
+    
     <a href="{% url 'logout' %}">Logout</a>
-    {% endif %}
+    
     
   </div>
-
+{% endif %}
   <h2><center>Digital Society Software</center></h2>
- 
+{% if request.session.email %} 
   <span style="font-size:30px;cursor:pointer;background-color:#fbeaa4;" onclick="openNav()">&#9776; Digital Society</span>
-
-
+{% endif %}
   
 
   <script>
