@@ -1,19 +1,59 @@
 {% extends 'bash.html' %}
 {% block content %}
 <!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
-</head>
-<body>
-<br><center>
-{% if user %}
-	<li><img src="{{ user.profile_pic.url }}" alt="" width="200px" height="200px"></li>
+<html lang="en">
+	<body>
 
-{% endif %}
-</center>
-</body>
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					
+
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+								<!-- tab -->
+								<div id="tab1" class="tab-pane active">
+									<div class="products-slick" data-nav="#slick-nav-1">
+										<!-- product -->
+										{% if user %}
+										<div class="product">
+											<div class="product-img">
+												<img src="{{ user.profile_pic.url }}" alt="" width="200px" height="200px">
+												<div class="product-label">
+												</div>
+											</div>
+											<div class="product-body">
+												
+												<h4 class="product-price"> Name: {{ user.fname }} {{ user.lname}}</h4>
+												<h4 class="product-price"> House Number : {{ user.house }}</h4>
+												<h4 class="product-price"> Mobile : {{ user.mobile }}</h4>
+												<h4 class="product-price"> Email : {{ user.email }}</h4>
+											</div>
+											
+										</div>
+										{% endif %}
+										<!-- /product -->
+									</div>
+									<div id="slick-nav-1" class="products-slick-nav"></div>
+								</div>
+								<!-- /tab -->
+							</div>
+						</div>
+					</div>
+					<!-- Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+	</body>
 </html>
 {% endblock %}
