@@ -31,7 +31,7 @@ def signup(request):
 							email=request.POST['email'],
 							mobile=request.POST['mobile'],	
 							password=request.POST['password'],
-							profile_pic=request.POST['profile_pic.url'],
+							profile_pic=request.FILES['profile_pic']
 							)
 						msg="User Registration successfully"
 						return render(request,'login.html',{'msg':msg})
@@ -43,7 +43,7 @@ def signup(request):
 
 
 def index(request):
-	try:
+	try:	
 		user=User.objects.get(email=request.session['email'])
 		if user.usertype=="member":
 			return redirect('member-index')
@@ -52,9 +52,8 @@ def index(request):
 		else:
 			return redirect('watchman-index')
 	except:
-		return render(request,'index.html')
-	return render(request,'index.html')
-
+		user=User.objects.get(email=request.session['email'])
+		return render(request,'signup.html')
 
 def member_index(request):
 	return render(request,"member-index.html")
