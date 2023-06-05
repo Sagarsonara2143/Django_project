@@ -111,9 +111,8 @@ def logout(request):
 
 
 def member(request):
-	user=User.objects.get(email=request.session['email'])
-	
-	print(user)
+	user=User.objects.all()
+	#print(user)
 	for i in user:
 		if i.usertype=="member":
 			return render(request, 'member.html',{'user':user})
