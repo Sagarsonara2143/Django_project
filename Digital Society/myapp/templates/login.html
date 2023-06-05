@@ -24,7 +24,7 @@
 {% if msg %}
 	<b style="color:Green">{{msg}}</b>
 {% endif %}
-<form method="POST" action="{% url 'member-index' %}">
+<form method="POST" action="{% url 'login' %}">
 		{% csrf_token %}
 			<table>
 			<tr>

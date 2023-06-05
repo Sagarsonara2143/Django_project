@@ -43,8 +43,9 @@ def signup(request):
 
 
 def index(request):
+	user=User.objects.get(email=request.session['email'])
+	
 	try:	
-		user=User.objects.get(email=request.session['email'])
 		if user.usertype=="member":
 			return redirect('member-index')
 		elif user.usertype=="chairman":
@@ -58,11 +59,8 @@ def index(request):
 def member_index(request):
 	return render(request,"member-index.html")
 
-
-
 def chairman_index(request):
 	return render(request,"chairman-index.html")
-
 
 def watchman_index(request):
 	return render(request,"watchman-index.html")
@@ -78,13 +76,19 @@ def login(request):
 					request.session['fname']=user.fname
 					request.session['usertype']=user.usertype
 					request.session['profile_pic']=user.profile_pic.url
-					return redirect('member-index')	
+					return redirect("member-index")	
+				elif user.usertype=="chairman":
+					request.session['email']=user.email
+					request.session['fname']=user.fname
+					request.session['usertype']=user.usertype
+					request.session['profile_pic']=user.profile_pic.url
+					return redirect("chairman-index")
 				else:
 					request.session['email']=user.email
 					request.session['fname']=user.fname
 					request.session['usertype']=user.usertype
 					request.session['profile_pic']=user.profile_pic.url
-					return redirect('chairman-index')
+					return redirect("watchman-index")
 			else:
 				msg="Incorrect Password"
 				return render(request,'login.html',{'msg':msg})

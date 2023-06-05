@@ -12,4 +12,4 @@ class User(models.Model):
 	profile_pic=models.ImageField(upload_to="profile_pic")
 
 	def __str__(self):
-		return self.fname+" "+self.lname
+		return self.fname+" "+self.lname + " - " + self.usertype
