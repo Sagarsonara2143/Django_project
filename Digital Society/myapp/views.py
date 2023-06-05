@@ -42,6 +42,18 @@ def signup(request):
 		return render(request,'signup.html')
 
 
+def index(request):
+	try:	
+		user=User.objects.get(email=request.session['email'])
+		if user.usertype=="member":
+			return redirect('member-index')
+		elif user.usertype=="chairman":
+			return redirect('chairman-index')
+		else:
+			return redirect('watchman-index')
+	except:
+		user=User.objects.get(email=request.session['email'])
+		return render(request,'signup.html')
 
 def member_index(request):
 	return render(request,"member-index.html")
