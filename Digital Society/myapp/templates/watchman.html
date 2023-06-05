@@ -4,12 +4,14 @@
 <html lang="en">
 <body>
 
+<br>
+<h1 align="center">Watchman List</h1>
 
 	<table border="5" width="100%" cellpadding="10px" cellspacing="10px">
 
 	<tr>
 		
-		<th border="">Member Name</th>
+		<th border="">Watchman Name</th>
 		<th>House Number</th>
 		<th>Profile Pic</th>
 		<th>Mobile</th>
@@ -18,18 +20,18 @@
 	</tr>
 
 	
-	{% for i in user %}
+	{% if user %}
 	
 	<tr>
 		
-		<td>{{i.fname}} {{i.lname}}</td>
-		<td>{{i.house}}</td>
-		<td><img src="{{ i.profile_pic.url }}" alt="" width="200px" height="200px"></td>
-		<td>{{ i.mobile }}</td>					
-		<td>{{ i.email}}</td>
+		<td>{{user.fname}} {{user.lname}}</td>
+		<td>{{user.house}}</td>
+		<td><img src="{{ user.profile_pic.url }}" alt="" width="200px" height="200px"></td>
+		<td>{{ user.mobile }}</td>					
+		<td>{{ user.email}}</td>
 	</tr>
 	
-	{% endfor %}
+	{% endif %}
 	
 </table>
 

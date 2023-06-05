@@ -118,8 +118,9 @@ def member(request):
 			return render(request, 'member.html',{'user':user})
 
 def watchman(request):
-	user=User.objects.all()
+	user=User.objects.get(usertype="watchman")
 	#print(user)
-	for i in user:
-		if i.usertype=="watchman":
-			return render(request, 'watchman.html',{'user':user})
+	#for i in user:
+	#	if i.usertype=="watchman":
+	#		return render(request, 'watchman.html',{'user':user})
+	return render(request, 'watchman.html',{'user':user})
