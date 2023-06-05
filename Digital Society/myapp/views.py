@@ -116,4 +116,10 @@ def member(request):
 	for i in user:
 		if i.usertype=="member":
 			return render(request, 'member.html',{'user':user})
-	
+
+def watchman(request):
+	user=User.objects.all()
+	#print(user)
+	for i in user:
+		if i.usertype=="watchman":
+			return render(request, 'watchman.html',{'user':user})

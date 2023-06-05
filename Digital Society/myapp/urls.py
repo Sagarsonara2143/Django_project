@@ -10,4 +10,5 @@ urlpatterns = [
     path('chairman-index/',views.chairman_index,name='chairman-index'),
     path('watchman-index/',views.watchman_index,name='watchman-index'),
     path('member/',views.member,name="member"),
+    path('watchman/',views.watchman,name="watchman"),
 ]
