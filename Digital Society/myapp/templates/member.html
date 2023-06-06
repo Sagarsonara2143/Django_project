@@ -20,7 +20,7 @@
 
 	
 	{% for i in user %}
-	{% if i.usertype=="member" %}
+
 	<tr>
 		
 		<td>{{i.fname}} {{i.lname}}</td>
@@ -29,7 +29,7 @@
 		<td>{{ i.mobile }}</td>					
 		<td>{{ i.email }}</td>
 	</tr>
-	{% endif %}
+	
 	{% endfor %}
 	
 </table>
