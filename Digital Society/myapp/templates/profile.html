@@ -1,0 +1,97 @@
+{% extends 'bash.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <style type="text/css">
+      td{
+    font-size: 20px;
+    padding:5px;
+    }
+  </style>
+</head>
+<body>
+
+<center>
+<h1>My Profile</h1>
+
+{% if msg %}
+  <b style="color:Green">{{msg}}</b>
+{% endif %}
+<form method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table width="60%">
+      
+      <tr>
+        <td>User Type </td>
+        <td><select class="form-control" name="usertype">
+          {% if user.usertype == member %}
+          <option value="member" selected>Member</option>
+          {% elif user.usertype == chairman %}
+          <option value="chairman" selected>Chairman</option>
+          {% else %}
+          <option value="watchman">Watchman</option>
+          {% endif %}
+        </select></td>
+      </tr>
+
+      <tr>
+        <td>House Number </td>
+        <td><input type="text" name="house" class="form-control" value="{{ user.house }}"></td>
+      </tr>
+
+      <tr>
+        <td width="25%">First Name </td>
+        <td><input type="text" name="fname" class="form-control" value="{{ user.fname }}"></td>
+      </tr>
+
+      <tr>
+        <td>Last Name </td>
+        <td><input type="text" name="lname" class="form-control" value="{{ user.lname }}" ></td>
+      </tr>
+
+      <tr>
+        <td>Email ID </td>
+        <td><input type="text" name="email" class="form-control" placeholder="Enter Email" required></td>
+      </tr>
+
+      <tr>
+        <td>Mobile Number </td>
+        <td><input type="text" name="mobile" class="form-control" placeholder="Enter Mobile" required></td>
+      </tr>
+
+
+      <tr>
+        <td> Password</td>
+        <td><input type="password" name="password" class="form-control" placeholder="Enter Password"></td>
+      </tr>
+      
+      <tr>
+        <td>Confirm Password</td>
+        <td><input type="password" name="cpassword" class="form-control" placeholder="Enter Confirm Password"></td>
+      </tr>
+      <tr>
+          <td>Profile Picture</td>
+          <td class="form-control"><input class="input" type="file" name="profile_pic" ></td>
+      </tr>    
+
+      <tr>
+        <td colspan="2" align="center" >
+          <input type="submit" name="action" value="SIGNUP" class="btn btn-primary btn-block" style="width:100%">
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2" align="right">Already Registered ?
+          <a href="{% url 'login' %}"><input type="button" name="action" value="Click to Login" class="btn btn-link"></a>
+        </td>
+      </tr>
+      
+</center>
+</body>
+</html>
+{% endblock %}

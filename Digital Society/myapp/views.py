@@ -126,3 +126,7 @@ def watchman(request):
 	#	if i.usertype=="watchman":
 	#		return render(request, 'watchman.html',{'user':user})
 	return render(request, 'watchman.html',{'user':user})
+
+def profile(request):
+	user=User.objects.get(email=request.session['email'])
+	return render(request,'profile.html',{'user':user})

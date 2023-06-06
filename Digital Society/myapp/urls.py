@@ -11,4 +11,5 @@ urlpatterns = [
     path('watchman-index/',views.watchman_index,name='watchman-index'),
     path('member/',views.member,name="member"),
     path('watchman/',views.watchman,name="watchman"),
+    path('profile/',views.profile,name="profile"),
 ]
