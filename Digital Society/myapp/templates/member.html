@@ -20,16 +20,16 @@
 
 	
 	{% for i in user %}
-	
+	{% if i.usertype=="member" %}
 	<tr>
 		
 		<td>{{i.fname}} {{i.lname}}</td>
 		<td>{{i.house}}</td>
 		<td><img src="{{ i.profile_pic.url }}" alt="" width="200px" height="200px"></td>
 		<td>{{ i.mobile }}</td>					
-		<td>{{ i.email}}</td>
+		<td>{{ i.email }}</td>
 	</tr>
-	
+	{% endif %}
 	{% endfor %}
 	
 </table>
