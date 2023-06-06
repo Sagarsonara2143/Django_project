@@ -56,24 +56,14 @@
 
       <tr>
         <td>Email ID </td>
-        <td><input type="text" name="email" class="form-control" placeholder="Enter Email" required></td>
+        <td><input type="text" name="email" class="form-control" value="{{ user.email }}"readonly></td>
       </tr>
 
       <tr>
         <td>Mobile Number </td>
-        <td><input type="text" name="mobile" class="form-control" placeholder="Enter Mobile" required></td>
+        <td><input type="text" name="mobile" class="form-control" value="{{ user.mobile }}"readonly></td>
       </tr>
 
-
-      <tr>
-        <td> Password</td>
-        <td><input type="password" name="password" class="form-control" placeholder="Enter Password"></td>
-      </tr>
-      
-      <tr>
-        <td>Confirm Password</td>
-        <td><input type="password" name="cpassword" class="form-control" placeholder="Enter Confirm Password"></td>
-      </tr>
       <tr>
           <td>Profile Picture</td>
           <td class="form-control"><input class="input" type="file" name="profile_pic" ></td>
@@ -81,13 +71,7 @@
 
       <tr>
         <td colspan="2" align="center" >
-          <input type="submit" name="action" value="SIGNUP" class="btn btn-primary btn-block" style="width:100%">
-        </td>
-      </tr>
-
-      <tr>
-        <td colspan="2" align="right">Already Registered ?
-          <a href="{% url 'login' %}"><input type="button" name="action" value="Click to Login" class="btn btn-link"></a>
+          <input type="submit" name="action" value="UPDATE PROFILE" class="btn btn-primary btn-block" style="width:100%">
         </td>
       </tr>
       
