@@ -129,4 +129,20 @@ def watchman(request):
 
 def profile(request):
 	user=User.objects.get(email=request.session['email'])
-	return render(request,'profile.html',{'user':user})
+	if request.method=="POST":
+		user.fname=request.POST['fname']
+		user.lname=request.POST['lname']
+		user.email=request.POST['email']
+		user.mobile=request.POST['mobile']
+		user.usertype=request.POST['usertype']
+		user.house=request.POST['house']
+		try:
+			user.profile_pic=request.FILES['profile_pic']
+		except:
+			pass
+		user.save()
+		request.session['profile_pic']=user.profile_pic.url
+		msg="Profile Updated successfully"
+		return render(request,'profile.html',{'user':user,'msg':msg})
+	else:
+		return render(request,'profile.html',{'user':user})
