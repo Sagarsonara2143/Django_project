@@ -112,21 +112,18 @@ def logout(request):
 
 def member(request):
 	user=User.objects.all()
-	#print(user)
+	data=[]
 	for i in user:
 		if i.usertype=="member":
-			return render(request, 'member.html',{'user':user})
-		else:
-			pass
-
+			data.append(i)
+	return render(request, 'member.html',{'user':user,'data':data})
+	
 def watchman(request):
 	user=User.objects.all()
-	print(user)
 	data=[]
 	for i in user:
 		if i.usertype=="watchman":
 			data.append(i)
-	print(data)
 	return render(request, 'watchman.html',{'user':user,'data':data})
 
 def profile(request):
