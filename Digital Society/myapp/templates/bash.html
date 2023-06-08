@@ -66,15 +66,17 @@
     <a href="#">Events</a>
     
     <a href="{% url 'logout' %}">Logout</a>
-    
-    
   </div>
 {% endif %}
   <h2><center>Digital Society Software</center></h2>
 {% if request.session.email %} 
   <span style="font-size:30px;cursor:pointer;background-color:#fbeaa4;" onclick="openNav()">&#9776; Digital Society</span>
+
+<a href="#"><input type="button" name="action" value="Change password" class="btn btn-primary"></a>
+
+
 {% endif %}
-  
+
 
   <script>
   function openNav() {
