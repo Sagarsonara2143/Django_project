@@ -20,15 +20,15 @@
 	</tr>
 
 	
-	{% if user %}
+	{% for i in user %}
 	
 	<tr>
 		
-		<td>{{user.fname}} {{user.lname}}</td>
-		<td>{{user.house}}</td>
-		<td><img src="{{ user.profile_pic.url }}" alt="" width="200px" height="200px"></td>
-		<td>{{ user.mobile }}</td>					
-		<td>{{ user.email}}</td>
+		<td>{{i.fname}} {{i.lname}}</td>
+		<td>{{i.house}}</td>
+		<td><img src="{{ i.profile_pic.url }}" alt="" width="200px" height="200px"></td>
+		<td>{{ i.mobile }}</td>					
+		<td>{{ i.email}}</td>
 	</tr>
 	
 	{% endif %}
