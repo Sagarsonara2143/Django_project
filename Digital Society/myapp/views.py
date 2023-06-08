@@ -120,7 +120,7 @@ def member(request):
 			pass
 
 def watchman(request):
-	user=User.objects.get(usertype="watchman")
+	user=User.objects.all()
 	print(user)
 	#for i in user:
 	#	if i.usertype=="watchman":

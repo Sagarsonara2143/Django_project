@@ -19,7 +19,7 @@
 
 	</tr>
 
-	
+	{% if user.usertype = watchman %}
 	{% for i in user %}
 	
 	<tr>
@@ -31,6 +31,7 @@
 		<td>{{ i.email}}</td>
 	</tr>
 	
+	{% endfor %}
 	{% endif %}
 	
 </table>
