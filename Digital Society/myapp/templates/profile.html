@@ -29,11 +29,11 @@
       <tr>
         <td>User Type </td>
         <td><select class="form-control" name="usertype">
-          {% if user.usertype == member %}
+          {% if usertype == member %}
           <option value="member" selected>Member</option>
           <option value="chairman" >Chairman</option>
           <option value="watchman">Watchman</option>
-          {% elif user.usertype == chairman %}
+          {% elif usertype == chairman %}
           <option value="member" >Member</option>
           <option value="chairman" selected>Chairman</option>
           <option value="watchman">Watchman</option>
