@@ -31,10 +31,16 @@
         <td><select class="form-control" name="usertype">
           {% if user.usertype == member %}
           <option value="member" selected>Member</option>
-          {% elif user.usertype == chairman %}
-          <option value="chairman" selected>Chairman</option>
-          {% else %}
+          <option value="chairman" >Chairman</option>
           <option value="watchman">Watchman</option>
+          {% elif user.usertype == chairman %}
+          <option value="member" >Member</option>
+          <option value="chairman" selected>Chairman</option>
+          <option value="watchman">Watchman</option>
+          {% else %}
+          <option value="member" >Member</option>
+          <option value="chairman" >Chairman</option>
+          <option value="watchman" selected>Watchman</option>
           {% endif %}
         </select></td>
       </tr>
