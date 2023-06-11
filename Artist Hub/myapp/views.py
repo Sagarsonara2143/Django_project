@@ -3,7 +3,7 @@ from .models import Contact
 # Create your views here.
 
 def index(request):
-	return render(request,'index.html')
+	return render(request,'blog.html')
 
 def about(request):
 	return render(request,'about-us.html')
