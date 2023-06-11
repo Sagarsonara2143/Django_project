@@ -64,9 +64,13 @@
                 </div>
             </div>
             <div class="row">
-                {% if msg %}
-                    <b style="color:blue;">{{msg}}</b>
-                {% endif %}
+                <div class="section-title">
+                    {% if msg %}
+                        <p>{{ msg }}</p>
+                    {% endif %}        
+                    </div>
+                
+                
                 <div class="col-lg-12">
                     <form method="POST" action="{% url 'contact' %}" class="comment-form contact-form">
                         {% csrf_token %}
