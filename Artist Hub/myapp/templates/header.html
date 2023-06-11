@@ -36,8 +36,8 @@
     <header class="header-section">
         <div class="container">
             <div class="logo">
-                <a href="./index.html">
-                    <img src="{% static 'img/logo.png' %}" alt="">
+                <a href="/">
+                    <img src="{% static 'img/download.png' %}" alt="">
                 </a>
             </div>
             <div class="nav-menu">
@@ -52,19 +52,20 @@
                                 <li><a href="#">Emma</a></li>
                                 <li><a href="#">Harriet</a></li>
                             </ul>
-                        </li>
-                        <li><a href="./schedule.html">Schedule</a></li>
-                        <li><a href="./blog.html">Blog</a></li>
+                        </li>   
                         <li><a href="./contact.html">Contacts</a></li>
                     </ul>
                 </nav>
-                <a href="#" class="primary-btn top-btn"><i class="fa fa-ticket"></i> Ticket</a>
+                <a href="#" class="primary-btn top-btn"><i class="fa fa-sign-in"></i>  Login</a>
+                <a href="#" class="primary-btn top-btn"><i class="fa fa-user-plus"></i>  Signup</a>
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>
     </header>
     <!-- Header End -->
+{% block content %}
 
+{% endblock %}
  
     <!-- Footer Section Begin -->
     <footer class="footer-section">
