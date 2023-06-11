@@ -22,3 +22,6 @@ def contact(request):
 
 	else:
 		return render(request,'contact.html')
+
+def artist(request):
+	return render(request,'artist.html')
