@@ -2,30 +2,333 @@
 {% load static %}
 {% block content %}
 <!DOCTYPE html>
-<html>
+<html lang="hu">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elfbar bolt</title>
+<link rel="stylesheet" 
+href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+<style type="text/css">
+	
+:root {
+--primary-light: #8abdff;
+--primary: #6d5dfc;
+--primary-dark: #5b0eeb;
+--white: #fff;
+--greyLight-1: #e4ebf5;
+--greyLight-2: #c8d0e7;
+--greyLight-3: #bec8e4;
+--greyDark: #9baacf;
+}
+
+
+$shadow: .3rem .3rem .6rem var(--greyLight-2), 
+-.2rem -.2rem .5rem var(--white);
+$inner-shadow: inset .2rem .2rem .5rem var(--greyLight-2), 
+inset -.2rem -.2rem .5rem var(--white);
+
+*, *::before, *::after {
+margin: 0;
+padding: 0;
+box-sizing: inherit;
+}  
+
+.segmented-control {
+margin: auto;
+grid-column: 3 / 4;
+grid-row: 1 / 2;
+width: 90%;
+height: 4rem;
+box-shadow: .3rem .3rem .6rem var(--greyLight-2), 
+-.2rem -.2rem .5rem var(--white);;
+border-radius: 1rem;
+display: flex;
+align-items: center;
+position: relative;
+}
+
+#tab-1:checked ~ .segmented-control__color {
+transform: translateX(0);
+transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+#tab-2:checked ~ .segmented-control__color {
+transform: translateX(10.5rem);
+transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.segmented-control__1 {
+width: 48%;
+height: 3.6rem;
+font-size: 1.4rem;
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+color: var(--greyDark);
+transition: all .5s ease;
+}
+
+.segmented-control__2 {
+width: 48%;
+height: 3.6rem;
+font-size: 1.4rem;
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+color: var(--greyDark);
+transition: all .5s ease;
+}
+
+.segmented-control__color {
+position: absolute;
+height: 3.4rem;
+width: 48%;
+margin-left: .3rem;
+border-radius: .8rem;
+box-shadow: inset .2rem .2rem .5rem var(--greyLight-2), 
+inset -.2rem -.2rem .5rem var(--white);;
+pointer-events: none;
+}
+
+input { display: none; }
+
+input:checked + label {
+transition: all .5s ease;
+color: var(--primary);
+}
+
+input:not(:checked) + label {
+transition: all .5s ease;
+color: var(--greyDark);
+}
+
+input:not(:checked):hover + label {
+transition: all .5s ease;
+color: var(--primary);
+}
+
+.segmented-control__1, .segmented-control__2:hover { color: var(--primary); }
+
+.reg {
+
+}
+
+.bel {
+
+}
+
+.box {
+display: none;
+}
+
+.zold {
+color: #00c900;
+}
+
+.vszurke {
+color: #c4c4c4;
+}
+
+.kover {
+font-weight: bolder;
+}
+
+.ar {
+padding-top: -40px;
+}
+
+p {
+line-height: 0px;
+}
+
+.sidebarr {
+border-radius: 1rem;
+box-shadow:.8rem .8rem 1.4rem var(--greyLight-2), 
+-.2rem -.2rem 1.8rem var(--white);
+padding: 2rem;
+margin-top: 50px;
+background: #E4EBF5;
+}
+
+.d-flex {
+background: #E4EBF5;
+}
+
+
+
+
+.card {
+background: #E4EBF5;
+box-shadow:.8rem .8rem 1.4rem var(--greyLight-2), 
+-.2rem -.2rem 1.8rem var(--white);
+margin: auto;
+border-style: none;
+border-radius: 1rem;
+transition: 300ms;
+}
+
+
+
+.card:hover {
+background: #ebf0f7;
+box-shadow: 1rem 1rem 1.4rem var(--greyLight-3), 
+-.2rem -.2rem 1.8rem var(--white);
+margin: auto;
+border-style: none;
+border-radius: 1rem;
+}
+
+
+
+.card-img-top {
+border-top-left-radius: 1rem;
+border-top-right-radius: 1rem;
+border-bottom-left-radius: 0.2rem;
+border-bottom-right-radius: 0.2rem;
+}
+
+.itemektopbot {
+margin-top: 50px;
+}
+
+.btn {
+width: 8rem;
+height: 2.5rem;
+border-radius: 0.65rem;
+box-shadow: .3rem .3rem .6rem #c8d0e7, 
+-.2rem -.2rem .5rem #ffffff;;
+justify-self: center;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: .3s ease;
+border: none;
+font-family: 'Lilita One', cursive;
+}
+
+.btn__primary {
+grid-column: 1 / 2;
+grid-row: 4 / 5;
+background: #6d5dfc;
+box-shadow:inset .2rem .2rem 1rem #8abdff, 
+inset -.2rem -.2rem 1rem #5b0eeb,
+.3rem .3rem .6rem #c8d0e7, 
+-.2rem -.2rem .5rem #ffffff;;
+color: #E4EBF5;
+}
+
+.btn:hover { color: #FFFFFF; }
+.btn:active {
+box-shadow:inset .2rem .2rem 1rem #5b0eeb, 
+inset -.2rem -.2rem 1rem #8abdff;
+}
+
+.btn.p {
+font-size: 1.6rem;
+font-family: 'Lilita One', cursive;
+}
+
+.form {
+grid-column: 3 / 4;
+grid-row: 3 / 4;
+}
+
+.form__input {
+width: 20.4rem;
+height: 4rem;
+border: none;
+border-radius: 1rem;
+font-size: 1.4rem;
+padding-left: 1.4rem;
+box-shadow: inset .2rem .2rem .5rem var(--greyLight-2), 
+inset -.2rem -.2rem .5rem var(--white);;
+background: none;
+font-family: inherit;
+color: var(--greyDark);
+}
+
+.form__input::placeholder { color: var(--greyLight-3);}
+.form__input:focus { outline: none; box-shadow:  .3rem .3rem .6rem var(--greyLight-2), 
+-.2rem -.2rem .5rem var(--white);; }
+
+</style>
+
 </head>
 <body>
 
-<form method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    <table width="70%" align="center">
-      
-      
-      <tr>
-        <td colspan="2" align="center" >
-          <input type="submit" name="action" value="CUSTOMER" class="btn btn-primary btn-block" style="width:20%">
-        </td>
-      </tr>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+ $(document).ready(function(){
+  $('input[type="radio"]').click(function(){
+      var inputValue = $(this).attr("value");
+      var targetBox = $("." + inputValue);
+      $(".box").not(targetBox).hide();
+      $(targetBox).show();
+  });
+});
+</script>
 
-      
-</table>      
-</center>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+</style>
+
+<div class="magassagg"></div>
+
+<div class="row">
+
+<div class="col-4">
+<p></p>
+</div>
+
+<div class="col-4 sidebarr">
+
+<div class="segmented-control">
+  
+<input type="radio" name="radio2" value="reg" id="tab-1" checked="checked"/>
+<label for="tab-1" class= "segmented-control__1">
+  <p>Register</p></label>
+
+<input type="radio" name="radio2" value="bel" id="tab-2" />
+<label for="tab-2" class= "segmented-control__2">
+  <p>Log in</p></label>
+
+<div class="segmented-control__color"></div>
+</div>
 
 
+<div class="reg box">This will be the REGISTER page
+<table>
+	<tr>
+		<td>Table Register</td>
+		<td>Data</td>
+	</tr>
+</table>
+</div>
+
+<div class="bel box">This will be the LOG IN page
+<table>
+	<tr>
+		<td>Table</td>
+		<td>Data</td>
+	</tr>
+
+</table>
+</div>
+
+
+</div>
+
+<div class="col-4">
+<p></p>
+</div>
+
+</div>
 </body>
 </html>
 {% endblock %}
