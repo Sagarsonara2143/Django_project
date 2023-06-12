@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Contact
+from .models import Contact,User
 # Create your views here.
 
 def validate_email(request):
