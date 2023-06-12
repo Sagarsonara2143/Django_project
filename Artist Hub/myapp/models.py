@@ -10,4 +10,15 @@ class Contact(models.Model):
 	def __str__(self):
 		return self.name
 
-
+class User(models.Model):
+	usertype=(
+		('Artist','Artist'),
+		('Customer','Customer'),
+		)
+	fname=models.CharField(max_length=100)
+	lname=models.CharField(max_length=100)
+	email=models.EmailField()
+	mobile=models.BigIntegerField()
+	address=models.TextField(max_length=500)
+	password=models.CharField(max_length=50)
+	profile_pic=models.ImageField(upload_to='profile_pic')
