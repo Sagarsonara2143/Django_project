@@ -26,7 +26,13 @@ def validate_pwd(request):
 
 
 def index(request):
-	return render(request,'index.html')
+	user=User.objects.all()
+	artists=[]
+	for i in user:
+		if i.usertype=="Artist":
+			artists.append(i)
+	print(artists)
+	return render(request,'index.html',{'artists':artists})
 
 def about(request):
 	return render(request,'about-us.html')
