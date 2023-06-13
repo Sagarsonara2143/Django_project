@@ -11,10 +11,11 @@ class Contact(models.Model):
 		return self.name
 
 class User(models.Model):
-	usertype=(
+	category=(
 		('Artist','Artist'),
 		('Customer','Customer'),
 		)
+	usertype=models.CharField(max_length=100, choices=category)
 	fname=models.CharField(max_length=100)
 	lname=models.CharField(max_length=100)
 	email=models.EmailField()

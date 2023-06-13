@@ -41,8 +41,6 @@ def contact(request):
 			)
 		msg="Message Sent Successfully"
 		return render(request,'contact.html',{'msg':msg})
-
-
 	else:
 		return render(request,'contact.html')
 
@@ -53,4 +51,32 @@ def login(request):
 	return render(request,'login.html')
 
 def signup(request):
-	return render(request,'signup.html')
+	if request.method=="POST":
+		try:
+			User.objects.get(mobile=request.POST['mobile'])
+			msg="Mobile Number is already registered"
+			return render(request,'signup.html',{'msg':msg})
+		except:
+			try:
+				User.objects.get(email=request.POST['email'])
+				msg="Email Id is already registered"
+				return render(request,'signup.html',{'msg':msg})
+			except:
+				if request.POST['password']==request.POST['cpassword']:
+					User.objects.create(
+						usertype=request.POST['usertype'],
+						fname=request.POST['fname'],
+						lname=request.POST['lname'],
+						email=request.POST['email'],
+						mobile=request.POST['mobile'],
+						address=request.POST['address'],
+						password=request.POST['password'],
+						profile_pic=request.FILES['profile_pic']
+						)
+					msg="Signup Successfully"
+					return render(request,'login.html',{'msg':msg})
+				else:
+					msg="Password & Confirm password does not match"
+					return render(request,'signup.html',{'msg':msg})
+	else:
+		return render(request,'signup.html')
