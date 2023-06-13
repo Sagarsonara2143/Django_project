@@ -57,7 +57,13 @@ def contact(request):
 		return render(request,'contact.html')
 
 def artist(request):
-	return render(request,'artist.html')
+	user=User.objects.all()
+	artists=[]
+	for i in user:
+		if i.usertype=="Artist":
+			artists.append(i)
+	print(artists)
+	return render(request,'artist.html',{'artists':artists})
 
 def login(request):
 	return render(request,'login.html')

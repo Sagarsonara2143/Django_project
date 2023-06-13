@@ -47,10 +47,9 @@
                         <li><a href="{% url 'about' %}">About</a></li>
                         <li><a href="{% url 'artist' %}">Musicians</a>
                             <ul class="dropdown">
-                                <li><a href="#">Jayden</a></li>
-                                <li><a href="#">Sara</a></li>
-                                <li><a href="#">Emma</a></li>
-                                <li><a href="#">Harriet</a></li>
+                                {% for i in artists %}
+                                <li><a href="#">{{ i.fname}}</a></li>
+                                {% endfor %}
                             </ul>
                         </li>   
                         <li><a href="{% url 'contact' %}">Contacts</a></li>
