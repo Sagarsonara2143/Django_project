@@ -139,3 +139,12 @@ def logout(request):
 		return render(request,'login.html')
 	except:
 		return render(request,'login.html')	
+
+def profile(request):
+	pass
+
+
+
+
+
+
