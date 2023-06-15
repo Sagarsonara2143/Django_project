@@ -33,7 +33,9 @@ def index(request):
 		if i.usertype=="Artist":
 			artists.append(i)
 	print(artists)
-	return render(request,'index.html',{'artists':artists})
+	user=User.objects.all()
+	drop_artists=artists[:3]
+	return render(request,'index.html',{'artists':artists,'drop_artists':drop_artists})
 
 def about(request):
 	user=User.objects.all()
@@ -42,9 +44,18 @@ def about(request):
 		if i.usertype=="Artist":
 			artists.append(i)
 	print(artists)
-	return render(request,'about-us.html',{'artists':artists})
+	drop_artists=artists[:3]
+	return render(request,'about-us.html',{'artists':artists,'drop_artists':drop_artists})
 
 def contact(request):
+	user=User.objects.all()
+	artists=[]
+	for i in user:
+		if i.usertype=="Artist":
+			artists.append(i)
+	print(artists)
+	drop_artists=artists[:3]
+
 	if request.method=="POST":
 		Contact.objects.create(
 			name=request.POST['name'],		
@@ -53,9 +64,9 @@ def contact(request):
 			message=request.POST['message']
 			)
 		msg="Message Sent Successfully"
-		return render(request,'contact.html',{'msg':msg})
+		return render(request,'contact.html',{'msg':msg,'drop_artists':drop_artists})
 	else:
-		return render(request,'contact.html')
+		return render(request,'contact.html',{'drop_artists':drop_artists})
 
 def artist(request):
 	user=User.objects.all()
