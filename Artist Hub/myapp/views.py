@@ -26,7 +26,7 @@ def validate_pwd(request):
 
 
 def index(request):
-	user=User.objects.all()..order_by('-id')[:2]
+	user=User.objects.all().order_by('-id')[:10]
 	print(user)
 	artists=[]
 	for i in user:
@@ -47,7 +47,7 @@ def about(request):
 def contact(request):
 	if request.method=="POST":
 		Contact.objects.create(
-			name=request.POST['name'],
+			name=request.POST['name'],		
 			email=request.POST['email'],
 			mobile=request.POST['mobile'],
 			message=request.POST['message']
@@ -64,8 +64,9 @@ def artist(request):
 	for i in user:
 		if i.usertype=="Artist":
 			artists.append(i)
-	print(artists)
-	return render(request,'artist.html',{'artists':artists})
+	#print(artists)
+	drop_artists=artists[:3]
+	return render(request,'artist.html',{'artists':artists,'drop_artists':drop_artists})
 
 def login(request):
 	return render(request,'login.html')

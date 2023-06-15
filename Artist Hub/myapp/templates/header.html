@@ -47,9 +47,10 @@
                         <li><a href="{% url 'about' %}">About</a></li>
                         <li><a href="{% url 'artist' %}">Musicians</a>
                             <ul class="dropdown">
-                                {% for i in artists %}
+                                {% for i in drop_artists %}
                                 <li><a href="#">{{ i.fname}}</a></li>
                                 {% endfor %}
+                                <li><a href="#">Load More</a></li>
                             </ul>
                         </li>   
                         <li><a href="{% url 'contact' %}">Contacts</a></li>
