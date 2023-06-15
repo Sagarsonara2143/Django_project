@@ -69,7 +69,11 @@ def artist(request):
 	return render(request,'artist.html',{'artists':artists,'drop_artists':drop_artists})
 
 def login(request):
-	return render(request,'login.html')
+	if request.method=="POST":
+		if request.POST['email']==
+
+	else:
+		return render(request,'login.html')
 
 def signup(request):
 	if request.method=="POST":
