@@ -74,10 +74,12 @@ def login(request):
 			user=User.objects.get(email=request.POST['email'])
 			if user.password==request.POST['password']:
 				request.session['email']=user.email
-				request.session['profile_pic']=user.profile_pic.urls
-				return redirect('index')
+				request.session['fname']=user.fname
+				request.session['profile_pic']=user.profile_pic.url
+				request.session['usertype']=user.usertype
+				return redirect("index")
 			else:
-				msg="Password is incorrect"
+				msg="Password does not matched"
 				return render(request,'login.html',{'msg':msg})
 		except:
 			msg="Email not registered"

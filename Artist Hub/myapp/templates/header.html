@@ -56,8 +56,13 @@
                         <li><a href="{% url 'contact' %}">Contacts</a></li>
                     </ul>
                 </nav>
+                {% if request.session.email %}
+                <a href="#" class="primary-btn top-btn"><i class="fa fa-sign-in"></i>Change Password</a>
+                <a href="#" class="primary-btn top-btn"><i class="fa fa-user-plus"></i>{{ request.session.fname }}</a>
+                {% else %}
                 <a href="{% url 'login' %}" class="primary-btn top-btn"><i class="fa fa-sign-in"></i>  Login</a>
-                <a href="{% url 'signup' %}" class="primary-btn top-btn"><i class="fa fa-user-plus"></i>  Signup</a>
+                <a href="{% url 'signup' %}" class="primary-btn top-btn"><i class="fa fa-user-plus"></i>Signup</a>
+                {% endif %}
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>
