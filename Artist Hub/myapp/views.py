@@ -26,7 +26,8 @@ def validate_pwd(request):
 
 
 def index(request):
-	user=User.objects.all()
+	user=User.objects.all()..order_by('-id')[:2]
+	print(user)
 	artists=[]
 	for i in user:
 		if i.usertype=="Artist":
@@ -58,6 +59,7 @@ def contact(request):
 
 def artist(request):
 	user=User.objects.all()
+	#print(user)
 	artists=[]
 	for i in user:
 		if i.usertype=="Artist":
