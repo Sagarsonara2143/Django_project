@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Contact,User
 # Create your views here.
 
@@ -70,8 +70,18 @@ def artist(request):
 
 def login(request):
 	if request.method=="POST":
-		if request.POST['email']==
-
+		try:
+			user=User.objects.get(email=request.POST['email'])
+			if user.password==request.POST['password']:
+				request.session['email']=user.email
+				request.session['profile_pic']=user.profile_pic.urls
+				return redirect('index')
+			else:
+				msg="Password is incorrect"
+				return render(request,'login.html',{'msg':msg})
+		except:
+			msg="Email not registered"
+			return render(request,'login.html',{'msg':msg})
 	else:
 		return render(request,'login.html')
 
