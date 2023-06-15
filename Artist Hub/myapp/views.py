@@ -117,3 +117,14 @@ def signup(request):
 					return render(request,'signup.html',{'msg':msg})
 	else:
 		return render(request,'signup.html')
+
+
+def logout(request):
+	try:
+		del request.session['email']
+		del request.session['fname']
+		del request.session['profile_pic']
+		del request.session['usertype']
+		return render(request,'login.html')
+	except:
+		return render(request,'login.html')	

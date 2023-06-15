@@ -58,7 +58,7 @@
                 </nav>
                 {% if request.session.email %}
                 <a href="#" class="primary-btn top-btn"><i class="fa fa-sign-in"></i>Change Password</a>
-                <a href="#" class="primary-btn top-btn"><i class="fa fa-user-plus"></i>{{ request.session.fname }}</a>
+                <a href="{% url 'logout' %}" class="primary-btn top-btn"><i class="fa fa-user-plus"></i>Logout</a>
                 {% else %}
                 <a href="{% url 'login' %}" class="primary-btn top-btn"><i class="fa fa-sign-in"></i>  Login</a>
                 <a href="{% url 'signup' %}" class="primary-btn top-btn"><i class="fa fa-user-plus"></i>Signup</a>
