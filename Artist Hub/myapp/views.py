@@ -141,7 +141,7 @@ def logout(request):
 		return render(request,'login.html')	
 
 def profile(request):
-	pass
+	return render(request,'profile.html')
 
 
 
