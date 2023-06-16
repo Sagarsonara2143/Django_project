@@ -21,10 +21,14 @@
       </div>
     </div>
 </div>
+
 <br>
-{% if msg %}
-  <b style="color:Green">{{msg}}</b>
-{% endif %}
+  <div class="breadcrumb-text">
+  {% if msg %}
+    <h4>{{ msg }}</h4>
+  {% endif %}        
+  </div>
+
 <form method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
     {% csrf_token %}
     <table width="70%" align="center">
