@@ -32,8 +32,7 @@
       <tr>
         <td>User Type </td>
         <td><select class="form-control" name="usertype">
-          <option>--- Select User Type ---</option>
-          {% if user.usertype=="Artist" %}
+          {% if usertype == Artist %}
           <option value="Customer">Customer</option>
           <option value="Artist" selected>Artist</option>
           {% else %}
@@ -69,7 +68,10 @@
         <td>Address </td>
         <td><input type="textarea" name="address" class="form-control" value="{{ user.address }}">
       </tr>
-
+      <tr>
+          
+          <td colspan="2" align="center"><img src="{{ user.profile_pic.url }}" width="100px" height="100px"></td>
+      </tr>
       <tr>
           <td>Profile Picture</td>
           <td class="form-control"><input class="input" type="file" name="profile_pic" ></td>
@@ -77,15 +79,10 @@
 
       <tr>
         <td colspan="2" align="center" >
-          <input type="submit" name="action" value="SIGNUP" class="btn btn-primary btn-block" style="width:100%">
+          <input type="submit" name="action" value="UPDATE PROFILE" class="btn btn-primary btn-block" style="width:100%">
         </td>
       </tr>
 
-      <tr>
-        <td colspan="2" align="right">Already Registered ?
-          <a href="{% url 'login' %}"><input type="button" name="action" value="Click to Login" class="btn btn-link"></a>
-        </td>
-      </tr>
 </table> 
 </form>     
 </center>
