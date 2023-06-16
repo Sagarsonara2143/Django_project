@@ -33,8 +33,13 @@
         <td>User Type </td>
         <td><select class="form-control" name="usertype">
           <option>--- Select User Type ---</option>
+          {% if user.usertype=="Artist" %}
           <option value="Customer">Customer</option>
-          <option value="Artist">Artist</option>
+          <option value="Artist" selected>Artist</option>
+          {% else %}
+          <option value="Customer" selected>Customer</option>
+          <option value="Artist" selected>Artist</option>
+          {% endif %}
         </select></td>
       </tr>
 
@@ -45,36 +50,26 @@
 
       <tr>
         <td>Last Name </td>
-        <td><input type="text" name="lname" class="form-control" placeholder="Enter Last Name" ></td>
+        <td><input type="text" name="lname" class="form-control" value="{{ user.lname }}" ></td>
       </tr>
 
       <tr>
         <td>Email ID </td>
-        <td><input type="text" name="email" class="form-control" id="email" placeholder="Enter Email" required></td>
+        <td><input type="text" name="email" class="form-control" id="email" value="{{ user.email }}" readonly></td>
         <span id="email_error"></span>
       </tr>
 
       <tr>
         <td>Mobile Number </td>
-        <td><input type="text" name="mobile" class="form-control" id="mobile" placeholder="Enter Mobile" required></td>
+        <td><input type="text" name="mobile" class="form-control" id="mobile" value="{{ user.mobile }}"readonly></td>
         <span id="mobile_error"></span>
       </tr>
 
       <tr>
         <td>Address </td>
-        <td><input type="textarea" name="address" class="form-control" placeholder="Enter Address">
+        <td><input type="textarea" name="address" class="form-control" value="{{ user.address }}">
       </tr>
 
-      <tr>
-        <td> Password</td>
-        <td><input type="password" name="password" class="form-control" id="cpwd" placeholder="Enter Password"></td>
-        <span id="confirm_pwd_error"></span>
-      </tr>
-      
-      <tr>
-        <td>Confirm Password</td>
-        <td><input type="password" name="cpassword" class="form-control" placeholder="Enter Confirm Password"></td>
-      </tr>
       <tr>
           <td>Profile Picture</td>
           <td class="form-control"><input class="input" type="file" name="profile_pic" ></td>
