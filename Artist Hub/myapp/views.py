@@ -141,7 +141,8 @@ def logout(request):
 		return render(request,'login.html')	
 
 def profile(request):
-	return render(request,'profile.html')
+	user=User.objects.get(email=request.session['email'])
+	return render(request,'profile.html',{'user':user})
 
 
 
