@@ -11,11 +11,6 @@ class Contact(models.Model):
 		return self.name
 
 class User(models.Model):
-	category=(
-		('Artist','Artist'),
-		('Customer','Customer'),
-		)
-	usertype=models.CharField(max_length=100, choices=category)
 	fname=models.CharField(max_length=100)
 	lname=models.CharField(max_length=100)
 	email=models.EmailField()
@@ -25,4 +20,4 @@ class User(models.Model):
 	profile_pic=models.ImageField(upload_to='profile_pic')
 
 	def __str__(self):
-		return self.fname+" "+ self.lname + " - "+ self.usertype
+		return self.fname+" "+ self.lname

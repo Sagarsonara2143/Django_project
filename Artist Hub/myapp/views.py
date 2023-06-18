@@ -2,15 +2,6 @@ from django.shortcuts import render,redirect
 from .models import Contact,User
 # Create your views here.
 
-user=User.objects.all()
-artists=[]
-for i in user:
-	if i.usertype=="Artist":
-		artists.append(i)
-
-drop_artists=artists[:3]
-
-
 def validate_email(request):
 	email=request.GET.get('email')
 	data={
@@ -35,19 +26,11 @@ def validate_pwd(request):
 
 
 def index(request):
-	user=User.objects.all().order_by('-id')[:10]
-	artists=[]
-	for i in user:
-		if i.usertype=="Artist":
-			artists.append(i)
-	
-	user=User.objects.all()
-	drop_artists=artists[:3]
-	return render(request,'index.html',{'artists':artists,'drop_artists':drop_artists})
+	return render(request,'index.html')
 
 def about(request):
 	
-	return render(request,'about-us.html',{'artists':artists,'drop_artists':drop_artists})
+	return render(request,'about-us.html')
 
 def contact(request):
 	
@@ -60,13 +43,13 @@ def contact(request):
 			message=request.POST['message']
 			)
 		msg="Message Sent Successfully"
-		return render(request,'contact.html',{'msg':msg,'drop_artists':drop_artists})
+		return render(request,'contact.html',{'msg':msg,})
 	else:
-		return render(request,'contact.html',{'drop_artists':drop_artists})
+		return render(request,'contact.html')
 
 def artist(request):
 	
-	return render(request,'artist.html',{'artists':artists,'drop_artists':drop_artists})
+	return render(request,'artist.html')
 
 def login(request):
 	
@@ -81,12 +64,12 @@ def login(request):
 				return redirect("index")
 			else:
 				msg="Password does not matched"
-				return render(request,'login.html',{'msg':msg,'drop_artists':drop_artists})
+				return render(request,'login.html',{'msg':msg,})
 		except:
 			msg="Email not registered"
-			return render(request,'login.html',{'msg':msg,'drop_artists':drop_artists})
+			return render(request,'login.html',{'msg':msg,})
 	else:
-		return render(request,'login.html',{'drop_artists':drop_artists})
+		return render(request,'login.html')
 
 def signup(request):
 	
@@ -94,12 +77,12 @@ def signup(request):
 		try:
 			User.objects.get(mobile=request.POST['mobile'])
 			msg="Mobile Number is already registered"
-			return render(request,'signup.html',{'msg':msg,'drop_artists':drop_artists})
+			return render(request,'signup.html',{'msg':msg,})
 		except:
 			try:
 				User.objects.get(email=request.POST['email'])
 				msg="Email Id is already registered"
-				return render(request,'signup.html',{'msg':msg,'drop_artists':drop_artists})
+				return render(request,'signup.html',{'msg':msg,})
 			except:
 				if request.POST['password']==request.POST['cpassword']:
 					User.objects.create(
@@ -113,12 +96,12 @@ def signup(request):
 						profile_pic=request.FILES['profile_pic']
 						)
 					msg="Signup Successfully"
-					return render(request,'login.html',{'msg':msg,'drop_artists':drop_artists})
+					return render(request,'login.html',{'msg':msg,})
 				else:
 					msg="Password & Confirm password does not match"
-					return render(request,'signup.html',{'msg':msg,'drop_artists':drop_artists})
+					return render(request,'signup.html',{'msg':msg,})
 	else:
-		return render(request,'s.html',{'drop_artists':drop_artists})
+		return render(request,'signup.html')
 
 
 def logout(request):
@@ -149,9 +132,9 @@ def profile(request):
 		request.session['profile_pic']=user.profile_pic.url
 		
 		msg="Profile Updated Successfully"
-		return render(request,'profile.html',{'user':user,'msg':msg,'drop_artists':drop_artists})
+		return render(request,'profile.html',{'user':user,'msg':msg,})
 	else:
-		return render(request,'profile.html',{'user':user,'drop_artists':drop_artists})
+		return render(request,'profile.html',{'user':user,})
 
 
 
