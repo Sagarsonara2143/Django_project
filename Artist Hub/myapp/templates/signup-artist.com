@@ -28,7 +28,7 @@
 <form method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
     {% csrf_token %}
     <table width="70%" align="center">
-      
+
       <tr>
         <td width="25%">First Name </td>
         <td><input type="text" name="fname" class="form-control" placeholder="Enter First Name"></td>
@@ -55,6 +55,27 @@
         <td>Address </td>
         <td><input type="textarea" name="address" class="form-control" placeholder="Enter Address">
       </tr>
+
+      <tr>
+        <td>About yourself </td>
+        <td><input type="textarea" name="about" class="form-control" placeholder="About yourself">
+      </tr>
+
+      <tr>
+        <td>Facebook</td>
+        <td><input type="text" name="facebook" class="form-control" placeholder="Enter Facebook Link" ></td>
+      </tr>
+
+      <tr>
+        <td>Instagram</td>
+        <td><input type="text" name="instagram" class="form-control" placeholder="Enter Instagram Link" ></td>
+      </tr>
+
+      <tr>
+        <td>Twitter </td>
+        <td><input type="text" name="twitter" class="form-control" placeholder="Enter T witter Link" ></td>
+      </tr>
+
 
       <tr>
         <td> Password</td>
@@ -85,6 +106,8 @@
 </table> 
 </form>     
 </center>
+
+
 
 </body>
 </html>

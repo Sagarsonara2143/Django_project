@@ -10,7 +10,7 @@ class Contact(models.Model):
 	def __str__(self):
 		return self.name
 
-class User(models.Model):
+class Customer(models.Model):
 	fname=models.CharField(max_length=100)
 	lname=models.CharField(max_length=100)
 	email=models.EmailField()
