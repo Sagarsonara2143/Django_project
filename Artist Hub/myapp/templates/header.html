@@ -50,7 +50,7 @@
                                 {% for i in drop_artists %}
                                 <li><a href="#">{{ i.fname}}</a></li>
                                 {% endfor %}
-                                <li><a href="#">Load More</a></li>
+                                <li><a href="{% url 'artist' %}">Load More</a></li>
                             </ul>
                         </li>   
                         <li><a href="{% url 'contact' %}">Contacts</a></li>
@@ -59,9 +59,6 @@
                 <li><a href="#"><i class="fa fa-edit"></i>Change Password</a></li>
                 <li><a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>Logout ({{request.session.fname}})</a></li>
                 <a href="{% url 'profile' %}"><img src="{{ request.session.profile_pic }}" width="50px" height="50px"></a>
-                {% if usertype == Artist %}
-                <li><a href="#"><i class="fa fa-plus"></i>Add</a></li>
-                {% endif %}
                 {% else %}
                 <a href="{% url 'login' %}" class="primary-btn top-btn"><i class="fa fa-sign-in"></i>  Login</a>
                 <a href="{% url 'signup' %}" class="primary-btn top-btn"><i class="fa fa-user-plus"></i>  Signup</a>

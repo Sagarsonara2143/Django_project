@@ -2,6 +2,15 @@ from django.shortcuts import render,redirect
 from .models import Contact,User
 # Create your views here.
 
+user=User.objects.all()
+artists=[]
+for i in user:
+	if i.usertype=="Artist":
+		artists.append(i)
+
+drop_artists=artists[:3]
+
+
 def validate_email(request):
 	email=request.GET.get('email')
 	data={
@@ -32,7 +41,7 @@ def index(request):
 	for i in user:
 		if i.usertype=="Artist":
 			artists.append(i)
-	print(artists)
+	
 	user=User.objects.all()
 	drop_artists=artists[:3]
 	return render(request,'index.html',{'artists':artists,'drop_artists':drop_artists})
@@ -43,7 +52,7 @@ def about(request):
 	for i in user:
 		if i.usertype=="Artist":
 			artists.append(i)
-	print(artists)
+	
 	drop_artists=artists[:3]
 	return render(request,'about-us.html',{'artists':artists,'drop_artists':drop_artists})
 
@@ -53,7 +62,7 @@ def contact(request):
 	for i in user:
 		if i.usertype=="Artist":
 			artists.append(i)
-	print(artists)
+	
 	drop_artists=artists[:3]
 
 	if request.method=="POST":
@@ -75,11 +84,18 @@ def artist(request):
 	for i in user:
 		if i.usertype=="Artist":
 			artists.append(i)
-	#print(artists)
+	#
 	drop_artists=artists[:3]
 	return render(request,'artist.html',{'artists':artists,'drop_artists':drop_artists})
 
 def login(request):
+	user=User.objects.all()
+	artists=[]
+	for i in user:
+		if i.usertype=="Artist":
+			artists.append(i)
+	
+	drop_artists=artists[:3]
 	if request.method=="POST":
 		try:
 			user=User.objects.get(email=request.POST['email'])
@@ -91,24 +107,31 @@ def login(request):
 				return redirect("index")
 			else:
 				msg="Password does not matched"
-				return render(request,'login.html',{'msg':msg})
+				return render(request,'login.html',{'msg':msg,'drop_artists':drop_artists})
 		except:
 			msg="Email not registered"
-			return render(request,'login.html',{'msg':msg})
+			return render(request,'login.html',{'msg':msg,'drop_artists':drop_artists})
 	else:
-		return render(request,'login.html')
+		return render(request,'login.html',{'drop_artists':drop_artists})
 
 def signup(request):
+	user=User.objects.all()
+	artists=[]
+	for i in user:
+		if i.usertype=="Artist":
+			artists.append(i)
+	
+	drop_artists=artists[:3]
 	if request.method=="POST":
 		try:
 			User.objects.get(mobile=request.POST['mobile'])
 			msg="Mobile Number is already registered"
-			return render(request,'signup.html',{'msg':msg})
+			return render(request,'signup.html',{'msg':msg,'drop_artists':drop_artists})
 		except:
 			try:
 				User.objects.get(email=request.POST['email'])
 				msg="Email Id is already registered"
-				return render(request,'signup.html',{'msg':msg})
+				return render(request,'signup.html',{'msg':msg,'drop_artists':drop_artists})
 			except:
 				if request.POST['password']==request.POST['cpassword']:
 					User.objects.create(
@@ -122,12 +145,12 @@ def signup(request):
 						profile_pic=request.FILES['profile_pic']
 						)
 					msg="Signup Successfully"
-					return render(request,'login.html',{'msg':msg})
+					return render(request,'login.html',{'msg':msg,'drop_artists':drop_artists})
 				else:
 					msg="Password & Confirm password does not match"
-					return render(request,'signup.html',{'msg':msg})
+					return render(request,'signup.html',{'msg':msg,'drop_artists':drop_artists})
 	else:
-		return render(request,'signup.html')
+		return render(request,'signup.html',{'drop_artists':drop_artists})
 
 
 def logout(request):
@@ -136,9 +159,9 @@ def logout(request):
 		del request.session['fname']
 		del request.session['profile_pic']
 		del request.session['usertype']
-		return render(request,'login.html')
+		return redirect('login')
 	except:
-		return render(request,'login.html')	
+		return redirect('login')
 
 def profile(request):
 	user=User.objects.get(email=request.session['email'])
@@ -158,9 +181,9 @@ def profile(request):
 		request.session['profile_pic']=user.profile_pic.url
 		
 		msg="Profile Updated Successfully"
-		return render(request,'profile.html',{'user':user,'msg':msg})
+		return render(request,'profile.html',{'user':user,'msg':msg,'drop_artists':drop_artists})
 	else:
-		return render(request,'profile.html',{'user':user})
+		return render(request,'profile.html',{'user':user,'drop_artists':drop_artists})
 
 
 
