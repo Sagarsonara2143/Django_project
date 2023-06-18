@@ -38,6 +38,7 @@ def login(request):
 				request.session['email']=artist.email
 				request.session['fname']=artist.fname
 				request.session['profile_pic']=artist.profile_pic.url
+				request.session['about']=artist.about
 				return redirect("index")
 			else:
 				msg="Password does not matched"
@@ -49,6 +50,7 @@ def login(request):
 					request.session['email']=customer.email
 					request.session['fname']=customer.fname
 					request.session['profile_pic']=customer.profile_pic.url
+					request.session['address']=customer.address
 					return redirect("index")
 				else:
 					msg="Password does not matched"

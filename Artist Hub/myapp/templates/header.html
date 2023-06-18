@@ -45,14 +45,16 @@
                     <ul>
                         <li class="active"><a href="/">Home</a></li>
                         <li><a href="{% url 'about' %}">About</a></li>
+                        
                         <li><a href="{% url 'artist' %}">Musicians</a>
                             <ul class="dropdown">
-                                {% for i in drop_artists %}
-                                <li><a href="#">{{ i.fname}}</a></li>
+                                {% for i in artist %}
+                                <li><a href="#">{{ i.fname}} {{ i.lname }}</a></li>
                                 {% endfor %}
                                 <li><a href="{% url 'artist' %}">Load More</a></li>
                             </ul>
-                        </li>   
+                        </li>
+                           
                         <li><a href="{% url 'contact' %}">Contacts</a></li>
                     
                 {% if request.session.email %}
