@@ -43,8 +43,19 @@ def login(request):
 				msg="Password does not matched"
 				return render(request,'login.html',{'msg':msg,})
 		except:
-			msg="Email not registered"
-			return render(request,'login.html',{'msg':msg,})
+			try:
+				customer=Customer.objects.get(email=request.POST['email'])
+				if customer.password==request.POST['password']:
+					request.session['email']=customer.email
+					request.session['fname']=customer.fname
+					request.session['profile_pic']=customer.profile_pic.url
+					return redirect("index")
+				else:
+					msg="Password does not matched"
+					return render(request,'login.html',{'msg':msg,})
+			except:
+				msg="Email does not registered"
+				return render(request,'login.html',{'msg':msg,})
 	else:
 		return render(request,'login.html')
 
