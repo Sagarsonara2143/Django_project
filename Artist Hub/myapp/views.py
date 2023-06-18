@@ -36,7 +36,6 @@ def validate_pwd(request):
 
 def index(request):
 	user=User.objects.all().order_by('-id')[:10]
-	print(user)
 	artists=[]
 	for i in user:
 		if i.usertype=="Artist":
@@ -119,7 +118,7 @@ def signup(request):
 					msg="Password & Confirm password does not match"
 					return render(request,'signup.html',{'msg':msg,'drop_artists':drop_artists})
 	else:
-		return render(request,'signup.html',{'drop_artists':drop_artists})
+		return render(request,'s.html',{'drop_artists':drop_artists})
 
 
 def logout(request):
