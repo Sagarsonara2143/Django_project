@@ -47,23 +47,11 @@ def index(request):
 	return render(request,'index.html',{'artists':artists,'drop_artists':drop_artists})
 
 def about(request):
-	user=User.objects.all()
-	artists=[]
-	for i in user:
-		if i.usertype=="Artist":
-			artists.append(i)
 	
-	drop_artists=artists[:3]
 	return render(request,'about-us.html',{'artists':artists,'drop_artists':drop_artists})
 
 def contact(request):
-	user=User.objects.all()
-	artists=[]
-	for i in user:
-		if i.usertype=="Artist":
-			artists.append(i)
 	
-	drop_artists=artists[:3]
 
 	if request.method=="POST":
 		Contact.objects.create(
@@ -78,24 +66,11 @@ def contact(request):
 		return render(request,'contact.html',{'drop_artists':drop_artists})
 
 def artist(request):
-	user=User.objects.all()
-	#print(user)
-	artists=[]
-	for i in user:
-		if i.usertype=="Artist":
-			artists.append(i)
-	#
-	drop_artists=artists[:3]
+	
 	return render(request,'artist.html',{'artists':artists,'drop_artists':drop_artists})
 
 def login(request):
-	user=User.objects.all()
-	artists=[]
-	for i in user:
-		if i.usertype=="Artist":
-			artists.append(i)
 	
-	drop_artists=artists[:3]
 	if request.method=="POST":
 		try:
 			user=User.objects.get(email=request.POST['email'])
@@ -115,13 +90,7 @@ def login(request):
 		return render(request,'login.html',{'drop_artists':drop_artists})
 
 def signup(request):
-	user=User.objects.all()
-	artists=[]
-	for i in user:
-		if i.usertype=="Artist":
-			artists.append(i)
 	
-	drop_artists=artists[:3]
 	if request.method=="POST":
 		try:
 			User.objects.get(mobile=request.POST['mobile'])
