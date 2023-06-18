@@ -63,18 +63,18 @@
                 </div>
             </div>
         </div>
-        {% for i in artists %}
+        {% for i in artist %}
         <div class="member-item set-bg" data-setbg="{{ i.profile_pic.url }}">
             <div class="mi-social">
                 <div class="mi-social-inner bg-gradient">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-instagram"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="{{ i.facebook }}"><i class="fa fa-facebook"></i></a>
+                    <a href="{{ i.instagram }}"><i class="fa fa-instagram"></i></a>
+                    <a href="{{ i.twitter }}"><i class="fa fa-twitter"></i></a>
                     
                 </div>
             </div>
             <div class="mi-text">
-                <h5>{{ i.fname }} {{ i.lname }}</h5>
+                <h5>Sagar{{ i.fname }} {{ i.lname }}</h5>
                 <span>Singer</span>
             </div>
         </div>

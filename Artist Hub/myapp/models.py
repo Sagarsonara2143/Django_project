@@ -21,3 +21,18 @@ class Customer(models.Model):
 
 	def __str__(self):
 		return self.fname+" "+ self.lname
+
+class Artist(models.Model):
+	fname=models.CharField(max_length=100)
+	lname=models.CharField(max_length=100)
+	email=models.EmailField()
+	mobile=models.BigIntegerField()	
+	about=models.TextField(max_length=500)
+	facebook=models.CharField(max_length=100)
+	instagram=models.CharField(max_length=100)
+	twitter=models.CharField(max_length=100)
+	password=models.CharField(max_length=50)
+	profile_pic=models.ImageField(upload_to='profile_pic')
+
+	def __str__(self):
+		return self.fname+" "+ self.lname

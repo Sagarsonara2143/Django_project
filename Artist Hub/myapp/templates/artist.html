@@ -29,7 +29,7 @@
     <!-- Breadcrumb Section End -->
 
     <!-- Speaker Section Begin -->
-    {% for i in artists %}
+    {% for i in artist %}
     <section class="speaker-section spad">
         <div class="container">
             <div class="row">
@@ -48,13 +48,11 @@
                                         <span>Singer</span>
                                     </div>
                                     <div class="si-social">
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                        <a href="{{ i.facenook }}"><i class="fa fa-facebook"></i></a>
+                                        <a href="{{ i.twitter}}"><i class="fa fa-twitter"></i></a>
+                                        <a href="{{ i.instagram }}"><i class="fa fa-instagram"></i></a>
                                     </div>
-                                    <p>Businesses often become known today through effective marketing. The marketing
-                                        may be in the form of a regular news item or half column society news in the
-                                        Sunday newspaper.</p>
+                                    <p>{{ i.about }}</p>
                                 </div>
                             </div>
                         </div>
