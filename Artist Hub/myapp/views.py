@@ -33,12 +33,11 @@ def login(request):
 	
 	if request.method=="POST":
 		try:
-			user=User.objects.get(email=request.POST['email'])
-			if user.password==request.POST['password']:
-				request.session['email']=user.email
-				request.session['fname']=user.fname
-				request.session['profile_pic']=user.profile_pic.url
-				request.session['usertype']=user.usertype
+			artist=Artist.objects.get(email=request.POST['email'])
+			if artist.password==request.POST['password']:
+				request.session['email']=artist.email
+				request.session['fname']=artist.fname
+				request.session['profile_pic']=artist.profile_pic.url
 				return redirect("index")
 			else:
 				msg="Password does not matched"
