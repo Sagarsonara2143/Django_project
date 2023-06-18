@@ -10,8 +10,6 @@ def about(request):
 	return render(request,'about-us.html')
 
 def contact(request):
-	
-
 	if request.method=="POST":
 		Contact.objects.create(
 			name=request.POST['name'],		
@@ -52,18 +50,17 @@ def signup(request):
 	
 	if request.method=="POST":
 		try:
-			User.objects.get(mobile=request.POST['mobile'])
+			Customer.objects.get(mobile=request.POST['mobile'])
 			msg="Mobile Number is already registered"
 			return render(request,'signup.html',{'msg':msg,})
 		except:
 			try:
-				User.objects.get(email=request.POST['email'])
+				Customer.objects.get(email=request.POST['email'])
 				msg="Email Id is already registered"
 				return render(request,'signup.html',{'msg':msg,})
 			except:
 				if request.POST['password']==request.POST['cpassword']:
-					User.objects.create(
-						usertype=request.POST['usertype'],
+					Customer.objects.create(
 						fname=request.POST['fname'],
 						lname=request.POST['lname'],
 						email=request.POST['email'],
@@ -79,6 +76,11 @@ def signup(request):
 					return render(request,'signup.html',{'msg':msg,})
 	else:
 		return render(request,'signup.html')
+
+
+def signup_artist(request):
+	return render (request,'signup-artist.html')
+
 
 
 def logout(request):
