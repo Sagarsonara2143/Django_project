@@ -2,11 +2,18 @@ from django.shortcuts import render,redirect
 from .models import Contact,Customer,Artist
 # Create your views here.
 
+artist=Artist.objects.all()
 
 def index(request):
 	artist=Artist.objects.all()
 	print(artist)
 	return render(request,'index.html',{'artist':artist})
+
+def artist_index(request):
+	artist=Artist.objects.all()
+	print(artist)
+	return render(request,'artist-index.html',{'artist':artist})
+
 
 def about(request):
 	artist=Artist.objects.all()	
@@ -37,6 +44,7 @@ def artist_change_password(request):
 
 
 def contact(request):
+	artist=Artist.objects.all()
 	if request.method=="POST":
 		Contact.objects.create(
 			name=request.POST['name'],		
@@ -45,9 +53,9 @@ def contact(request):
 			message=request.POST['message']
 			)
 		msg="Message Sent Successfully"
-		return render(request,'contact.html',{'msg':msg,})
+		return render(request,'contact.html',{'msg':msg,'artist':artist})
 	else:
-		return render(request,'contact.html')
+		return render(request,'contact.html',{'artist':artist})
 
 def artist(request):
 	artist=Artist.objects.all()
@@ -83,7 +91,7 @@ def login(request):
 				msg="Email does not registered"
 				return render(request,'login.html',{'msg':msg,})
 	else:
-		return render(request,'login.html',{'msg':msg})
+		return render(request,'login.html')
 
 def signup(request):
 	

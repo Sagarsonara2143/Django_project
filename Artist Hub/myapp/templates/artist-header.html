@@ -36,14 +36,14 @@
     <header class="header-section">
         <div class="container">
             <div class="logo">
-                <a href="/">
+                <a href="{% url 'artist-index' %}">
                     <img src="{% static 'img/dance.png' %}" alt="">
                 </a>
             </div>
             <div class="nav-menu">
                 <nav class="mainmenu mobile-menu">
                     <ul>
-                        <li class="active"><a href="/">Home</a></li>
+                        <li class="active"><a href="{% url 'artist-index' %}">Home</a></li>
                         <li><a href="{% url 'artist-about-us' %}">About</a></li>   
                         <li><a href="{% url 'contact' %}">Contacts</a></li>
                         <li><a href="{% url 'contact' %}">Request</a></li>
@@ -80,7 +80,7 @@
                     <div class="footer-text">
                         
                         <ul>
-                            <li><a href="/">Home</a></li>
+                            <li><a href="{% url 'artist-index' %}">Home</a></li>
                             <li><a href="{% url 'artist' %}">Musicians</a></li>
                             <li><a href="{% url 'about' %}">about us</a></li>
                             <li><a href="{% url 'contact' %}">Contact</a></li>
