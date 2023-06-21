@@ -88,10 +88,14 @@ span.psw {
 <form action="{% url 'forgot-password' %}" method="post">
 {% csrf_token %}
   <div class="container">
-    <label for="uname"><b>Mobile Number</b></label>
-    <input type="text" placeholder="Enter Mobile Number" name="mobile" class="form-control" required>
+    
+    <input type="hidden" name="mobile" value="{{ mobile }}">
+    <input type="hidden" name="otp" value="{{ otp }}">
+    
+    <label for="uname"><b>OTP</b></label>
+    <input type="text" placeholder="Enter OTP" name="uotp" class="form-control" required>
 
-    <button type="submit" class="btn btn-primary">SEND OTP</button>
+    <button type="submit" class="btn btn-primary">VERIFY OTP</button>
     
   </div>
 
