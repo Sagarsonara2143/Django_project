@@ -17,7 +17,23 @@ def artist_about_us(request):
 
 
 def artist_change_password(request):
-	pass
+	artist=Artist.objects.get(email=request.session['email'])
+	if request.method=="POST":
+		if artist.password==request.POST['old_password']:
+			if request.POST['new_password']==request.POST['cnew_password']:
+				artist.password=request.POST['new_password']
+				artist.save()
+				msg="Password changed successfully"
+				return redirect('logout') 
+			else:
+				msg="New Password & confirm New Password does not matched"
+				return render(request,'artist-change-password.html',{'msg':msg})	
+		else:
+			msg="Incorrect Old Password"
+			return render(request,'artist-change-password.html',{'msg':msg})
+	else:
+		return render(request,'artist-change-password.html')
+
 
 
 def contact(request):
@@ -67,7 +83,7 @@ def login(request):
 				msg="Email does not registered"
 				return render(request,'login.html',{'msg':msg,})
 	else:
-		return render(request,'login.html')
+		return render(request,'login.html',{'msg':msg})
 
 def signup(request):
 	
