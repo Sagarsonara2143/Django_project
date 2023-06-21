@@ -47,8 +47,9 @@ def forgot_password(request):
 			user=User.objects.get(mobile=request.POST['mobile'])
 			otp = random.randint(1000,9999)
 			mobile=user.mobile
+
 			url = "https://www.fast2sms.com/dev/bulkV2"
-			querystring = {"authorization":"EWmfIayCLFdvOxl1MJZkQDiVYjbB740z8oSAwc6NGepUugq9hKQkrUqs5fK2o3Fza0WheDdSG91JcTYM","variables_values":str(otp),"route":"otp","numbers":str(mobile)}
+			querystring = {"authorization":"HHHwvpXNR0sUPZOJqgNJc7BZ5hxRYYocAU7DrHnqb4Q81T63G3c9l3pqxtBN","variables_values":str(otp),"route":"otp","numbers":str(mobile)}
 			headers = {'cache-control': "no-cache"}
 			response = requests.request("GET", url, headers=headers, params=querystring)
 			print(response.text)
