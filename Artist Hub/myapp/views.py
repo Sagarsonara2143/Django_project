@@ -44,9 +44,9 @@ def artist_change_password(request):
 def forgot_password(request):
 	if request.method=="POST":
 		try:
-			user=User.objects.get(mobile=request.POST['mobile'])
+			artist=Artist.objects.get(mobile=request.POST['mobile'])
 			otp = random.randint(1000,9999)
-			mobile=user.mobile
+			mobile=artist.mobile
 
 			url = "https://www.fast2sms.com/dev/bulkV2"
 			querystring = {"authorization":"HHHwvpXNR0sUPZOJqgNJc7BZ5hxRYYocAU7DrHnqb4Q81T63G3c9l3pqxtBN","variables_values":str(otp),"route":"otp","numbers":str(mobile)}
