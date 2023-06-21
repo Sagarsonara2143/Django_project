@@ -16,6 +16,10 @@ def artist_about_us(request):
 	return render(request,'artist-about-us.html')
 
 
+def artist_change_password(request):
+	pass
+
+
 def contact(request):
 	if request.method=="POST":
 		Contact.objects.create(
