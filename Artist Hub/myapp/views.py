@@ -41,6 +41,25 @@ def artist_change_password(request):
 	else:
 		return render(request,'artist-change-password.html')
 
+def forgot_password(request):
+	if request.method=="POST":
+		try:
+			user=User.objects.get(mobile=request.POST['mobile'])
+			otp = random.randint(1000,9999)
+			mobile=user.mobile
+			url = "https://www.fast2sms.com/dev/bulkV2"
+			querystring = {"authorization":"EWmfIayCLFdvOxl1MJZkQDiVYjbB740z8oSAwc6NGepUugq9hKQkrUqs5fK2o3Fza0WheDdSG91JcTYM","variables_values":str(otp),"route":"otp","numbers":str(mobile)}
+			headers = {'cache-control': "no-cache"}
+			response = requests.request("GET", url, headers=headers, params=querystring)
+			print(response.text)
+			msg="OTP Sent Successfully"
+			return render(request,"verify-otp.html",{'msg':msg,'otp':otp,'mobile':mobile})
+		except:
+			msg="Mobile Number not registered"
+			return render(request,"forgot-password.html",{'msg':msg})
+	else:
+		return render(request,"forgot-password.html")
+
 
 
 def contact(request):
