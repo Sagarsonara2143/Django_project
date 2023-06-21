@@ -12,6 +12,10 @@ def about(request):
 	artist=Artist.objects.all()	
 	return render(request,'about-us.html',{'artist':artist})
 
+def artist_about_us(request):
+	return render(request,'artist-about-us.html')
+
+
 def contact(request):
 	if request.method=="POST":
 		Contact.objects.create(
