@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Contact,Customer,Artist
+import random
+import requests
 # Create your views here.
 
 artist=Artist.objects.all()
