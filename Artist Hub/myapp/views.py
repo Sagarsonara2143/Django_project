@@ -106,8 +106,6 @@ def new_password(request):
 				customer.save()
 				return redirect('login')
 			except:
-				customer=Customer.objects.get(mobile=request.POST['mobile'])
-				print(customer)
 				return render(request,"new-password.html")
 	else:
 		msg="New Password & Confirm New Password does not Matched"
