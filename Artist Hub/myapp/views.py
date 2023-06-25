@@ -92,15 +92,16 @@ def verify_otp(request):
 def new_password(request):
 	n_pwd=request.POST['new_password']
 	cn_pwd=request.POST['cnew_password']
+	mobile=request.POST['mobile']
 	if n_pwd==cn_pwd:
 		try:
-			artist=Artist.objects.get(mobile=request.POST['mobile'])
+			artist=Artist.objects.get(mobile=mobile)
 			artist.password=n_pwd
 			artist.save()
 			return redirect('login')
 		except: 
 			try:
-				customer=Customer.objects.get(mobile=request.POST['mobile'])
+				customer=Customer.objects.get(mobile=mobile)
 				customer.password=n_pwd
 				customer.save()
 				return redirect('login')
