@@ -58,8 +58,21 @@ def forgot_password(request):
 			msg="OTP Sent Successfully"
 			return render(request,"verify-otp.html",{'msg':msg,'otp':otp,'mobile':mobile})
 		except:
-			msg="Mobile Number not registered"
-			return render(request,"forgot-password.html",{'msg':msg})
+			try:
+				customer=Customer.objects.get(mobile=request.POST['mobile'])
+				otp = random.randint(1000,9999)
+				mobile=customer.mobile
+
+				url = "https://www.fast2sms.com/dev/bulkV2"
+				querystring = {"authorization":"HHHwvpXNR0sUPZOJqgNJc7BZ5hxRYYocAU7DrHnqb4Q81T63G3c9l3pqxtBN","variables_values":str(otp),"route":"otp","numbers":str(mobile)}
+				headers = {'cache-control': "no-cache"}
+				response = requests.request("GET", url, headers=headers, params=querystring)
+				print(response.text)
+				msg="OTP Sent Successfully"
+				return render(request,"verify-otp.html",{'msg':msg,'otp':otp,'mobile':mobile})
+			except:
+				msg="Mobile Number not registered"
+				return render(request,"forgot-password.html",{'msg':msg})
 	else:
 		return render(request,"forgot-password.html")
 
