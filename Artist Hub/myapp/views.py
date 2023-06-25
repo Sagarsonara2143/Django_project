@@ -78,6 +78,18 @@ def forgot_password(request):
 
 
 
+def verify_otp(request):
+	otp=request.POST['otp']
+	mobile=request.POST['mobile']
+	uotp=request.POST['uotp']
+
+	if otp==uotp:
+		return render(request,"new-password.html",{'mobile':mobile})	
+	else:
+		msg="Invalid OTP Entered"
+		return render(request,"verify-otp.html",{'msg':msg,'mobile':mobile,'otp':otp})
+
+
 def contact(request):
 	artist=Artist.objects.all()
 	if request.method=="POST":
