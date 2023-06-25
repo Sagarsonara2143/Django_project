@@ -84,6 +84,7 @@ def verify_otp(request):
 	uotp=request.POST['uotp']
 
 	if otp==uotp:
+		#print(mobile)
 		return render(request,"new-password.html",{'mobile':mobile})	
 	else:
 		msg="Invalid OTP Entered"
@@ -94,6 +95,7 @@ def new_password(request):
 	cn_pwd=request.POST['cnew_password']
 	mobile=request.POST['mobile']
 	if n_pwd==cn_pwd:
+		print(mobile)
 		try:
 			artist=Artist.objects.get(mobile=mobile)
 			artist.password=n_pwd
