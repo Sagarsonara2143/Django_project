@@ -98,14 +98,15 @@ def new_password(request):
 			artist.password=n_pwd
 			artist.save()
 			return redirect('login')
-		except:
+		except: 
 			try:
 				customer=Customer.objects.get(mobile=request.POST['mobile'])
 				customer.password=n_pwd
 				customer.save()
 				return redirect('login')
 			except:
-				print("Exception")
+				customer=Customer.objects.get(mobile=request.POST['mobile'])
+				print(customer)
 				return render(request,"new-password.html")
 	else:
 		msg="New Password & Confirm New Password does not Matched"
