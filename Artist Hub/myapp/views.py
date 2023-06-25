@@ -105,7 +105,7 @@ def new_password(request):
 				customer.save()
 				return redirect('login')
 			except:
-				print()
+				print("Exception")
 				return render(request,"new-password.html")
 	else:
 		msg="New Password & Confirm New Password does not Matched"
