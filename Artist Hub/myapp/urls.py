@@ -15,5 +15,6 @@ urlpatterns=[
 	path('signup-artist/',views.signup_artist,name='signup-artist'),
 	path('artist-change-password/',views.artist_change_password,name='artist-change-password'),
 	path('forgot-password/',views.forgot_password,name='forgot-password'),
-	path('verify-otp',views.verify_otp,name='verify-otp'),
+	path('verify-otp/',views.verify_otp,name='verify-otp'),
+	path('new-password/',views.new_password,name='new-password')
 ]

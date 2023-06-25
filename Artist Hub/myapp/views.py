@@ -89,6 +89,28 @@ def verify_otp(request):
 		msg="Invalid OTP Entered"
 		return render(request,"verify-otp.html",{'msg':msg,'mobile':mobile,'otp':otp})
 
+def new_password(request):
+	n_pwd=request.POST['new_password']
+	cn_pwd=request.POST['cnew_password']
+	if n_pwd==cn_pwd:
+		try:
+			artist=Artist.objects.get(mobile=request.POST['mobile'])
+			artist.password=n_pwd
+			artist.save()
+			return redirect('login')
+		except:
+			try:
+				customer=Customer.objects.get(mobile=request.POST['mobile'])
+				customer.password=n_pwd
+				customer.save()
+				return redirect('login')
+			except:
+				print()
+				return render(request,"new-password.html")
+	else:
+		msg="New Password & Confirm New Password does not Matched"
+		return render(request,"new-password.html",{'msg':msg})
+
 
 def contact(request):
 	artist=Artist.objects.all()
