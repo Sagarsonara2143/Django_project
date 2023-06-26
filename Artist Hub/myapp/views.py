@@ -133,7 +133,7 @@ def artist(request):
 	return render(request,'artist.html',{'artist':artist})
 
 def login(request):
-	
+	artist=Artist.objects.all()
 	if request.method=="POST":
 		try:
 			artist=Artist.objects.get(email=request.POST['email'])
@@ -162,7 +162,7 @@ def login(request):
 				msg="Email does not registered"
 				return render(request,'login.html',{'msg':msg,})
 	else:
-		return render(request,'login.html')
+		return render(request,'login.html',{'artist':artist})
 
 def signup(request):
 	
