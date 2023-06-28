@@ -32,49 +32,36 @@
 <form method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
     {% csrf_token %}
     <table width="70%" align="center">
-      
-      <tr>
-        <td>User Type </td>
-        <td><select class="form-control" name="usertype">
-          {% if usertype == Artist %}
-          <option value="Customer">Customer</option>
-          <option value="Artist" selected>Artist</option>
-          {% else %}
-          <option value="Customer" selected>Customer</option>
-          <option value="Artist" selected>Artist</option>
-          {% endif %}
-        </select></td>
-      </tr>
 
       <tr>
         <td width="25%">First Name </td>
-        <td><input type="text" name="fname" class="form-control" value="{{ user.fname }}"></td>
+        <td><input type="text" name="fname" class="form-control" value="{{ customer.fname }}"></td>
       </tr>
 
       <tr>
         <td>Last Name </td>
-        <td><input type="text" name="lname" class="form-control" value="{{ user.lname }}" ></td>
+        <td><input type="text" name="lname" class="form-control" value="{{ customer.lname }}" ></td>
       </tr>
 
       <tr>
         <td>Email ID </td>
-        <td><input type="text" name="email" class="form-control" id="email" value="{{ user.email }}" readonly></td>
+        <td><input type="text" name="email" class="form-control" id="email" value="{{ customer.email }}" readonly></td>
         <span id="email_error"></span>
       </tr>
 
       <tr>
         <td>Mobile Number </td>
-        <td><input type="text" name="mobile" class="form-control" id="mobile" value="{{ user.mobile }}"readonly></td>
+        <td><input type="text" name="mobile" class="form-control" id="mobile" value="{{ customer.mobile }}"readonly></td>
         <span id="mobile_error"></span>
       </tr>
 
       <tr>
         <td>Address </td>
-        <td><input type="textarea" name="address" class="form-control" value="{{ user.address }}">
+        <td><input type="textarea" name="address" class="form-control" value="{{ customer.address }}">
       </tr>
       <tr>
           
-          <td colspan="2" align="center"><img src="{{ user.profile_pic.url }}" width="100px" height="100px"></td>
+          <td colspan="2" align="center"><img src="{{ customer.profile_pic.url }}" width="100px" height="100px"></td>
       </tr>
       <tr>
           <td>Profile Picture</td>

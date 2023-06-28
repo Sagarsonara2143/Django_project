@@ -7,7 +7,7 @@ import requests
 artist=Artist.objects.all()
 
 def index(request):
-	artist=Artist.objects.all()
+	artist=Artist.objects.all().order_by('-id')[:3]
 	print(artist)
 	return render(request,'index.html',{'artist':artist})
 
@@ -18,7 +18,7 @@ def artist_index(request):
 
 
 def about(request):
-	artist=Artist.objects.all()	
+	artist=Artist.objects.all().order_by('-id')[:3]
 	return render(request,'about-us.html',{'artist':artist})
 
 def artist_about_us(request):
@@ -44,6 +44,7 @@ def artist_change_password(request):
 		return render(request,'artist-change-password.html')
 
 def forgot_password(request):
+	artist=Artist.objects.all().order_by('-id')[:3]
 	if request.method=="POST":
 		try:
 			artist=Artist.objects.get(mobile=request.POST['mobile'])
@@ -74,23 +75,23 @@ def forgot_password(request):
 				msg="Mobile Number not registered"
 				return render(request,"forgot-password.html",{'msg':msg})
 	else:
-		return render(request,"forgot-password.html")
-
-
+		return render(request,"forgot-password.html",{'artist':artist})
 
 def verify_otp(request):
+	artist=Artist.objects.all().order_by('-id')[:3]
 	otp=request.POST['otp']
 	mobile=request.POST['mobile']
 	uotp=request.POST['uotp']
 
 	if otp==uotp:
 		#print(mobile)
-		return render(request,"new-password.html",{'mobile':mobile})	
+		return render(request,"new-password.html",{'mobile':mobile,'artist':artist})	
 	else:
 		msg="Invalid OTP Entered"
-		return render(request,"verify-otp.html",{'msg':msg,'mobile':mobile,'otp':otp})
+		return render(request,"verify-otp.html",{'msg':msg,'mobile':mobile,'otp':otp,'artist':artist})
 
 def new_password(request):
+	artist=Artist.objects.all().order_by('-id')[:3]
 	n_pwd=request.POST['new_password']
 	cn_pwd=request.POST['cnew_password']
 	mobile=request.POST['mobile']
@@ -108,14 +109,14 @@ def new_password(request):
 				customer.save()
 				return redirect('login')
 			except:
-				return render(request,"new-password.html")
+				return render(request,"new-password.html",{'artist':artist})
 	else:
 		msg="New Password & Confirm New Password does not Matched"
-		return render(request,"new-password.html",{'msg':msg})
+		return render(request,"new-password.html",{'msg':msg,'artist':artist})
 
 
 def contact(request):
-	artist=Artist.objects.all()
+	artist=Artist.objects.all().order_by('-id')[:3]
 	if request.method=="POST":
 		Contact.objects.create(
 			name=request.POST['name'],		
@@ -133,7 +134,7 @@ def artist(request):
 	return render(request,'artist.html',{'artist':artist})
 
 def login(request):
-	artist=Artist.objects.all()
+	artist=Artist.objects.all().order_by('-id')[:3]
 	if request.method=="POST":
 		try:
 			artist=Artist.objects.get(email=request.POST['email'])
@@ -145,7 +146,7 @@ def login(request):
 				return redirect("index")
 			else:
 				msg="Password does not matched"
-				return render(request,'login.html',{'msg':msg,})
+				return render(request,'login.html',{'msg':msg,'artist':artist})
 		except:
 			try:
 				customer=Customer.objects.get(email=request.POST['email'])
@@ -157,15 +158,15 @@ def login(request):
 					return redirect("index")
 				else:
 					msg="Password does not matched"
-					return render(request,'login.html',{'msg':msg,})
+					return render(request,'login.html',{'msg':msg,'artist':artist})
 			except:
 				msg="Email does not registered"
-				return render(request,'login.html',{'msg':msg,})
+				return render(request,'login.html',{'msg':msg,'artist':artist})
 	else:
 		return render(request,'login.html',{'artist':artist})
 
 def signup(request):
-	
+	artist=Artist.objects.all().order_by('-id')[:3]
 	if request.method=="POST":
 		try:
 			Customer.objects.get(mobile=request.POST['mobile'])
@@ -175,7 +176,7 @@ def signup(request):
 			try:
 				Customer.objects.get(email=request.POST['email'])
 				msg="Email Id is already registered"
-				return render(request,'signup.html',{'msg':msg,})
+				return render(request,'signup.html',{'msg':msg,'artist':artist})
 			except:
 				if request.POST['password']==request.POST['cpassword']:
 					Customer.objects.create(
@@ -188,12 +189,12 @@ def signup(request):
 						profile_pic=request.FILES['profile_pic']
 						)
 					msg="Signup Successfully"
-					return render(request,'login.html',{'msg':msg,})
+					return render(request,'login.html',{'msg':msg,'artist':artist})
 				else:
 					msg="Password & Confirm password does not match"
-					return render(request,'signup.html',{'msg':msg,})
+					return render(request,'signup.html',{'msg':msg,'artist':artist})
 	else:
-		return render(request,'signup.html')
+		return render(request,'signup.html',{'artist':artist})
 
 
 def signup_artist(request):
@@ -241,26 +242,24 @@ def logout(request):
 		return redirect('login')
 
 def profile(request):
-	user=User.objects.get(email=request.session['email'])
+	artist=Artist.objects.all().order_by('-id')[:3]
+	customer=Customer.objects.get(email=request.session['email'])
 	if request.method=="POST":
-		user.fname=request.POST['fname']
-		user.lname=request.POST['lname']
-		user.email=request.POST['email']
-		user.mobile=request.POST['mobile']
-		user.address=request.POST['address']
-		
-		user.usertype=request.POST['usertype']
+		customer.fname=request.POST['fname']
+		customer.lname=request.POST['lname']
+		customer.email=request.POST['email']
+		customer.mobile=request.POST['mobile']
+		customer.address=request.POST['address']
 		try:
-			user.profile_pic=request.FILES['profile_pic']
+			customer.profile_pic=request.FILES['profile_pic']
 		except:
 			pass
-		user.save()
-		request.session['profile_pic']=user.profile_pic.url
-		
+		customer.save()
+		request.session['profile_pic']=customer.profile_pic.url
 		msg="Profile Updated Successfully"
-		return render(request,'profile.html',{'user':user,'msg':msg,})
+		return render(request,'profile.html',{'customer':customer,'msg':msg,'artist':artist})
 	else:
-		return render(request,'profile.html',{'user':user,})
+		return render(request,'profile.html',{'customer':customer,'artist':artist})
 
 
 
