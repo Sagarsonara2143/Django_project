@@ -32,7 +32,7 @@
 <form method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
     {% csrf_token %}
     <table width="70%" align="center">
-
+      {% if customer %}
       <tr>
         <td width="25%">First Name </td>
         <td><input type="text" name="fname" class="form-control" value="{{ customer.fname }}"></td>
@@ -73,6 +73,51 @@
           <input type="submit" name="action" value="UPDATE PROFILE" class="btn btn-primary btn-block" style="width:100%">
         </td>
       </tr>
+
+      {% else %}
+
+      <tr>
+        <td width="25%">First Name </td>
+        <td><input type="text" name="fname" class="form-control" value="{{ artist_get.fname }}"></td>
+      </tr>
+
+      <tr>
+        <td>Last Name </td>
+        <td><input type="text" name="lname" class="form-control" value="{{ artist_get.lname }}" ></td>
+      </tr>
+
+      <tr>
+        <td>Email ID </td>
+        <td><input type="text" name="email" class="form-control" id="email" value="{{ artist_get.email }}" readonly></td>
+        <span id="email_error"></span>
+      </tr>
+
+      <tr>
+        <td>Mobile Number </td>
+        <td><input type="text" name="mobile" class="form-control" id="mobile" value="{{ artist_get.mobile }}"readonly></td>
+        <span id="mobile_error"></span>
+      </tr>
+
+      <tr>
+        <td>About </td>
+        <td><input type="textarea" name="about" class="form-control" value="{{ artist_get.about }}" >
+      </tr>
+      <tr>
+          
+          <td colspan="2" align="center"><img src="{{ artist_get.profile_pic.url }}" width="100px" height="100px"></td>
+      </tr>
+      <tr>
+          <td>Profile Picture</td>
+          <td class="form-control"><input class="input" type="file" name="profile_pic" ></td>
+      </tr>    
+
+      <tr>
+        <td colspan="2" align="center" >
+          <input type="submit" name="action" value="UPDATE PROFILE" class="btn btn-primary btn-block" style="width:100%">
+        </td>
+      </tr>
+
+      {% endif %}
 
 </table> 
 </form>     

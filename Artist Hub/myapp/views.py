@@ -8,8 +8,9 @@ artist=Artist.objects.all()
 
 def index(request):
 	artist=Artist.objects.all().order_by('-id')[:3]
-	print(artist)
-	return render(request,'index.html',{'artist':artist})
+	artist_all=Artist.objects.all()
+	#print(artist)
+	return render(request,'index.html',{'artist':artist,'artist_all':artist_all})
 
 def artist_index(request):
 	artist=Artist.objects.all()
@@ -243,23 +244,42 @@ def logout(request):
 
 def profile(request):
 	artist=Artist.objects.all().order_by('-id')[:3]
-	customer=Customer.objects.get(email=request.session['email'])
-	if request.method=="POST":
-		customer.fname=request.POST['fname']
-		customer.lname=request.POST['lname']
-		customer.email=request.POST['email']
-		customer.mobile=request.POST['mobile']
-		customer.address=request.POST['address']
-		try:
-			customer.profile_pic=request.FILES['profile_pic']
-		except:
-			pass
-		customer.save()
-		request.session['profile_pic']=customer.profile_pic.url
-		msg="Profile Updated Successfully"
-		return render(request,'profile.html',{'customer':customer,'msg':msg,'artist':artist})
-	else:
-		return render(request,'profile.html',{'customer':customer,'artist':artist})
+	try:
+		customer=Customer.objects.get(email=request.session['email'])
+		if request.method=="POST":
+			customer.fname=request.POST['fname']
+			customer.lname=request.POST['lname']
+			customer.email=request.POST['email']
+			customer.mobile=request.POST['mobile']
+			customer.address=request.POST['address']
+			try:
+				customer.profile_pic=request.FILES['profile_pic']
+			except:
+				pass
+			customer.save()
+			request.session['profile_pic']=customer.profile_pic.url
+			msg="Profile Updated Successfully"
+			return render(request,'profile.html',{'customer':customer,'msg':msg,'artist':artist})
+		else:
+			return render(request,'profile.html',{'customer':customer,'artist':artist})
+	except:
+		artist_get=Artist.objects.get(email=request.session['email'])
+		if request.method=="POST":
+			artist_get.fname=request.POST['fname']
+			artist_get.lname=request.POST['lname']
+			artist_get.email=request.POST['email']
+			artist_get.mobile=request.POST['mobile']
+			artist_get.address=request.POST['address']
+			try:
+				artist_get.profile_pic=request.FILES['profile_pic']
+			except:
+				pass
+			artist_get.save()
+			request.session['profile_pic']=artist_get.profile_pic.url
+			msg="Profile Updated Successfully"
+			return render(request,'profile.html',{'artist_get':artist_get,'msg':msg,'artist':artist})
+		else:
+			return render(request,'profile.html',{'artist_get':artist_get,'artist':artist})
 
 
 
