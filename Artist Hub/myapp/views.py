@@ -131,8 +131,9 @@ def contact(request):
 		return render(request,'contact.html',{'artist':artist})
 
 def artist(request):
-	artist=Artist.objects.all()
-	return render(request,'artist.html',{'artist':artist})
+	artist=Artist.objects.all().order_by('-id')[:3]
+	artist_all=Artist.objects.all()
+	return render(request,'artist.html',{'artist':artist,'artist_all':artist_all})
 
 def login(request):
 	artist=Artist.objects.all().order_by('-id')[:3]
