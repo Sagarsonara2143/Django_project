@@ -57,7 +57,7 @@
 
       <tr>
         <td>Address </td>
-        <td><input type="textarea" name="address" class="form-control" value="{{ customer.address }}">
+        <td><textarea name="adress" class="form-control" rows="2" cols="50">{{ customer.address }}</textarea>
       </tr>
       <tr>
           
@@ -102,8 +102,26 @@
         <td>About </td>
         <td><textarea name="about" class="form-control" rows="4" cols="50">{{ artist_get.about }}</textarea>
       </tr>
+
       <tr>
-          
+        <td>Instagram </td>
+        <td><input type="text" name="instagram" class="form-control" value="{{ artist_get.instagram }}" ></td>
+      </tr>
+
+      <tr>
+        <td>Facebook </td>
+        <td><input type="text" name="facebook" class="form-control" value="{{ artist_get.facebook }}" ></td>
+      </tr>
+
+      <tr>
+        <td>Twitter </td>
+        <td><input type="text" name="twitter" class="form-control" value="{{ artist_get.twitter }}" ></td>
+      </tr>
+
+
+
+
+      <tr>
           <td colspan="2" align="center"><img src="{{ artist_get.profile_pic.url }}" width="100px" height="100px"></td>
       </tr>
       <tr>

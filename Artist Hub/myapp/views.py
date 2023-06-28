@@ -265,11 +265,14 @@ def profile(request):
 	except:
 		artist_get=Artist.objects.get(email=request.session['email'])
 		if request.method=="POST":
-			artist_get.fname=request.POST['fname']
 			artist_get.lname=request.POST['lname']
+			artist_get.fname=request.POST['fname']
 			artist_get.email=request.POST['email']
 			artist_get.mobile=request.POST['mobile']
-			artist_get.address=request.POST['address']
+			artist_get.about=request.POST['about']
+			artist_get.facebook=request.POST['facebook']
+			artist_get.instagram=request.POST['instagram']
+			artist_get.twitter=request.POST['twitter']
 			try:
 				artist_get.profile_pic=request.FILES['profile_pic']
 			except:
