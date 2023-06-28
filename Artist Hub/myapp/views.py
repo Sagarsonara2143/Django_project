@@ -7,7 +7,7 @@ import requests
 artist=Artist.objects.all()
 
 def index(request):
-	artist=Artist.objects.all().order_by('-id')[:3]
+	artist=Artist.objects.all().order_by('id')[:3]
 	artist_all=Artist.objects.all()
 	#print(artist)
 	return render(request,'index.html',{'artist':artist,'artist_all':artist_all})
@@ -19,7 +19,7 @@ def artist_index(request):
 
 
 def about(request):
-	artist=Artist.objects.all().order_by('-id')[:3]
+	artist=Artist.objects.all().order_by('id')[:3]
 	return render(request,'about-us.html',{'artist':artist})
 
 def artist_about_us(request):
@@ -45,7 +45,7 @@ def artist_change_password(request):
 		return render(request,'artist-change-password.html')
 
 def forgot_password(request):
-	artist=Artist.objects.all().order_by('-id')[:3]
+	artist=Artist.objects.all().order_by('id')[:3]
 	if request.method=="POST":
 		try:
 			artist=Artist.objects.get(mobile=request.POST['mobile'])
@@ -79,7 +79,7 @@ def forgot_password(request):
 		return render(request,"forgot-password.html",{'artist':artist})
 
 def verify_otp(request):
-	artist=Artist.objects.all().order_by('-id')[:3]
+	artist=Artist.objects.all().order_by('id')[:3]
 	otp=request.POST['otp']
 	mobile=request.POST['mobile']
 	uotp=request.POST['uotp']
@@ -92,7 +92,7 @@ def verify_otp(request):
 		return render(request,"verify-otp.html",{'msg':msg,'mobile':mobile,'otp':otp,'artist':artist})
 
 def new_password(request):
-	artist=Artist.objects.all().order_by('-id')[:3]
+	artist=Artist.objects.all().order_by('id')[:3]
 	n_pwd=request.POST['new_password']
 	cn_pwd=request.POST['cnew_password']
 	mobile=request.POST['mobile']
@@ -117,7 +117,7 @@ def new_password(request):
 
 
 def contact(request):
-	artist=Artist.objects.all().order_by('-id')[:3]
+	artist=Artist.objects.all().order_by('id')[:3]
 	if request.method=="POST":
 		Contact.objects.create(
 			name=request.POST['name'],		
@@ -131,12 +131,12 @@ def contact(request):
 		return render(request,'contact.html',{'artist':artist})
 
 def artist(request):
-	artist=Artist.objects.all().order_by('-id')[:3]
+	artist=Artist.objects.all().order_by('id')[:3]
 	artist_all=Artist.objects.all()
 	return render(request,'artist.html',{'artist':artist,'artist_all':artist_all})
 
 def login(request):
-	artist=Artist.objects.all().order_by('-id')[:3]
+	artist=Artist.objects.all().order_by('id')[:3]
 	if request.method=="POST":
 		try:
 			artist=Artist.objects.get(email=request.POST['email'])
@@ -168,7 +168,7 @@ def login(request):
 		return render(request,'login.html',{'artist':artist})
 
 def signup(request):
-	artist=Artist.objects.all().order_by('-id')[:3]
+	artist=Artist.objects.all().order_by('id')[:3]
 	if request.method=="POST":
 		try:
 			Customer.objects.get(mobile=request.POST['mobile'])
@@ -244,7 +244,7 @@ def logout(request):
 		return redirect('login')
 
 def profile(request):
-	artist=Artist.objects.all().order_by('-id')[:3]
+	artist=Artist.objects.all().order_by('id')[:3]
 	try:
 		customer=Customer.objects.get(email=request.session['email'])
 		if request.method=="POST":

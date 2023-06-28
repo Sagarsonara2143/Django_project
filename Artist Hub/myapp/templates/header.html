@@ -46,7 +46,7 @@
                         <li class="active"><a href="/">Home</a></li>
                         <li><a href="{% url 'about' %}">About</a></li>
                         
-                        <li><a href="{% url 'artist' %}">Musicians</a>
+                        <li><a href="{% url 'artist' %}">Singer</a>
                             <ul class="dropdown">
                                 {% for i in artist %}
                                 <li><a href="#">{{ i.fname}} {{ i.lname }}</a></li>
