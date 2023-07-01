@@ -17,4 +17,5 @@ urlpatterns=[
 	path('forgot-password/',views.forgot_password,name='forgot-password'),
 	path('verify-otp/',views.verify_otp,name='verify-otp'),
 	path('new-password/',views.new_password,name='new-password'),
+	path('artist-details',views.artist_details,name='artist-details'),
 ]

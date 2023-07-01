@@ -286,6 +286,9 @@ def profile(request):
 		else:
 			return render(request,'profile.html',{'artist_get':artist_get,'artist':artist})
 
+def artist-details(request):
+	artist=Artist.objects.all().order_by('id')[:3]
+	return render (request,'artist-details.html',{'artist':artist})
 
 
 

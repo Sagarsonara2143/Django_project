@@ -1,0 +1,74 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    
+</head>
+
+<body>
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2>Feature Artists</h2>
+                        <div class="bt-option">
+                            <a href="/">Home</a>
+                            <span>Our Artists</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Speaker Section Begin -->
+    {% for i in artist_all %}
+    <section class="speaker-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="speaker-item">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="si-pic">
+                                    <img src="{{ i.profile_pic.url }}" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="si-text">
+                                    <div class="si-title">
+                                        <h4>{{ i.fname}} {{i.lname }}</h4>
+                                        <span>Singer</span>
+                                    </div>
+                                    <div class="si-social">
+                                        <a href="{{ i.facenook }}"><i class="fa fa-facebook"></i></a>
+                                        <a href="{{ i.twitter}}"><i class="fa fa-twitter"></i></a>
+                                        <a href="{{ i.instagram }}"><i class="fa fa-instagram"></i></a>
+                                    </div>
+                                    <p>{{ i.about }}</p>
+                                </div>
+                                <div class="load-more">
+                                    <a href="#" class="primary-btn">Book Singer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    {% endfor %}
+    <!-- Speaker Section End -->
+   
+</body>
+
+</html>
+{% endblock %}
