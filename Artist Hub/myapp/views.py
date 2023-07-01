@@ -20,7 +20,8 @@ def artist_index(request):
 
 def about(request):
 	artist=Artist.objects.all().order_by('id')[:3]
-	return render(request,'about-us.html',{'artist':artist})
+	artist_all=Artist.objects.all()
+	return render(request,'about-us.html',{'artist':artist,'artist_all':artist_all})
 
 def artist_about_us(request):
 	return render(request,'artist-about-us.html')
