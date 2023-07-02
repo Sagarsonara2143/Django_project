@@ -286,9 +286,9 @@ def profile(request):
 		else:
 			return render(request,'profile.html',{'artist_get':artist_get,'artist':artist})
 
-def artist_details(request,pk):
+def artist_details(request):
 	artist=Artist.objects.all().order_by('id')[:3]
-	artist_info=Artist.objects.get(pk=pk)
+	artist_info=Artist.objects.get()
 	return render (request,'artist-details.html',{'artist':artist,'artist_info':artist_info})
 
 
