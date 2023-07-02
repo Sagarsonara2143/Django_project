@@ -29,7 +29,6 @@
     <!-- Breadcrumb Section End -->
 
     <!-- Speaker Section Begin -->
-    {% for i in artist_all %}
     <section class="speaker-section spad">
         <div class="container">
             <div class="row">
@@ -38,21 +37,21 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="si-pic">
-                                    <img src="{{ i.profile_pic.url }}" alt="">
+                                    <img src="{{ artist_info.profile_pic.url }}" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="si-text">
                                     <div class="si-title">
-                                        <h4>{{ i.fname}} {{i.lname }}</h4>
+                                        <h4>{{ artist_info.fname}} {{artist_info.lname }}</h4>
                                         <span>Singer</span>
                                     </div>
                                     <div class="si-social">
-                                        <a href="{{ i.facenook }}"><i class="fa fa-facebook"></i></a>
-                                        <a href="{{ i.twitter}}"><i class="fa fa-twitter"></i></a>
-                                        <a href="{{ i.instagram }}"><i class="fa fa-instagram"></i></a>
+                                        <a href="{{ artist_info.facenook }}"><i class="fa fa-facebook"></i></a>
+                                        <a href="{{ artist_info.twitter}}"><i class="fa fa-twitter"></i></a>
+                                        <a href="{{ artist_info.instagram }}"><i class="fa fa-instagram"></i></a>
                                     </div>
-                                    <p>{{ i.about }}</p>
+                                    <p>{{ artist_info.about }}</p>
                                 </div>
                                 <div class="load-more">
                                     <a href="#" class="primary-btn">Book Singer</a>
@@ -65,7 +64,6 @@
 
         </div>
     </section>
-    {% endfor %}
     <!-- Speaker Section End -->
    
 </body>
